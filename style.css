@@ -2680,3 +2680,107 @@ p {
     display: none !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   15. SOCIAL MEDIA LINKS STYLING (TOP BAR & FOOTER)
+   -------------------------------------------------------------------------- */
+.top-social-links {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 8px;
+  padding-right: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--slate-200);
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.social-icon-link:hover {
+  transform: translateY(-2px);
+  color: var(--white);
+}
+
+.social-icon-link.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.social-icon-link.facebook:hover {
+  background: #1877F2;
+}
+
+.social-icon-link.twitter:hover {
+  background: #0f1419;
+}
+
+.footer-social-block {
+  margin-top: 20px;
+}
+
+.social-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-300);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.footer-social-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--white);
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.footer-social-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+.footer-social-btn.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  border-color: transparent;
+}
+
+.footer-social-btn.facebook:hover {
+  background: #1877F2;
+  border-color: #1877F2;
+}
+
+.footer-social-btn.twitter:hover {
+  background: #000000;
+  border-color: #333333;
+}
+
+.footer-social-btn.whatsapp:hover {
+  background: var(--whatsapp-green);
+  border-color: var(--whatsapp-green);
+}
