@@ -18,7 +18,7 @@ This repository contains the production-ready website engineered with modern web
 
 - **Live URL:** [https://gangaagrigenetics.github.io/gangaagrigenetics](https://gangaagrigenetics.github.io/gangaagrigenetics)
 - **Store Location:** Plus Code `VCJF+5X7, Shetpalle, Telangana 503218`
-- **Phone / Helpline:** `+91 94407 57165`
+- **Phone / Helpline:** `+91 70131 35345`
 - **Email:** `gangaagrigenetics@gmail.com`
 
 ---

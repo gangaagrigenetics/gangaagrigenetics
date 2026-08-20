@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <button type="button" class="btn btn--outline btn--sm view-spec-btn" data-id="${item.id}">
               <i class="fa-solid fa-circle-info"></i> ${isTe ? 'వివరాలు' : 'View Specs'}
             </button>
-            <a href="https://wa.me/919440757165?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to inquire/order ' + item.name + ' (' + item.varietyCode + ')')}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
+            <a href="https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to inquire/order ' + item.name + ' (' + item.varietyCode + ')')}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
               <i class="fa-brands fa-whatsapp"></i> ${isTe ? 'ఆర్డర్' : 'Order'}
             </a>
           </div>
@@ -500,7 +500,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const whatsappBtn = document.getElementById('modalWhatsAppOrderBtn');
     if (whatsappBtn) {
-      whatsappBtn.href = `https://wa.me/919440757165?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + seed.name + ' (' + seed.varietyCode + ')')}`;
+      whatsappBtn.href = `https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + seed.name + ' (' + seed.varietyCode + ')')}`;
     }
 
     modal.showModal();
@@ -701,7 +701,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (calcOrderWhatsAppBtn) {
       const msg = `Hello Ganga Agri Genetics, I calculated seed requirements for ${cropData.name} on ${rawArea} ${unit} (Approx ${resultSeedRate ? resultSeedRate.textContent : ''}, ${totalBags} Packets). Please provide quotation and availability.`;
       calcOrderWhatsAppBtn.onclick = () => {
-        window.open(`https://wa.me/919440757165?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
       };
     }
   }
@@ -905,7 +905,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const copyAddressBtn = document.getElementById('copyAddressBtn');
   if (copyAddressBtn) {
     copyAddressBtn.addEventListener('click', function () {
-      const addressText = 'Ganga Agri Genetics, VCJF+5X7, Shetpalle, Telangana 503218, India. Phone: +91-9440757165';
+      const addressText = 'Ganga Agri Genetics, VCJF+5X7, Shetpalle, Telangana 503218, India. Phone: +91-7013135345';
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(addressText).then(() => {
           showToast(currentLang === 'te' ? 'దుకాణం చిరునామా కాపీ చేయబడింది!' : 'Store Address copied to clipboard!', 'success');
@@ -969,7 +969,7 @@ document.addEventListener('DOMContentLoaded', function () {
         `🎯 *Purpose:* ${data.reason}\n` +
         `📝 *Notes:* ${data.message}`;
 
-      window.open(`https://wa.me/919440757165?text=${encodeURIComponent(text)}`, '_blank');
+      window.open(`https://wa.me/917013135345?text=${encodeURIComponent(text)}`, '_blank');
       showToast('Opening WhatsApp with your inquiry...', 'success');
     });
   }
