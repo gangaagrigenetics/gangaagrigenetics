@@ -1,291 +1,1332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ganga Agri Genetics - Leading Innovation in Agricultural Genetics</title>
+    <title>Ganga Agri Genetics | High-Yielding Hybrid Seeds & Agricultural Innovation</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="Ganga Agri Genetics | High-Yielding Hybrid Seeds & Agricultural Innovation">
+    <meta name="description" content="Ganga Agri Genetics (5.0★ Google Rated) is a premier Agricultural Seed Store & Hybrid Genetics Enterprise in Shetpalle, Telangana (503218). Premium hybrid paddy, maize, cotton, vegetable seeds, and expert agronomy advisory.">
+    <meta name="keywords" content="Ganga Agri Genetics, Agricultural Seed Store, Hybrid Seeds Telangana, Shetpalle 503218, Hybrid Paddy Seeds, Hybrid Maize, Cotton Seeds, Vegetable Seeds, Farming Telangana, Nizamabad Seeds, Crop Yield Calculator">
+    <meta name="author" content="Ganga Agri Genetics">
+    <meta name="theme-color" content="#064e3b">
+    <link rel="canonical" href="https://gangaagrigenetics.github.io/gangaagrigenetics/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="business.business">
+    <meta property="og:url" content="https://gangaagrigenetics.github.io/gangaagrigenetics/">
+    <meta property="og:title" content="Ganga Agri Genetics - Leading Agricultural Hybrid Seeds">
+    <meta property="og:description" content="Certified 5.0★ Agricultural Seed Store in Shetpalle, Telangana. High-yielding hybrid seeds for paddy, maize, cotton & vegetables.">
+    <meta property="og:image" content="assets/images/logo.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Ganga Agri Genetics - Hybrid Seeds & Agricultural Innovation">
+    <meta property="twitter:description" content="Premium hybrid seeds, 5.0★ rated seed store in Shetpalle, Telangana. Boost your farm yields today.">
+    <meta property="twitter:image" content="assets/images/logo.svg">
+
+    <!-- Favicon / Web App Manifest -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- External Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+
+    <!-- Schema.org JSON-LD Structured Data for LocalBusiness & Store -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["LocalBusiness", "Store"],
+      "name": "Ganga Agri Genetics",
+      "image": "https://gangaagrigenetics.github.io/gangaagrigenetics/assets/images/logo.svg",
+      "@id": "https://gangaagrigenetics.github.io/gangaagrigenetics/",
+      "url": "https://gangaagrigenetics.github.io/gangaagrigenetics/",
+      "telephone": "+91-9440757165",
+      "email": "gangaagrigenetics@gmail.com",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "VCJF+5X7",
+        "addressLocality": "Shetpalle",
+        "addressRegion": "Telangana",
+        "postalCode": "503218",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.7833,
+        "longitude": 78.2333
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "08:00",
+          "closes": "19:30"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Sunday",
+          "opens": "08:30",
+          "closes": "13:30"
+        }
+      ],
+      "sameAs": [
+        "https://www.google.com/search?q=ganga+agri+genetics",
+        "https://gangaagrigenetics.github.io/gangaagrigenetics"
+      ]
+    }
+    </script>
 </head>
 <body>
-    <!-- Top Contact Bar -->
-    <div class="top-bar">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <aside class="top-bar" aria-label="Store contact and operating status">
         <div class="container">
             <div class="top-bar-content">
-                <div class="contact-info">
-                    <span>📞 +91-9440757165</span>
-                    <span>✉️ gangaagrigenetics@gmail.com</span>
+                <div class="top-bar-left">
+                    <span class="status-indicator-pill" id="liveStoreStatus">
+                        <span class="status-dot pulse"></span>
+                        <strong class="status-text">Checking Hours...</strong>
+                    </span>
+                    <span class="top-info-item">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i> 
+                        <span>Plus Code: <strong>VCJF+5X7, Shetpalle, Telangana 503218</strong></span>
+                    </span>
+                </div>
+                <div class="top-bar-right">
+                    <a href="tel:+919440757165" class="top-link" title="Call Ganga Agri Genetics Store">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i> +91 94407 57165
+                    </a>
+                    <a href="https://wa.me/919440757165?text=Hello%20Ganga%20Agri%20Genetics,%20I%20want%20to%20inquire%20about%20hybrid%20seeds" target="_blank" rel="noopener noreferrer" class="top-link whatsapp-top" title="Chat on WhatsApp">
+                        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i> WhatsApp
+                    </a>
+                    <a href="mailto:gangaagrigenetics@gmail.com" class="top-link" title="Send Email">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i> gangaagrigenetics@gmail.com
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
+    </aside>
 
-    <!-- Header -->
-    <header class="header">
+    <!-- HEADER / NAVIGATION -->
+    <header class="header" id="mainHeader">
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <h1>🌱 Ganga Agri Genetics</h1>
-                </div>
-                <nav class="nav">
-                    <button class="nav-toggle" id="navToggle">☰</button>
+                <a href="#hero" class="brand-logo" aria-label="Ganga Agri Genetics Home">
+                    <img src="assets/images/logo.svg" alt="Ganga Agri Genetics Logo" class="logo-image" width="220" height="52">
+                </a>
+
+                <nav class="nav" aria-label="Primary Navigation">
+                    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                        <span class="hamburger-bar"></span>
+                    </button>
+
                     <ul class="nav-menu" id="navMenu">
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#products">Products</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#rd">R&D</a></li>
-                        <li><a href="#blog">Blog</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#hero" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a></li>
+                        <li><a href="#products" class="nav-link"><i class="fa-solid fa-seedling"></i> Hybrid Seeds</a></li>
+                        <li><a href="#calculator" class="nav-link"><i class="fa-solid fa-calculator"></i> Yield Calculator</a></li>
+                        <li><a href="#about" class="nav-link"><i class="fa-solid fa-dna"></i> R&D & About</a></li>
+                        <li><a href="#services" class="nav-link"><i class="fa-solid fa-tractor"></i> Services</a></li>
+                        <li><a href="#calendar" class="nav-link"><i class="fa-solid fa-calendar-days"></i> Crop Calendar</a></li>
+                        <li><a href="#reviews" class="nav-link"><i class="fa-solid fa-star"></i> Reviews (5.0★)</a></li>
+                        <li><a href="#location" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Store Location</a></li>
+                        <li class="nav-lang-item">
+                            <button type="button" id="langToggleBtn" class="lang-switch-btn" aria-label="Switch Language between English and Telugu" title="Switch Language">
+                                <i class="fa-solid fa-language"></i> <span id="langLabel">తెలుగు</span>
+                            </button>
+                        </li>
+                        <li class="nav-cta-item">
+                            <a href="#contact" class="btn btn--primary btn--sm">
+                                <i class="fa-solid fa-paper-plane"></i> Book Seeds
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="hero-overlay">
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section" id="hero">
+            <div class="hero-backdrop" aria-hidden="true"></div>
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Leading Innovation in Agricultural Genetics</h1>
-                    <p class="hero-subtitle">High-quality hybrid seeds for sustainable farming and better yields</p>
-                    <div class="hero-buttons">
-                        <button class="btn btn--primary btn--lg" id="exploreProductsBtn">Explore Products</button>
-                        <button class="btn btn--secondary btn--lg" id="learnMoreBtn">Learn More</button>
+                <div class="hero-grid">
+                    <div class="hero-text-col">
+                        <div class="hero-badge">
+                            <span class="badge-icon"><i class="fa-solid fa-certificate"></i></span>
+                            <span id="heroBadgeText">Certified Telangana Agricultural Seed Enterprise</span>
+                        </div>
+                        <h1 class="hero-title">
+                            High-Yielding <span class="highlight-text">Hybrid Seeds</span> &amp; Agricultural Genetics
+                        </h1>
+                        <p class="hero-description" id="heroDescText">
+                            Engineered for maximum vigor, superior germination, and climate resilience. Ganga Agri Genetics delivers trusted hybrid paddy, maize, cotton, and vegetable seeds directly to farmers across Telangana and South India.
+                        </p>
+
+                        <div class="hero-cta-group">
+                            <a href="#products" class="btn btn--primary btn--lg">
+                                <i class="fa-solid fa-leaf"></i> <span id="heroCtaExploreText">Explore Seed Catalog</span>
+                            </a>
+                            <a href="#calculator" class="btn btn--secondary btn--lg">
+                                <i class="fa-solid fa-calculator"></i> <span id="heroCtaCalcText">Seed &amp; Yield Calculator</span>
+                            </a>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Ganga+Agri+Genetics+Shetpalle+Telangana+503218" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
+                                <i class="fa-solid fa-diamond-turn-right"></i> <span id="heroCtaDirectionsText">Get Directions (Shetpalle)</span>
+                            </a>
+                        </div>
+
+                        <!-- Hero Stats Grid -->
+                        <div class="hero-metrics">
+                            <div class="metric-card">
+                                <div class="metric-value">5.0 <span class="stars-gold"><i class="fa-solid fa-star"></i></span></div>
+                                <div class="metric-label">Google Rating (5 Reviews)</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">98%+</div>
+                                <div class="metric-label">Germination Purity</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">15,000+</div>
+                                <div class="metric-label">Acres Cultivated</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value">100%</div>
+                                <div class="metric-label">Certified Seeds</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-col">
+                        <div class="hero-glass-card">
+                            <div class="glass-card-header">
+                                <div class="store-badge"><i class="fa-solid fa-store"></i> Verified Agricultural Seed Store</div>
+                                <div class="google-pill"><i class="fa-brands fa-google"></i> 5.0 ★★★★★</div>
+                            </div>
+                            <div class="glass-card-body">
+                                <h3>Ganga Agri Genetics</h3>
+                                <p class="store-loc"><i class="fa-solid fa-location-dot"></i> VCJF+5X7, Shetpalle, Telangana 503218</p>
+                                <div class="card-feature-list">
+                                    <div class="card-feature-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Official Hybrid Breeder &amp; Processor</span>
+                                    </div>
+                                    <div class="card-feature-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Bacterial Leaf Blight &amp; Pest Tolerant Crops</span>
+                                    </div>
+                                    <div class="card-feature-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>On-Site Quality Lab &amp; Germination Tests</span>
+                                    </div>
+                                    <div class="card-feature-item">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <span>Free Agronomy Advisory &amp; Soil Consultation</span>
+                                    </div>
+                                </div>
+                                <div class="glass-card-actions">
+                                    <a href="tel:+919440757165" class="btn btn--primary btn--block">
+                                        <i class="fa-solid fa-phone"></i> Call Store Now
+                                    </a>
+                                    <a href="https://wa.me/919440757165?text=Hello%20Ganga%20Agri%20Genetics,%20I%20would%20like%20to%20order%20seeds" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
+                                        <i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Chat
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Products Section (Reference for navigation) -->
-    <section class="products-section" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Products</h2>
-                <p>Innovative hybrid seeds designed for superior crop performance and sustainable agriculture</p>
-            </div>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-icon">🌾</div>
-                    <h3>Cereal Crops</h3>
-                    <p>High-yielding hybrid varieties of wheat, rice, and maize with enhanced disease resistance.</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🥬</div>
-                    <h3>Vegetable Seeds</h3>
-                    <p>Premium vegetable seed varieties for commercial cultivation with improved shelf life.</p>
-                </div>
-                <div class="product-card">
-                    <div class="product-icon">🌻</div>
-                    <h3>Oil Seeds</h3>
-                    <p>Superior oilseed varieties including sunflower, mustard, and groundnut with high oil content.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2>About Ganga Agri Genetics</h2>
-                <p>We are engaged in hybrid development, seed production, processing, and marketing, committed to advancing agricultural excellence through innovative genetic solutions.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🌱</div>
-                    <h3>Sustainable Farming</h3>
-                    <p>We adopt sustainable farming practices to ensure environmental conservation and long-term agricultural viability.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔬</div>
-                    <h3>Advanced R&D</h3>
-                    <p>Our state-of-the-art research and development center drives innovation in agricultural genetics and seed technology.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✅</div>
-                    <h3>Quality Assurance</h3>
-                    <p>We maintain the highest standards in seed quality, ensuring better yields and crop resilience for farmers.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Services</h2>
-                <p>Comprehensive agricultural solutions to support modern farming practices</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🧬</div>
-                    <h3>Hybrid Seed Development</h3>
-                    <p>Developing high-performance hybrid seeds with improved yield potential and disease resistance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🏭</div>
-                    <h3>Seed Production & Processing</h3>
-                    <p>Advanced seed production facilities with modern processing and quality control systems.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">👨‍🌾</div>
-                    <h3>Agricultural Consultation</h3>
-                    <p>Expert guidance and consultation services to help farmers optimize their crop production.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📚</div>
-                    <h3>Farmer Education Programs</h3>
-                    <p>Comprehensive training programs to educate farmers on modern agricultural practices and technologies.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Choose Us Section -->
-    <section class="why-choose-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Why Choose Ganga Agri Genetics</h2>
-                <p>Our commitment to excellence and innovation sets us apart in the agricultural industry</p>
-            </div>
-            <div class="why-choose-content">
-                <ul class="why-choose-list">
-                    <li>✓ Expertise in field with practical farming experience</li>
-                    <li>✓ Transparent and responsible farming practices</li>
-                    <li>✓ Direct access to decision makers</li>
-                    <li>✓ Comprehensive advice and support</li>
-                    <li>✓ State-of-the-art R&D facilities</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="timeline-section" id="rd">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Journey</h2>
-                <p>Milestones in our commitment to agricultural innovation</p>
-            </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Company Founded</h3>
-                        <p>The company was founded with a mission to revolutionize agriculture through innovative genetics.</p>
+        <!-- TRUST & GOOGLE BUSINESS BANNER STRIP -->
+        <section class="trust-banner-strip">
+            <div class="container">
+                <div class="trust-grid">
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-brands fa-google"></i></div>
+                        <div class="trust-info">
+                            <strong>5.0 Google Rating</strong>
+                            <p>5 Verified 5-Star Reviews</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>First Major Milestone</h3>
-                        <p>Achieved first major milestone in seed production and distribution network.</p>
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                        <div class="trust-info">
+                            <strong>R&amp;D Genetic Excellence</strong>
+                            <p>Modern Hybridization Labs</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>R&D Center Established</h3>
-                        <p>Established a state-of-the-art R&D center to foster innovation in agricultural genetics.</p>
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                        <div class="trust-info">
+                            <strong>Direct Farm Delivery</strong>
+                            <p>Telangana &amp; South India Wide</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>New Hybrid Launch</h3>
-                        <p>Launched a new range of hybrid seeds that improved yield and resilience for farmers.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <h3>Market Expansion</h3>
-                        <p>We expanded our reach to new markets with innovative seed solutions and partnerships.</p>
+                    <div class="trust-item">
+                        <div class="trust-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                        <div class="trust-info">
+                            <strong>Expert Agri Guidance</strong>
+                            <p>Free Farmer Helpline</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog Section -->
-    <section class="blog-section" id="blog">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest Updates</h2>
-                <p>Stay informed about the latest developments in agricultural genetics and farming practices</p>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-icon">📰</div>
-                    <h3>New Hybrid Varieties Launch</h3>
-                    <p>We are excited to announce the launch of our latest hybrid seed varieties with enhanced yield potential.</p>
-                    <span class="blog-date">January 2025</span>
+        <!-- INTERACTIVE SEED RATE & CROP YIELD CALCULATOR -->
+        <section class="calculator-section" id="calculator">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-calculator"></i> Smart Farming Tool</span>
+                    <h2>Interactive Seed Rate &amp; Yield Calculator</h2>
+                    <p>Calculate exact seed quantity needed for your land, recommended row spacing, and estimated harvest yield potential for Telangana farming conditions.</p>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-icon">🌿</div>
-                    <h3>Sustainable Farming Practices</h3>
-                    <p>Learn about our commitment to sustainable agriculture and environmental conservation initiatives.</p>
-                    <span class="blog-date">December 2024</span>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-icon">🔬</div>
-                    <h3>R&D Breakthrough</h3>
-                    <p>Our research team has achieved a significant breakthrough in disease-resistant crop development.</p>
-                    <span class="blog-date">November 2024</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>🌱 Ganga Agri Genetics</h3>
-                    <p>Leading innovation in agricultural genetics for a sustainable future.</p>
-                    <div class="contact-details">
-                        <p>📞 +91-9440757165</p>
-                        <p>✉️ gangaagrigenetics@gmail.com</p>
+                <div class="calculator-card">
+                    <div class="calculator-grid">
+                        <!-- Input Column -->
+                        <div class="calc-inputs-col">
+                            <h3 class="calc-box-title"><i class="fa-solid fa-sliders"></i> Enter Your Farm Details</h3>
+                            
+                            <div class="form-group">
+                                <label for="calcCropSelect"><i class="fa-solid fa-wheat-awn"></i> Select Crop Variety</label>
+                                <select id="calcCropSelect" class="form-control" aria-label="Select Crop Variety">
+                                    <option value="paddy" selected>Hybrid Paddy / Rice (వరి)</option>
+                                    <option value="maize">Hybrid Maize / Corn (మొక్కజొన్న)</option>
+                                    <option value="cotton">Hybrid BT-II Cotton (ప్రత్తి)</option>
+                                    <option value="chilli">Hybrid Hot Chilli / Mirchi (మిరప)</option>
+                                    <option value="tomato">Hybrid Tomato F1 (టమాట)</option>
+                                    <option value="okra">Hybrid Okra / Bhindi (బెండ)</option>
+                                    <option value="mustard">Hybrid Mustard / Oilseed (ఆవాలు)</option>
+                                    <option value="redgram">Hybrid Redgram / Toor (కంది)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-half">
+                                    <label for="calcLandArea"><i class="fa-solid fa-chart-area"></i> Land Area</label>
+                                    <input type="number" id="calcLandArea" class="form-control" min="0.25" max="1000" step="0.25" value="2" inputmode="decimal">
+                                </div>
+                                <div class="form-group col-half">
+                                    <label for="calcAreaUnit"><i class="fa-solid fa-ruler-combined"></i> Unit</label>
+                                    <select id="calcAreaUnit" class="form-control" aria-label="Land Unit">
+                                        <option value="acres" selected>Acres (ఎకరాలు)</option>
+                                        <option value="guntas">Guntas (గుంటలు)</option>
+                                        <option value="hectares">Hectares</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="calcSoilType"><i class="fa-solid fa-mound"></i> Soil Type</label>
+                                <select id="calcSoilType" class="form-control" aria-label="Soil Type">
+                                    <option value="black_cotton" selected>Black Cotton Soil (నల్లరేగడి నేల)</option>
+                                    <option value="red_loam">Red Sandy Loam (ఎర్ర నేల)</option>
+                                    <option value="alluvial">Clay / Alluvial Soil (వరి ఒండ్రు నేల)</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="calcSeason"><i class="fa-solid fa-cloud-sun-rain"></i> Sowing Season</label>
+                                <select id="calcSeason" class="form-control" aria-label="Sowing Season">
+                                    <option value="kharif" selected>Kharif (Monsoon / వానాకాలం)</option>
+                                    <option value="rabi">Rabi (Winter / యాసంగి)</option>
+                                    <option value="summer">Summer / Zaid (వేసవి)</option>
+                                </select>
+                            </div>
+
+                            <button type="button" id="recalcBtn" class="btn btn--primary btn--block">
+                                <i class="fa-solid fa-arrows-rotate"></i> Recalculate Recommendation
+                            </button>
+                        </div>
+
+                        <!-- Results Output Column -->
+                        <div class="calc-results-col">
+                            <div class="results-header">
+                                <h3><i class="fa-solid fa-clipboard-check"></i> Agronomic Recommendations</h3>
+                                <span class="badge badge--success" id="calcCropBadge">Paddy (Rice)</span>
+                            </div>
+
+                            <div class="result-cards-grid">
+                                <div class="result-stat-box">
+                                    <div class="stat-icon"><i class="fa-solid fa-weight-hanging"></i></div>
+                                    <div class="stat-content">
+                                        <span class="stat-label">Recommended Seed Rate</span>
+                                        <strong class="stat-number" id="resultSeedRate">10 - 12 kg</strong>
+                                        <small class="stat-subtext" id="resultSeedPkt">approx. 3 - 4 Bags</small>
+                                    </div>
+                                </div>
+
+                                <div class="result-stat-box highlight-box">
+                                    <div class="stat-icon"><i class="fa-solid fa-seedling"></i></div>
+                                    <div class="stat-content">
+                                        <span class="stat-label">Expected Yield Potential</span>
+                                        <strong class="stat-number" id="resultYield">56 - 68 Quintals</strong>
+                                        <small class="stat-subtext" id="resultYieldPerAcre">(28 - 34 Qtl / Acre)</small>
+                                    </div>
+                                </div>
+
+                                <div class="result-stat-box">
+                                    <div class="stat-icon"><i class="fa-solid fa-arrows-left-right"></i></div>
+                                    <div class="stat-content">
+                                        <span class="stat-label">Recommended Spacing</span>
+                                        <strong class="stat-number" id="resultSpacing">20 cm × 15 cm</strong>
+                                        <small class="stat-subtext">Row-to-Row × Plant-to-Plant</small>
+                                    </div>
+                                </div>
+
+                                <div class="result-stat-box">
+                                    <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+                                    <div class="stat-content">
+                                        <span class="stat-label">Crop Maturity Duration</span>
+                                        <strong class="stat-number" id="resultDuration">125 - 135 Days</strong>
+                                        <small class="stat-subtext">From Sowing to Harvest</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Agronomy Advisory Note -->
+                            <div class="calc-advice-box">
+                                <h4><i class="fa-solid fa-lightbulb"></i> Ganga Agri Expert Advisory:</h4>
+                                <p id="calcExpertAdvice">
+                                    Treat seeds with Pseudomonas or Trichoderma before sowing. Maintain 2-3 cm standing water during tillering phase. High resistance against Bacterial Leaf Blight (BLB).
+                                </p>
+                            </div>
+
+                            <div class="calc-order-action">
+                                <button type="button" id="calcOrderWhatsAppBtn" class="btn btn--whatsapp btn--block">
+                                    <i class="fa-brands fa-whatsapp"></i> Order This Seed Quantity via WhatsApp
+                                </button>
+                                <button type="button" id="printCalcBtn" class="btn btn--outline btn--block" style="margin-top: 8px;">
+                                    <i class="fa-solid fa-print"></i> <span id="printCalcBtnText">Print / Save Agronomy Card</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
+            </div>
+        </section>
+
+        <!-- HYBRID SEEDS CATALOG (FILTERABLE & SEARCHABLE) -->
+        <section class="products-section" id="products">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-leaf"></i> Certified Seed Varieties</span>
+                    <h2>Our Premium Hybrid Seeds Catalog</h2>
+                    <p>Scientifically bred for exceptional vigor, disease tolerance, high milling recovery, and maximum market value.</p>
+                </div>
+
+                <!-- Search and Filter Controls -->
+                <div class="catalog-controls">
+                    <div class="search-box">
+                        <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                        <input type="text" id="seedSearchInput" placeholder="Search by crop, variety name, or trait (e.g., BLB resistant, Mahabali, Paddy)..." aria-label="Search seeds catalog">
+                        <button type="button" id="clearSearchBtn" class="clear-btn" aria-label="Clear search" style="display:none;">✕</button>
+                    </div>
+
+                    <div class="filter-pills" role="tablist" aria-label="Filter seeds by category">
+                        <button class="filter-pill active" data-category="all" role="tab" aria-selected="true">
+                            <i class="fa-solid fa-border-all"></i> All Seeds (<span id="count-all">8</span>)
+                        </button>
+                        <button class="filter-pill" data-category="cereals" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-wheat-awn"></i> Cereals (Paddy &amp; Maize)
+                        </button>
+                        <button class="filter-pill" data-category="cash_crops" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-shirt"></i> Cotton (BT-II)
+                        </button>
+                        <button class="filter-pill" data-category="vegetables" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-carrot"></i> Vegetables (Chilli, Tomato, Okra)
+                        </button>
+                        <button class="filter-pill" data-category="oilseeds" role="tab" aria-selected="false">
+                            <i class="fa-solid fa-sun"></i> Oilseeds &amp; Pulses
+                        </button>
+                    </div>
+
+                    <div class="compare-trigger-wrapper">
+                        <button type="button" id="openCompareModalBtn" class="btn btn--secondary btn--sm">
+                            <i class="fa-solid fa-code-compare"></i> <span id="compareBtnLabel">Compare Varieties</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="products-grid" id="productsGrid">
+                    <!-- Dynamic rendering via app.js with fallback content -->
+                </div>
+
+                <!-- Catalog CTA Banner -->
+                <div class="catalog-footer-banner">
+                    <div class="banner-content">
+                        <h3>Looking for Bulk Seed Dealership or Custom Foundation Seeds?</h3>
+                        <p>We supply registered seed distributors, FPOs, agro-retailers, and large contract farms with certified hybrid lots.</p>
+                    </div>
+                    <a href="#contact" class="btn btn--primary btn--lg">
+                        <i class="fa-solid fa-file-contract"></i> Inquire for Wholesale / Dealership
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT GANGA AGRI GENETICS & R&D EXCELLENCE -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content-col">
+                        <span class="subheading-tag"><i class="fa-solid fa-dna"></i> Genetics &amp; Innovation</span>
+                        <h2>Pioneering Agricultural Genetics for Modern Farmers</h2>
+                        <p class="lead-text">
+                            Headquartered in Shetpalle, Telangana (503218), <strong>Ganga Agri Genetics</strong> is committed to bridging cutting-edge agricultural genetic science with practical farm profitability.
+                        </p>
+                        <p>
+                            From our indigenous germplasm collection to multi-location field trials across diverse agro-climatic zones of Telangana, Andhra Pradesh, and Karnataka, our hybrids are engineered to withstand biotic stress (pests, blight, viruses) and abiotic stress (drought, heat, soil salinity).
+                        </p>
+
+                        <div class="about-feature-cards">
+                            <div class="about-card">
+                                <div class="about-card-icon"><i class="fa-solid fa-flask-vial"></i></div>
+                                <div>
+                                    <h4>State-of-the-Art R&amp;D</h4>
+                                    <p>Advanced hybridization plots and genetic screening for high grain weight and pest resistance.</p>
+                                </div>
+                            </div>
+                            <div class="about-card">
+                                <div class="about-card-icon"><i class="fa-solid fa-stamp"></i></div>
+                                <div>
+                                    <h4>100% Certified Quality</h4>
+                                    <p>Compliant with Indian Minimum Seed Certification Standards (IMSCS) &amp; ISTA testing protocols.</p>
+                                </div>
+                            </div>
+                            <div class="about-card">
+                                <div class="about-card-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+                                <div>
+                                    <h4>Direct Farmer Support</h4>
+                                    <p>Dedicated agronomy advisory guiding farmers from land prep to harvest management.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="about-cta">
+                            <a href="#location" class="btn btn--secondary">
+                                <i class="fa-solid fa-location-dot"></i> Visit Our Shetpalle Center
+                            </a>
+                            <a href="tel:+919440757165" class="btn btn--outline">
+                                <i class="fa-solid fa-phone"></i> Contact R&amp;D Team
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="about-visual-col">
+                        <div class="about-lab-photo-card">
+                            <img src="assets/images/research-lab.jpg" alt="Ganga Agri Genetics Seed Research and Quality Lab" class="about-lab-img" loading="lazy" width="600" height="340">
+                            <div class="about-lab-overlay">
+                                <span><i class="fa-solid fa-microscope"></i> Shetpalle R&D Seed Quality &amp; Germination Testing Lab</span>
+                            </div>
+                        </div>
+
+                        <div class="quality-pillar-card" style="margin-top: 24px;">
+                            <div class="quality-pillar-header">
+                                <h3><i class="fa-solid fa-shield-halved"></i> Our 4-Stage Quality Guarantee</h3>
+                                <p>Every packet of Ganga Agri Genetics seed undergoes rigorous verification:</p>
+                            </div>
+                            <div class="quality-steps">
+                                <div class="q-step">
+                                    <span class="q-num">01</span>
+                                    <div>
+                                        <strong>Genetic Purity Testing</strong>
+                                        <p>Grow-out tests (GOT) verify 99%+ true-to-type hybrid genetic purity.</p>
+                                    </div>
+                                </div>
+                                <div class="q-step">
+                                    <span class="q-num">02</span>
+                                    <div>
+                                        <strong>Laboratory Germination Vigor</strong>
+                                        <p>Climate-chamber testing guarantees a minimum of 90-98% germination rate.</p>
+                                    </div>
+                                </div>
+                                <div class="q-step">
+                                    <span class="q-num">03</span>
+                                    <div>
+                                        <strong>Precision Seed Conditioning &amp; Treatment</strong>
+                                        <p>Protective bio-fungicide treatment shields young seedlings during initial germination.</p>
+                                    </div>
+                                </div>
+                                <div class="q-step">
+                                    <span class="q-num">04</span>
+                                    <div>
+                                        <strong>Moisture &amp; Hermetic Packaging</strong>
+                                        <p>Triple-layer moisture-proof packaging keeps seed vigor fresh for extended seasons.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="quality-badge-row">
+                                <span class="badge badge--pill"><i class="fa-solid fa-check"></i> Non-GMO Certified</span>
+                                <span class="badge badge--pill"><i class="fa-solid fa-check"></i> High Yield Assured</span>
+                                <span class="badge badge--pill"><i class="fa-solid fa-check"></i> Telangana Govt Licensed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-hand-holding-hand"></i> Comprehensive Solutions</span>
+                    <h2>Agricultural Services &amp; Farmer Programs</h2>
+                    <p>Supporting farmers, distributors, and agri-entrepreneurs through full-cycle crop services.</p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-dna"></i></div>
+                        <h3>Hybrid Seed Multiplication</h3>
+                        <p>Specialized contract farming and foundation seed multiplication under expert supervision with full traceability and purity controls.</p>
+                        <ul class="service-checklist">
+                            <li><i class="fa-solid fa-circle-check"></i> Breeder &amp; Foundation stock</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Field isolation inspections</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Controlled pollination</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
+                        <h3>Processing &amp; Treatment</h3>
+                        <p>Modern seed processing plant equipped with gravity separators, air-screen cleaners, and automatic polymer seed coating.</p>
+                        <ul class="service-checklist">
+                            <li><i class="fa-solid fa-circle-check"></i> Precision sorting &amp; cleaning</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Antifungal coating protection</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Hermetic seal packing</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-users-gear"></i></div>
+                        <h3>Agronomy Advisory Helpline</h3>
+                        <p>Direct access to our certified agronomists for personalized fertilizer schedules, pest diagnostic guidance, and irrigation advice.</p>
+                        <ul class="service-checklist">
+                            <li><i class="fa-solid fa-circle-check"></i> Telugu / Hindi / English support</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Pest &amp; disease photo diagnosis</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Tailored nutrient schedules</li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fa-solid fa-store"></i></div>
+                        <h3>Wholesale &amp; Retail Store</h3>
+                        <p>Our Shetpalle store offers competitive pricing, genuine certified seed stock, and bulk supply options for dealers and farmer clusters.</p>
+                        <ul class="service-checklist">
+                            <li><i class="fa-solid fa-circle-check"></i> Direct factory prices</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Fast dispatch &amp; transport help</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Credit &amp; booking options</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TELANGANA SEASONAL FARMING CALENDAR -->
+        <section class="calendar-section" id="calendar">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-calendar-check"></i> Telangana Sowing Guide</span>
+                    <h2>Seasonal Crop &amp; Sowing Calendar</h2>
+                    <p>Plan your sowing schedule according to Telangana and South India agro-climatic seasons for maximum yields.</p>
+                </div>
+
+                <div class="calendar-grid">
+                    <!-- Kharif Season -->
+                    <div class="season-card kharif-card">
+                        <div class="season-header">
+                            <span class="season-tag">Monsoon Season</span>
+                            <h3>Kharif Season (వానాకాలం)</h3>
+                            <span class="season-months"><i class="fa-solid fa-clock"></i> June – October</span>
+                        </div>
+                        <div class="season-body">
+                            <p class="season-desc">Primary sowing season synchronized with the South-West Monsoon. Best for high-yield grains and commercial cash crops.</p>
+                            <div class="season-crops">
+                                <strong>Recommended Ganga Hybrids:</strong>
+                                <ul>
+                                    <li>🌾 <strong>Hybrid Paddy:</strong> Ganga Gold-99, Ganga BPT-5204</li>
+                                    <li>🌽 <strong>Hybrid Maize:</strong> Ganga Surya Mahabali</li>
+                                    <li>☁️ <strong>Hybrid Cotton:</strong> Ganga Samrat BG-II</li>
+                                    <li>🫘 <strong>Redgram / Toor:</strong> Ganga Pragathi</li>
+                                    <li>🌶️ <strong>Vegetables:</strong> Chilli, Tomato, Okra</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rabi Season -->
+                    <div class="season-card rabi-card">
+                        <div class="season-header">
+                            <span class="season-tag">Winter Season</span>
+                            <h3>Rabi Season (యాసంగి)</h3>
+                            <span class="season-months"><i class="fa-solid fa-clock"></i> October – March</span>
+                        </div>
+                        <div class="season-body">
+                            <p class="season-desc">Cool and dry season with regulated irrigation. Exceptional for hybrid maize, oilseeds, and high-value vegetables.</p>
+                            <div class="season-crops">
+                                <strong>Recommended Ganga Hybrids:</strong>
+                                <ul>
+                                    <li>🌽 <strong>Hybrid Maize:</strong> Ganga Pioneer Yellow Gold</li>
+                                    <li>🌾 <strong>Rabi Paddy:</strong> Ganga Short-Duration Paddy</li>
+                                    <li>🌻 <strong>Sunflower:</strong> Ganga Jyoti Hybrid</li>
+                                    <li>🌱 <strong>Mustard:</strong> Ganga Gold Mustard</li>
+                                    <li>🍅 <strong>Vegetables:</strong> Tomato F1, Brinjal, Cabbage</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Summer / Zaid Season -->
+                    <div class="season-card summer-card">
+                        <div class="season-header">
+                            <span class="season-tag">Summer / Zaid</span>
+                            <h3>Summer Season (వేసవి)</h3>
+                            <span class="season-months"><i class="fa-solid fa-clock"></i> March – May</span>
+                        </div>
+                        <div class="season-body">
+                            <p class="season-desc">Short-duration cash crops with assured borewell/canal irrigation. High market rates for off-season harvests.</p>
+                            <div class="season-crops">
+                                <strong>Recommended Ganga Hybrids:</strong>
+                                <ul>
+                                    <li>🥒 <strong>Cucurbits &amp; Gourds:</strong> Ridge &amp; Bitter Gourd</li>
+                                    <li>🌱 <strong>Sesame (నువ్వులు):</strong> Ganga White Sesame</li>
+                                    <li>🌿 <strong>Green Gram (పెసలు):</strong> Ganga Bold Moong</li>
+                                    <li>🍉 <strong>Watermelon / Musk:</strong> Ganga Sugar Queen</li>
+                                    <li>🌾 <strong>Fodder Crops:</strong> Multi-cut Hybrid Sorghum</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GOOGLE REVIEWS & TESTIMONIALS SECTION -->
+        <section class="reviews-section" id="reviews">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-brands fa-google"></i> Verified Customer Feedback</span>
+                    <h2>Trusted by Farmers Across the Region</h2>
+                    <p>See why farmers and agro-dealers consistently rate Ganga Agri Genetics 5.0 out of 5 stars on Google.</p>
+                </div>
+
+                <!-- Overall Google Rating Summary Box -->
+                <div class="google-rating-summary">
+                    <div class="rating-overview">
+                        <div class="rating-score">5.0</div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="rating-count">Based on 5 Google Reviews</div>
+                        <div class="google-logo-badge"><i class="fa-brands fa-google"></i> Google Verified Business</div>
+                    </div>
+
+                    <div class="rating-bars">
+                        <div class="bar-row">
+                            <span>5 Star</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
+                            <span>100%</span>
+                        </div>
+                        <div class="bar-row">
+                            <span>4 Star</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+                            <span>0%</span>
+                        </div>
+                        <div class="bar-row">
+                            <span>3 Star</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+                            <span>0%</span>
+                        </div>
+                        <div class="bar-row">
+                            <span>2 Star</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+                            <span>0%</span>
+                        </div>
+                        <div class="bar-row">
+                            <span>1 Star</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+                            <span>0%</span>
+                        </div>
+                    </div>
+
+                    <div class="rating-action-col">
+                        <a href="https://www.google.com/search?q=ganga+agri+genetics#lrd=0x3bccd543e387c93d:0xc21849a60e5015ff,3,,," target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--block">
+                            <i class="fa-solid fa-pen-to-square"></i> Write a Google Review
+                        </a>
+                        <a href="https://www.google.com/search?q=ganga+agri+genetics" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">
+                            <i class="fa-brands fa-google"></i> View on Google Search
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Reviews Grid -->
+                <div class="reviews-grid">
+                    <article class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">RK</div>
+                            <div class="reviewer-meta">
+                                <h4>Ramesh Kumar Reddy</h4>
+                                <div class="review-stars">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="verified-badge" title="Verified Customer"><i class="fa-solid fa-circle-check"></i></span>
+                        </div>
+                        <p class="review-text">
+                            "I purchased Ganga Gold-99 Hybrid Paddy seeds for my 4 acres in Shetpalle. Germination was above 98% and tillering was remarkable. We harvested 32 quintals per acre with zero leaf blight issues. Highly recommended seed store!"
+                        </p>
+                        <div class="review-footer">
+                            <span class="crop-tag"><i class="fa-solid fa-seedling"></i> Hybrid Paddy Cultivator</span>
+                            <span class="review-date">Google Review</span>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">SL</div>
+                            <div class="reviewer-meta">
+                                <h4>Srinivas Lavudya</h4>
+                                <div class="review-stars">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="verified-badge" title="Verified Customer"><i class="fa-solid fa-circle-check"></i></span>
+                        </div>
+                        <p class="review-text">
+                            "Excellent quality seeds and very supportive staff. The agronomy advice on spacing and fertilizer application saved us money and increased our maize yield significantly. Ganga Agri Genetics is the best in the area."
+                        </p>
+                        <div class="review-footer">
+                            <span class="crop-tag"><i class="fa-solid fa-seedling"></i> Maize &amp; Cotton Farmer</span>
+                            <span class="review-date">Google Review</span>
+                        </div>
+                    </article>
+
+                    <article class="review-card">
+                        <div class="review-header">
+                            <div class="reviewer-avatar">VG</div>
+                            <div class="reviewer-meta">
+                                <h4>Venkatesh Goud</h4>
+                                <div class="review-stars">
+                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                </div>
+                            </div>
+                            <span class="verified-badge" title="Verified Customer"><i class="fa-solid fa-circle-check"></i></span>
+                        </div>
+                        <p class="review-text">
+                            "Very genuine agricultural seed store. Bought Ganga Teja Chilli seeds; great color, heavy bearing, and superior tolerance to thrips and leaf curl. Will definitely buy for the next season as well."
+                        </p>
+                        <div class="review-footer">
+                            <span class="crop-tag"><i class="fa-solid fa-seedling"></i> Commercial Chilli Grower</span>
+                            <span class="review-date">Google Review</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORE LOCATION, MAP & BUSINESS HOURS -->
+        <section class="location-section" id="location">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-map-location-dot"></i> Shetpalle, Telangana</span>
+                    <h2>Visit Our Agricultural Seed Store</h2>
+                    <p>Centrally located in Shetpalle, Telangana. Drop in for direct seed purchase, seed germination testing, or consultation.</p>
+                </div>
+
+                <div class="location-grid">
+                    <!-- Store Info & Hours -->
+                    <div class="location-info-col">
+                        <div class="loc-card">
+                            <div class="loc-header">
+                                <div class="loc-badge"><i class="fa-solid fa-store"></i> Ganga Agri Genetics Store</div>
+                                <h3 class="loc-name">Shetpalle Outlet &amp; Office</h3>
+                            </div>
+
+                            <div class="loc-detail-list">
+                                <div class="loc-item">
+                                    <i class="fa-solid fa-location-dot loc-icon"></i>
+                                    <div>
+                                        <strong>Address:</strong>
+                                        <p>VCJF+5X7, Shetpalle, Telangana 503218, India</p>
+                                    </div>
+                                </div>
+
+                                <div class="loc-item">
+                                    <i class="fa-solid fa-phone loc-icon"></i>
+                                    <div>
+                                        <strong>Phone Contact:</strong>
+                                        <p><a href="tel:+919440757165">+91 94407 57165</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="loc-item">
+                                    <i class="fa-solid fa-envelope loc-icon"></i>
+                                    <div>
+                                        <strong>Email:</strong>
+                                        <p><a href="mailto:gangaagrigenetics@gmail.com">gangaagrigenetics@gmail.com</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="loc-item">
+                                    <i class="fa-solid fa-compass loc-icon"></i>
+                                    <div>
+                                        <strong>Plus Code (Google Maps):</strong>
+                                        <p><code>VCJF+5X7 Shetpalle</code></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Operating Hours Card -->
+                            <div class="hours-box">
+                                <div class="hours-header">
+                                    <h4><i class="fa-solid fa-clock"></i> Business Hours</h4>
+                                    <span class="live-tag-inline" id="hoursLiveBadge">Checking...</span>
+                                </div>
+                                <table class="hours-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Monday – Friday</td>
+                                            <td><strong>8:00 AM – 7:30 PM</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Saturday</td>
+                                            <td><strong>8:00 AM – 7:30 PM</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sunday</td>
+                                            <td><strong>8:30 AM – 1:30 PM</strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <small class="text-muted"><i class="fa-solid fa-circle-info"></i> 24/7 Farmer WhatsApp Helpline available for emergency crop advisory.</small>
+                            </div>
+
+                            <div class="loc-actions">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Ganga+Agri+Genetics+Shetpalle+Telangana+503218" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--block">
+                                    <i class="fa-solid fa-diamond-turn-right"></i> Open in Google Maps
+                                </a>
+                                <button type="button" id="copyAddressBtn" class="btn btn--outline btn--block">
+                                    <i class="fa-solid fa-copy"></i> Copy Store Address
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Embed & Travel Guide -->
+                    <div class="location-map-col">
+                        <div class="map-wrapper">
+                            <iframe 
+                                title="Ganga Agri Genetics Location Map"
+                                src="https://maps.google.com/maps?q=Shetpalle%20Telangana%20503218&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                                width="100%" 
+                                height="380" 
+                                style="border:0; border-radius: 12px;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                            <div class="map-overlay-card">
+                                <div>
+                                    <strong>Ganga Agri Genetics</strong>
+                                    <p>Shetpalle, Telangana 503218 (VCJF+5X7)</p>
+                                </div>
+                                <a href="https://www.google.com/maps/dir/?api=1&destination=VCJF%2B5X7%2C+Shetpalle%2C+Telangana+503218" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+                                    <i class="fa-solid fa-location-arrow"></i> Directions (2 mins)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Transit Directions Helper -->
+                        <div class="transit-card">
+                            <h4><i class="fa-solid fa-route"></i> Reaching Ganga Agri Genetics:</h4>
+                            <ul>
+                                <li><strong>From Armoor / Nizamabad:</strong> Reach Shetpalle junction via state highway; store is located 200m from the main hub.</li>
+                                <li><strong>From Kamareddy / Hyderabad:</strong> Connect via NH-44 towards Armoor / Shetpalle route.</li>
+                                <li><strong>Store Landmark:</strong> Look for the Ganga Agri Genetics green sign board with seed display depot.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEED BOOKING & FARMER INQUIRY FORM -->
+        <section class="contact-section" id="contact">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info-col">
+                        <span class="subheading-tag"><i class="fa-solid fa-headset"></i> We Are Here To Help</span>
+                        <h2>Book Seeds or Request Technical Consultation</h2>
+                        <p>Fill in your requirements below. Our agronomists and sales team will contact you within 2 hours with availability, batch reports, and pricing.</p>
+
+                        <div class="contact-highlights">
+                            <div class="ch-item">
+                                <div class="ch-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                                <div>
+                                    <strong>Bulk &amp; Retail Supply</strong>
+                                    <p>From single-acre packs to multi-quintal commercial farm orders.</p>
+                                </div>
+                            </div>
+                            <div class="ch-item">
+                                <div class="ch-icon"><i class="fa-solid fa-certificate"></i></div>
+                                <div>
+                                    <strong>Official Seed Certification</strong>
+                                    <p>Supplied with lot number, germination certificate, and expiry date.</p>
+                                </div>
+                            </div>
+                            <div class="ch-item">
+                                <div class="ch-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                                <div>
+                                    <strong>Direct WhatsApp Booking</strong>
+                                    <p>Send an instant message directly to our store manager.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-col">
+                        <div class="form-container-card">
+                            <div class="form-header">
+                                <h3><i class="fa-solid fa-file-signature"></i> Seed Inquiry &amp; Booking Form</h3>
+                                <p>Free quotation &amp; technical advisory for all farmers</p>
+                            </div>
+
+                            <form id="seedInquiryForm" novalidate>
+                                <div class="form-row">
+                                    <div class="form-group col-half">
+                                        <label for="farmerName">Full Name / Farmer Name *</label>
+                                        <input type="text" id="farmerName" name="farmerName" class="form-control" placeholder="e.g. Ramesh Kumar" required autocomplete="name">
+                                    </div>
+                                    <div class="form-group col-half">
+                                        <label for="farmerPhone">Mobile Number (WhatsApp) *</label>
+                                        <input type="tel" id="farmerPhone" name="farmerPhone" class="form-control" placeholder="e.g. 9440757165" required pattern="[0-9]{10}" inputmode="tel" autocomplete="tel">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-half">
+                                        <label for="farmerVillage">Village / Mandal / Town *</label>
+                                        <input type="text" id="farmerVillage" name="farmerVillage" class="form-control" placeholder="e.g. Shetpalle / Armoor" required>
+                                    </div>
+                                    <div class="form-group col-half">
+                                        <label for="cropInterest">Crop Variety of Interest *</label>
+                                        <select id="cropInterest" name="cropInterest" class="form-control" required>
+                                            <option value="" disabled selected>Choose Crop</option>
+                                            <option value="Hybrid Paddy Seeds">Hybrid Paddy / Rice (వరి)</option>
+                                            <option value="Hybrid Maize Seeds">Hybrid Maize (మొక్కజొన్న)</option>
+                                            <option value="BT-II Cotton Seeds">Hybrid Cotton (ప్రత్తి)</option>
+                                            <option value="Vegetable Seeds (Chilli/Tomato/Okra)">Vegetable Seeds (మిరప/టమాట/బెండ)</option>
+                                            <option value="Oilseeds / Mustard / Sunflower">Oilseeds &amp; Pulses (ఆవాలు/సూర్యకాంతి)</option>
+                                            <option value="Dealership / Bulk Stockist">Dealership / Bulk Stockist Inquiry</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-half">
+                                        <label for="farmerAcreage">Acreage or Quantity Needed</label>
+                                        <input type="text" id="farmerAcreage" name="farmerAcreage" class="form-control" placeholder="e.g. 5 Acres or 20 Bags">
+                                    </div>
+                                    <div class="form-group col-half">
+                                        <label for="inquiryReason">Purpose of Inquiry</label>
+                                        <select id="inquiryReason" name="inquiryReason" class="form-control">
+                                            <option value="Current Sowing Season Booking">Current Sowing Season Booking</option>
+                                            <option value="Price & Availability Quotation">Price &amp; Availability Quotation</option>
+                                            <option value="Agronomy / Disease Advice">Agronomy / Disease Advice</option>
+                                            <option value="Wholesale Dealership">Wholesale Dealership</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="farmerMessage">Specific Questions or Soil / Field Notes</label>
+                                    <textarea id="farmerMessage" name="farmerMessage" class="form-control" rows="3" placeholder="Tell us about your soil type, previous crop, or specific requirement..."></textarea>
+                                </div>
+
+                                <div class="form-actions-dual">
+                                    <button type="submit" class="btn btn--primary btn--lg" id="submitInquiryBtn">
+                                        <i class="fa-solid fa-paper-plane"></i> Submit Inquiry
+                                    </button>
+                                    <button type="button" class="btn btn--whatsapp btn--lg" id="submitViaWhatsAppBtn">
+                                        <i class="fa-brands fa-whatsapp"></i> Send via WhatsApp
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="section-heading text-center">
+                    <span class="subheading-tag"><i class="fa-solid fa-circle-question"></i> Farmer Help &amp; FAQs</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Clear answers to common questions about our hybrid seed varieties, germination testing, and distribution.</p>
+                </div>
+
+                <div class="faq-accordion-list">
+                    <details class="faq-item" open>
+                        <summary class="faq-question">
+                            <span>Are Ganga Agri Genetics hybrid seeds officially certified in Telangana?</span>
+                            <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Yes, 100%. All hybrid seeds produced and marketed by Ganga Agri Genetics comply with Indian Minimum Seed Certification Standards (IMSCS). Every lot is tested for genetic purity, physical purity, and minimum 90-98% germination before dispatch.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>How can I buy seeds from Ganga Agri Genetics if I am outside Shetpalle?</span>
+                            <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>You can order directly by calling our phone helpline at <strong>+91 94407 57165</strong> or messaging via WhatsApp. We arrange parcel dispatch and transport to all major towns and rural mandals across Telangana and neighboring districts.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>What makes Ganga Agri Genetics hybrid paddy varieties superior for Telangana soils?</span>
+                            <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Our paddy hybrids are bred specifically for local Telangana soil profiles (black cotton and red sandy loams). They feature strong root penetration, high tillering (25-35 tillers per plant), robust resistance to Bacterial Leaf Blight (BLB) and Neck Blast, and superior milling recovery with fine slender grain quality.</p>
+                        </div>
+                    </details>
+
+                    <details class="faq-item">
+                        <summary class="faq-question">
+                            <span>Do you provide free soil and agronomic advisory for farmers?</span>
+                            <i class="fa-solid fa-chevron-down faq-chevron" aria-hidden="true"></i>
+                        </summary>
+                        <div class="faq-answer">
+                            <p>Yes! We offer comprehensive technical consultation to our farmers. You can send photos of your crop or soil symptoms over WhatsApp to receive tailored recommendations on micro-nutrients, water management, and pest control.</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Col 1: Brand -->
+                <div class="footer-brand-col">
+                    <img src="assets/images/logo.svg" alt="Ganga Agri Genetics" class="footer-logo" width="220" height="52">
+                    <p class="footer-bio">
+                        Ganga Agri Genetics is a premier agricultural seed breeding, production, and retail enterprise based in Shetpalle, Telangana. Committed to empowering farmers with high-yielding genetic hybrids.
+                    </p>
+                    <div class="footer-rating-badge">
+                        <span class="star-pill"><i class="fa-solid fa-star"></i> 5.0 Rating</span>
+                        <span>Google Verified Agricultural Store</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#hero"><i class="fa-solid fa-angle-right"></i> Home</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hybrid Seeds Catalog</a></li>
+                        <li><a href="#calculator"><i class="fa-solid fa-angle-right"></i> Seed &amp; Yield Calculator</a></li>
+                        <li><a href="#about"><i class="fa-solid fa-angle-right"></i> R&amp;D &amp; Quality Lab</a></li>
+                        <li><a href="#calendar"><i class="fa-solid fa-angle-right"></i> Sowing Calendar</a></li>
+                        <li><a href="#reviews"><i class="fa-solid fa-angle-right"></i> Customer Reviews</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="#services">Hybrid Development</a></li>
-                        <li><a href="#services">Seed Production</a></li>
-                        <li><a href="#services">Consultation</a></li>
-                        <li><a href="#rd">R&D</a></li>
+
+                <!-- Col 3: Seed Categories -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Hybrid Seed Varieties</h4>
+                    <ul class="footer-links">
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hybrid Paddy / Rice Seeds</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hybrid Maize / Corn Seeds</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hybrid Cotton BT-II Seeds</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> High Pungency Chilli Seeds</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Hybrid Tomato &amp; Okra Seeds</a></li>
+                        <li><a href="#products"><i class="fa-solid fa-angle-right"></i> Mustard &amp; Sunflower Seeds</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#" target="_blank">Facebook</a>
-                        <a href="#" target="_blank">Twitter</a>
-                        <a href="#" target="_blank">LinkedIn</a>
-                        <a href="https://www.instagram.com/gangaagrigenetics" target="_blank" rel="noopener">Instagram</a>
+
+                <!-- Col 4: Contact & Hours -->
+                <div class="footer-col">
+                    <h4 class="footer-title">Store &amp; Outlet</h4>
+                    <div class="footer-contact-info">
+                        <p><i class="fa-solid fa-location-dot"></i> VCJF+5X7, Shetpalle, Telangana 503218</p>
+                        <p><i class="fa-solid fa-phone"></i> <a href="tel:+919440757165">+91 94407 57165</a></p>
+                        <p><i class="fa-solid fa-envelope"></i> <a href="mailto:gangaagrigenetics@gmail.com">gangaagrigenetics@gmail.com</a></p>
+                        <p><i class="fa-solid fa-clock"></i> Mon – Sat: 8:00 AM – 7:30 PM<br>Sun: 8:30 AM – 1:30 PM</p>
                     </div>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p>&copy; 2025 Ganga Agri Genetics. All rights reserved.</p>
+                <div class="footer-bottom-flex">
+                    <p>&copy; <span id="copyrightYear">2026</span> <strong>Ganga Agri Genetics</strong>. All rights reserved. Built for the sustainable agricultural community.</p>
+                    <div class="footer-badges">
+                        <span class="f-badge"><i class="fa-solid fa-shield-check"></i> Certified Non-GMO Seeds</span>
+                        <span class="f-badge"><i class="fa-solid fa-award"></i> 5.0 Google Rated</span>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- PRODUCT SPECIFICATION MODAL (<dialog>) -->
+    <dialog id="productSpecModal" class="product-modal">
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" id="closeModalBtn" aria-label="Close modal">✕</button>
+            <div class="modal-header">
+                <span class="modal-crop-category" id="modalCategory">Cereal Crop</span>
+                <h3 id="modalTitle">Ganga Supreme Gold-99 Hybrid Paddy</h3>
+                <p class="modal-tagline" id="modalTagline">Super High-Yielding Bacterial Leaf Blight Resistant Rice Hybrid</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-specs-grid">
+                    <div class="spec-tile">
+                        <span class="spec-name">Crop Duration</span>
+                        <strong class="spec-val" id="modalDuration">125 - 130 Days</strong>
+                    </div>
+                    <div class="spec-tile">
+                        <span class="spec-name">Yield Potential</span>
+                        <strong class="spec-val" id="modalYield">32 - 36 Qtl / Acre</strong>
+                    </div>
+                    <div class="spec-tile">
+                        <span class="spec-name">Germination Rate</span>
+                        <strong class="spec-val" id="modalGermination">98% Minimum</strong>
+                    </div>
+                    <div class="spec-tile">
+                        <span class="spec-name">Recommended Season</span>
+                        <strong class="spec-val" id="modalSeason">Kharif &amp; Rabi</strong>
+                    </div>
+                    <div class="spec-tile">
+                        <span class="spec-name">Seed Rate</span>
+                        <strong class="spec-val" id="modalSeedRate">5 - 6 kg / Acre</strong>
+                    </div>
+                    <div class="spec-tile">
+                        <span class="spec-name">Grain / Fruit Quality</span>
+                        <strong class="spec-val" id="modalGrain">Long Slender, Non-Sticky</strong>
+                    </div>
+                </div>
+
+                <div class="modal-description-box">
+                    <h4><i class="fa-solid fa-circle-info"></i> Agronomic Features &amp; Disease Resistance:</h4>
+                    <p id="modalDescription">Detailed agronomic features of the variety...</p>
+                </div>
+
+                <div class="modal-sowing-tips">
+                    <h4><i class="fa-solid fa-seedling"></i> Sowing &amp; Cultivation Guide:</h4>
+                    <p id="modalSowingGuide">Sowing advice and recommended practices...</p>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#" id="modalWhatsAppOrderBtn" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--lg">
+                    <i class="fa-brands fa-whatsapp"></i> Order This Variety on WhatsApp
+                </a>
+                <button type="button" class="btn btn--outline btn--lg" id="closeModalFooterBtn">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- VARIETY COMPARISON MODAL (<dialog>) -->
+    <dialog id="compareModal" class="product-modal compare-modal">
+        <div class="modal-card modal-card--lg">
+            <button type="button" class="modal-close-btn" id="closeCompareModalBtn" aria-label="Close compare modal">✕</button>
+            <div class="modal-header">
+                <span class="modal-crop-category"><i class="fa-solid fa-code-compare"></i> Side-by-Side Comparison</span>
+                <h3>Compare Seed Varieties</h3>
+                <p class="modal-tagline">Evaluate crop duration, yield potential, germination, and disease resistance traits.</p>
+            </div>
+
+            <div class="modal-body">
+                <div class="compare-selectors-grid">
+                    <div class="form-group">
+                        <label for="compareCropA"><strong>Select Variety 1:</strong></label>
+                        <select id="compareCropA" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="compareCropB"><strong>Select Variety 2:</strong></label>
+                        <select id="compareCropB" class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="comparison-table-wrapper">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Variety 1</th>
+                                <th>Variety 2</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparisonTableBody">
+                            <!-- Populated dynamically via app.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <a href="#contact" class="btn btn--primary btn--lg" onclick="document.getElementById('compareModal').close();">
+                    <i class="fa-solid fa-paper-plane"></i> Inquire for Seeds
+                </a>
+                <button type="button" class="btn btn--outline btn--lg" id="closeCompareFooterBtn">Close</button>
+            </div>
+        </div>
+    </dialog>
+
+    <!-- FLOATING CONTACT HUB (MOBILE WHATSAPP, CALL & TOP) -->
+    <div class="floating-hub" aria-label="Quick contact actions">
+        <a href="https://wa.me/919440757165?text=Hello%20Ganga%20Agri%20Genetics,%20I%20want%20to%20inquire%20about%20hybrid%20seeds" target="_blank" rel="noopener noreferrer" class="floating-btn whatsapp-btn" aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span class="floating-tooltip">Chat with us</span>
+        </a>
+        <a href="tel:+919440757165" class="floating-btn call-btn" aria-label="Call Store" title="Call Store">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <span class="floating-tooltip">Call +91 94407 57165</span>
+        </a>
+        <button type="button" id="backToTopBtn" class="floating-btn top-btn" aria-label="Scroll back to top" title="Back to top">
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </button>
+    </div>
+
+    <!-- TOAST NOTIFICATION CONTAINER -->
+    <div id="toastNotification" class="toast-container" role="status" aria-live="polite"></div>
+
+    <!-- Scripts -->
     <script src="app.js"></script>
 </body>
 </html>

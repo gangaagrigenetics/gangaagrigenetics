@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gangaagrigenetics.github.io/gangaagrigenetics/sitemap.xml

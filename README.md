@@ -1,70 +1,88 @@
-## Hi there 👋
+# 🌱 Ganga Agri Genetics — Official Website
 
-# Ganga Agri Genetics Website
-
-Welcome to the **Ganga Agri Genetics** official website repository!  
-This site is a modern, responsive, static web project for our agricultural seed company. Hosted via GitHub Pages.
-
----
-
-## 🌱 Project Overview
-
-- **Company:** Ganga Agri Genetics
-- **Website Purpose:** 
-  - Showcase our expertise in hybrid seed development, sustainable farming, and agricultural innovation.
-  - Provide information about our services, products, R&D initiatives, and milestones.
-  - Support and educate the farming community.
+> **High-Yielding Hybrid Seeds & Agricultural Genetics Enterprise**  
+> 📍 Shetpalle, Telangana 503218, India  
+> ⭐ **5.0 Google Rating** (Verified Agricultural Seed Store)
 
 ---
 
-## 🚀 Live Site
+## 🌟 Overview
 
-> Visit the live website:  
-> `https://gangaagrigenetics.github.io/gangaagrigenetics`
+**Ganga Agri Genetics** is a premier agricultural seed breeding, production, processing, and distribution enterprise based in Shetpalle, Telangana. 
 
----
-
-## 📦 Repository Contents
-
-- `index.html` — Main homepage (static HTML)
-- `style.css` — Custom styles and responsive design
-- `app.js` — Responsive nav and smooth scrolling
-- `/images` — (If used) All image assets
-- `.nojekyll` — (Recommended) Ensures full asset/folder support on GitHub Pages
+This repository contains the production-ready website engineered with modern web standards, mobile-first responsive design, interactive smart tools for farmers, and complete SEO schema.
 
 ---
 
-## 🛠️ How to Use
+## 🚀 Live Site & Deployment
 
-1. **Clone the repository:**
-
-    git clone https://github.com/gangaagrigenetics/gangaagrigenetics.git
-
-2. **Edit content as needed:**
-- Update text, images, and links in `index.html`
-- Modify styles in `style.css`
-- Adjust behaviors in `app.js`
-
-3. **Publish to GitHub Pages:**
-- Go to **Settings > Pages**.
-- Set the source to the `main` branch and `/ (root)` folder.
-- View your published site at the provided GitHub Pages URL.
+- **Live URL:** [https://gangaagrigenetics.github.io/gangaagrigenetics](https://gangaagrigenetics.github.io/gangaagrigenetics)
+- **Store Location:** Plus Code `VCJF+5X7, Shetpalle, Telangana 503218`
+- **Phone / Helpline:** `+91 94407 57165`
+- **Email:** `gangaagrigenetics@gmail.com`
 
 ---
 
-## ✏️ Customization
+## ✨ Key Features
 
-- Brand the content with your own company details, images, contact info, and services.
-- Use a custom domain by configuring in **Settings > Pages** and updating your DNS records accordingly.
+1. **Interactive Seed Rate & Yield Calculator:**
+   - Real-time calculator tailored for Telangana/South India soil types and cropping seasons.
+   - Computes recommended seed rates (kg/bags), expected harvest yields, spacing, and tailored agronomic advice.
+2. **Filterable & Searchable Hybrid Seed Catalog:**
+   - Hybrid Paddy / Rice (Ganga Supreme Gold-99, Ganga BPT-5204)
+   - Hybrid Maize (Ganga Surya Mahabali)
+   - Hybrid Cotton (Ganga Samrat BG-II)
+   - Vegetable Seeds (Ganga Teja Chilli, Ganga Lalita Tomato, Ganga Radhika Okra)
+   - Oilseeds & Pulses (Ganga Gold Mustard, Redgram)
+3. **Dynamic Agronomic Specification Modal:**
+   - Accessible native `<dialog>` modal displaying duration, yield potential, disease resistance traits, and sowing depth.
+4. **Google 5.0 Star Reviews Showcase:**
+   - Showcases verified farmer ratings, star breakdown, and direct Google Review links.
+5. **Interactive Store Locator & Real-Time Operating Hours:**
+   - Embedded interactive Google Map with 1-click directions to Shetpalle.
+   - Dynamic real-time calculation of store open/closed status in Indian Standard Time (IST).
+6. **Instant WhatsApp & Phone Hub:**
+   - Pre-filled WhatsApp inquiry generator with product codes and land acreage notes.
+   - Floating quick contact actions for mobile farmers.
+7. **Production SEO & Structured Data:**
+   - Rich JSON-LD `LocalBusiness` & `Store` schema markup with geo-coordinates, rating value (5.0), and opening hours for Google Search ranking.
 
 ---
 
-## 📫 Contact
+## 📦 Project Structure
 
-For any contributions, issues, or business queries:
-
-- **Email:** gangaagrigenetics@gmail.com
+```
+gangaagrigenetics/
+├── index.html              # Main production HTML5 landing page with SEO Schema
+├── style.css               # Modern CSS with custom properties & responsive grid
+├── app.js                  # Dynamic seed catalog, yield calculator, and hours engine
+├── manifest.json           # PWA web app manifest for mobile installability
+├── robots.txt              # Search engine crawler instructions
+├── sitemap.xml             # Google Search XML sitemap
+├── .nojekyll               # GitHub Pages asset routing support
+└── assets/
+    └── images/
+        ├── logo.svg        # Crisp Ganga Agri Genetics brand logo mark
+        └── hero-art.svg    # Agricultural banner vector artwork
+```
 
 ---
 
-*Built with ❤️ for the sustainable farming community.*
+## 🛠️ Local Development
+
+Open `index.html` directly in any modern web browser or serve with a local web server:
+
+```bash
+# Using Python
+python -m http.server 8000
+
+# Using Node / npx
+npx serve .
+```
+
+---
+
+## 📄 License & Attribution
+
+&copy; 2026 **Ganga Agri Genetics**. All rights reserved.  
+*Dedicated to the prosperity of our farming community.*

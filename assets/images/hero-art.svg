@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#022c22" />
+      <stop offset="60%" stop-color="#064e3b" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+    <linearGradient id="fieldGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#065f46" />
+    </linearGradient>
+    <linearGradient id="fieldGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.3" />
+    </linearGradient>
+    <pattern id="dnaGrid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 0 30 Q 30 0 60 30 T 120 30" fill="none" stroke="#34d399" stroke-width="0.75" stroke-opacity="0.15"/>
+      <circle cx="30" cy="15" r="1.5" fill="#fbbf24" fill-opacity="0.25"/>
+      <circle cx="30" cy="45" r="1.5" fill="#34d399" fill-opacity="0.25"/>
+    </pattern>
+  </defs>
+
+  <!-- Dark Emerald Background -->
+  <rect width="1200" height="600" fill="url(#skyGrad)"/>
+  
+  <!-- Subtle Genetics Grid overlay -->
+  <rect width="1200" height="600" fill="url(#dnaGrid)"/>
+
+  <!-- Morning Sunrise Glow -->
+  <circle cx="950" cy="180" r="140" fill="url(#sunGrad)" />
+  <circle cx="950" cy="180" r="280" fill="#f59e0b" fill-opacity="0.08" />
+
+  <!-- Agricultural Rolling Hills / Modern Seed Lines -->
+  <path d="M 0 420 Q 300 360 600 410 T 1200 380 L 1200 600 L 0 600 Z" fill="url(#fieldGrad1)" opacity="0.6"/>
+  <path d="M 0 460 Q 400 420 800 480 T 1200 440 L 1200 600 L 0 600 Z" fill="url(#fieldGrad2)" opacity="0.75"/>
+  <path d="M 0 520 Q 350 480 750 530 T 1200 500 L 1200 600 L 0 600 Z" fill="#064e3b" opacity="0.9"/>
+
+  <!-- Field Cultivation Furrows Lines -->
+  <path d="M 200 600 L 450 480 M 350 600 L 520 480 M 500 600 L 600 480 M 700 600 L 720 485 M 900 600 L 850 490 M 1050 600 L 950 495" stroke="#fef08a" stroke-width="1" stroke-opacity="0.25" stroke-dasharray="8 6"/>
+
+  <!-- Glowing Sprout Stalks in Forefront Right -->
+  <g transform="translate(1020, 320) scale(1.4)" opacity="0.7">
+    <path d="M 0 80 Q 20 40 10 0 Q -5 30 0 80" fill="#34d399"/>
+    <path d="M 10 0 Q 35 15 25 35 Q 15 25 10 0" fill="#fbbf24"/>
+  </g>
+  <g transform="translate(920, 350) scale(1.1)" opacity="0.5">
+    <path d="M 0 80 Q 15 45 5 5 Q -10 35 0 80" fill="#34d399"/>
+    <path d="M 5 5 Q 30 20 20 40 Q 10 30 5 5" fill="#a7f3d0"/>
+  </g>
+</svg>
