@@ -1171,7 +1171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentIndex = 0;
     let autoPlayTimer = null;
     const totalSlides = slides.length;
-    const intervalTime = 6000;
+    const intervalTime = 2000; // 2 seconds per slide
 
     function goToSlide(index) {
       if (index < 0) {
