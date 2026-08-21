@@ -31,7 +31,9 @@ This repository contains the production-ready website engineered with modern web
 2. **Filterable & Searchable Hybrid Seed Catalog:**
    - Hybrid Paddy / Rice (Ganga Supreme Gold-99, Ganga BPT-5204)
    - Hybrid Maize (Ganga Surya Mahabali)
-   - Hybrid Cotton (Ganga Samrat BG-II)
+   - Hybrid Jowar / Sorghum (Ganga Mahaveer)
+   - Hybrid Bajra / Pearl Millet (Ganga Tejasvi)
+   - High-Yield Soybean (Ganga Shakti-335)
    - Vegetable Seeds (Ganga Teja Chilli, Ganga Lalita Tomato, Ganga Radhika Okra)
    - Oilseeds & Pulses (Ganga Gold Mustard, Redgram)
 3. **Dynamic Agronomic Specification Modal:**
