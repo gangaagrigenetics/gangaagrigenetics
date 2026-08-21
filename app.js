@@ -1086,6 +1086,144 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // -------------------------------------------------------------------------
+  // 11. HERO CAROUSEL / SLIDER CONTROLLER
+  // -------------------------------------------------------------------------
+  function initHeroCarousel() {
+    const track = document.getElementById('heroTrack');
+    const slides = document.querySelectorAll('.hero-slide');
+    const prevBtn = document.getElementById('heroPrevBtn');
+    const nextBtn = document.getElementById('heroNextBtn');
+    const indicatorDots = document.querySelectorAll('.indicator-dot');
+    const carouselContainer = document.getElementById('heroCarousel');
+
+    if (!track || slides.length === 0) return;
+
+    let currentIndex = 0;
+    let autoPlayTimer = null;
+    const totalSlides = slides.length;
+    const intervalTime = 6000;
+
+    function goToSlide(index) {
+      if (index < 0) {
+        currentIndex = totalSlides - 1;
+      } else if (index >= totalSlides) {
+        currentIndex = 0;
+      } else {
+        currentIndex = index;
+      }
+
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      slides.forEach((slide, i) => {
+        if (i === currentIndex) {
+          slide.classList.add('active');
+        } else {
+          slide.classList.remove('active');
+        }
+      });
+
+      indicatorDots.forEach((dot, i) => {
+        if (i === currentIndex) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      goToSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentIndex - 1);
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(nextSlide, intervalTime);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) {
+        clearInterval(autoPlayTimer);
+        autoPlayTimer = null;
+      }
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        nextSlide();
+        startAutoPlay();
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        prevSlide();
+        startAutoPlay();
+      });
+    }
+
+    indicatorDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const slideIndex = parseInt(dot.getAttribute('data-slide-to'), 10);
+        if (!isNaN(slideIndex)) {
+          goToSlide(slideIndex);
+          startAutoPlay();
+        }
+      });
+    });
+
+    if (carouselContainer) {
+      carouselContainer.addEventListener('mouseenter', stopAutoPlay);
+      carouselContainer.addEventListener('mouseleave', startAutoPlay);
+
+      // Touch swipe gestures on mobile
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      carouselContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        stopAutoPlay();
+      }, { passive: true });
+
+      carouselContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diffX = touchEndX - touchStartX;
+        if (diffX > 45) {
+          prevSlide();
+        } else if (diffX < -45) {
+          nextSlide();
+        }
+        startAutoPlay();
+      }, { passive: true });
+    }
+
+    // Keyboard navigation (ArrowLeft / ArrowRight)
+    document.addEventListener('keydown', (e) => {
+      const heroSection = document.getElementById('hero');
+      if (!heroSection) return;
+      const rect = heroSection.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        if (e.key === 'ArrowLeft') {
+          prevSlide();
+          startAutoPlay();
+        } else if (e.key === 'ArrowRight') {
+          nextSlide();
+          startAutoPlay();
+        }
+      }
+    });
+
+    // Start auto-play
+    startAutoPlay();
+  }
+
+  initHeroCarousel();
+
+  // -------------------------------------------------------------------------
   // 12. PWA SERVICE WORKER REGISTRATION (OFFLINE SUPPORT)
   // -------------------------------------------------------------------------
   if ('serviceWorker' in navigator) {

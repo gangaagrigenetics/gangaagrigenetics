@@ -10,6 +10,7 @@ const ASSETS_TO_CACHE = [
   './assets/images/logo.svg',
   './assets/images/hero-art.svg',
   './assets/images/hero-farm.jpg',
+  './assets/images/hero-harvest.jpg',
   './assets/images/research-lab.jpg'
 ];
 

@@ -177,94 +177,298 @@
     </header>
 
     <main>
-        <!-- HERO SECTION -->
-        <section class="hero-section" id="hero">
-            <div class="hero-backdrop" aria-hidden="true"></div>
-            <div class="container">
-                <div class="hero-grid">
-                    <div class="hero-text-col">
-                        <div class="hero-badge">
-                            <span class="badge-icon"><i class="fa-solid fa-certificate"></i></span>
-                            <span id="heroBadgeText">Certified Telangana Agricultural Seed Enterprise</span>
-                        </div>
-                        <h1 class="hero-title">
-                            High-Yielding <span class="highlight-text">Hybrid Seeds</span> &amp; Agricultural Genetics
-                        </h1>
-                        <p class="hero-description" id="heroDescText">
-                            Engineered for maximum vigor, superior germination, and climate resilience. Ganga Agri Genetics delivers trusted hybrid paddy, maize, cotton, and vegetable seeds directly to farmers across Telangana and South India.
-                        </p>
+        <!-- HERO CAROUSEL / SLIDER SECTION -->
+        <section class="hero-section" id="hero" aria-label="Ganga Agri Genetics Highlights Carousel">
+            <div class="hero-carousel" id="heroCarousel">
+                <div class="hero-track" id="heroTrack">
+                    <!-- SLIDE 1: High-Yielding Hybrid Seeds -->
+                    <div class="hero-slide active" data-slide="0" style="--slide-bg: url('assets/images/hero-farm.jpg');">
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container">
+                            <div class="hero-grid">
+                                <div class="hero-text-col">
+                                    <div class="hero-badge">
+                                        <span class="badge-icon"><i class="fa-solid fa-certificate"></i></span>
+                                        <span id="heroBadgeText">Certified Telangana Agricultural Seed Enterprise</span>
+                                    </div>
+                                    <h1 class="hero-title">
+                                        High-Yielding <span class="highlight-text">Hybrid Seeds</span> &amp; Agricultural Genetics
+                                    </h1>
+                                    <p class="hero-description" id="heroDescText">
+                                        Engineered for maximum vigor, superior germination, and climate resilience. Ganga Agri Genetics delivers trusted hybrid paddy, maize, cotton, and vegetable seeds directly to farmers across Telangana and South India.
+                                    </p>
 
-                        <div class="hero-cta-group">
-                            <a href="#products" class="btn btn--primary btn--lg">
-                                <i class="fa-solid fa-leaf"></i> <span id="heroCtaExploreText">Explore Seed Catalog</span>
-                            </a>
-                            <a href="#calculator" class="btn btn--secondary btn--lg">
-                                <i class="fa-solid fa-calculator"></i> <span id="heroCtaCalcText">Seed &amp; Yield Calculator</span>
-                            </a>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Ganga+Agri+Genetics+Shetpalle+Telangana+503218" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
-                                <i class="fa-solid fa-diamond-turn-right"></i> <span id="heroCtaDirectionsText">Get Directions (Shetpalle)</span>
-                            </a>
-                        </div>
+                                    <div class="hero-cta-group">
+                                        <a href="#products" class="btn btn--primary btn--lg">
+                                            <i class="fa-solid fa-leaf"></i> <span id="heroCtaExploreText">Explore Seed Catalog</span>
+                                        </a>
+                                        <a href="#calculator" class="btn btn--secondary btn--lg">
+                                            <i class="fa-solid fa-calculator"></i> <span id="heroCtaCalcText">Seed &amp; Yield Calculator</span>
+                                        </a>
+                                        <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20want%20to%20order%20seeds" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--lg">
+                                            <i class="fa-brands fa-whatsapp"></i> <span>WhatsApp Order</span>
+                                        </a>
+                                    </div>
 
-                        <!-- Hero Stats Grid -->
-                        <div class="hero-metrics">
-                            <div class="metric-card">
-                                <div class="metric-value">5.0 <span class="stars-gold"><i class="fa-solid fa-star"></i></span></div>
-                                <div class="metric-label">Google Rating (5 Reviews)</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-value">98%+</div>
-                                <div class="metric-label">Germination Purity</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-value">15,000+</div>
-                                <div class="metric-label">Acres Cultivated</div>
-                            </div>
-                            <div class="metric-card">
-                                <div class="metric-value">100%</div>
-                                <div class="metric-label">Certified Seeds</div>
+                                    <!-- Hero Stats Grid -->
+                                    <div class="hero-metrics">
+                                        <div class="metric-card">
+                                            <div class="metric-value">5.0 <span class="stars-gold"><i class="fa-solid fa-star"></i></span></div>
+                                            <div class="metric-label">Google Rating (5 Reviews)</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">98%+</div>
+                                            <div class="metric-label">Germination Purity</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">15,000+</div>
+                                            <div class="metric-label">Acres Cultivated</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">100%</div>
+                                            <div class="metric-label">Certified Seeds</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hero-card-col">
+                                    <div class="hero-glass-card">
+                                        <div class="glass-card-header">
+                                            <div class="store-badge"><i class="fa-solid fa-store"></i> Verified Agricultural Seed Store</div>
+                                            <div class="google-pill"><i class="fa-brands fa-google"></i> 5.0 ★★★★★</div>
+                                        </div>
+                                        <div class="glass-card-body">
+                                            <h3>Ganga Agri Genetics</h3>
+                                            <p class="store-loc"><i class="fa-solid fa-location-dot"></i> VCJF+5X7, Shetpalle, Telangana 503218</p>
+                                            <div class="card-feature-list">
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Official Hybrid Breeder &amp; Processor</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Bacterial Leaf Blight &amp; Pest Tolerant Crops</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>On-Site Quality Lab &amp; Germination Tests</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Free Agronomy Advisory &amp; Soil Consultation</span>
+                                                </div>
+                                            </div>
+                                            <div class="glass-card-actions">
+                                                <a href="tel:+917013135345" class="btn btn--primary btn--block">
+                                                    <i class="fa-solid fa-phone"></i> Call Store Now
+                                                </a>
+                                                <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20would%20like%20to%20order%20seeds" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
+                                                    <i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Chat
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="hero-card-col">
-                        <div class="hero-glass-card">
-                            <div class="glass-card-header">
-                                <div class="store-badge"><i class="fa-solid fa-store"></i> Verified Agricultural Seed Store</div>
-                                <div class="google-pill"><i class="fa-brands fa-google"></i> 5.0 ★★★★★</div>
-                            </div>
-                            <div class="glass-card-body">
-                                <h3>Ganga Agri Genetics</h3>
-                                <p class="store-loc"><i class="fa-solid fa-location-dot"></i> VCJF+5X7, Shetpalle, Telangana 503218</p>
-                                <div class="card-feature-list">
-                                    <div class="card-feature-item">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <span>Official Hybrid Breeder &amp; Processor</span>
+                    <!-- SLIDE 2: Advanced R&D Lab & Quality Testing -->
+                    <div class="hero-slide" data-slide="1" style="--slide-bg: url('assets/images/research-lab.jpg');">
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container">
+                            <div class="hero-grid">
+                                <div class="hero-text-col">
+                                    <div class="hero-badge">
+                                        <span class="badge-icon"><i class="fa-solid fa-microscope"></i></span>
+                                        <span>State-of-the-Art Seed Research &amp; Quality Lab</span>
                                     </div>
-                                    <div class="card-feature-item">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <span>Bacterial Leaf Blight &amp; Pest Tolerant Crops</span>
+                                    <h2 class="hero-title">
+                                        Advanced <span class="highlight-text">R&amp;D &amp; Quality</span> Seed Testing Facility
+                                    </h2>
+                                    <p class="hero-description">
+                                        Every seed batch passes rigorous multi-stage vigor, moisture, genetic purity, and germination profiling in Shetpalle before reaching your farm for guaranteed yield assurance.
+                                    </p>
+
+                                    <div class="hero-cta-group">
+                                        <a href="#about" class="btn btn--primary btn--lg">
+                                            <i class="fa-solid fa-dna"></i> <span>Explore R&amp;D Facility</span>
+                                        </a>
+                                        <a href="#calendar" class="btn btn--secondary btn--lg">
+                                            <i class="fa-solid fa-calendar-days"></i> <span>Sowing Calendar</span>
+                                        </a>
+                                        <a href="tel:+917013135345" class="btn btn--outline btn--lg">
+                                            <i class="fa-solid fa-user-doctor"></i> <span>Consult Agronomist</span>
+                                        </a>
                                     </div>
-                                    <div class="card-feature-item">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <span>On-Site Quality Lab &amp; Germination Tests</span>
-                                    </div>
-                                    <div class="card-feature-item">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                        <span>Free Agronomy Advisory &amp; Soil Consultation</span>
+
+                                    <div class="hero-metrics">
+                                        <div class="metric-card">
+                                            <div class="metric-value">99.5%</div>
+                                            <div class="metric-label">Genetic Purity</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">&lt; 10%</div>
+                                            <div class="metric-label">Controlled Moisture</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">48 Hrs</div>
+                                            <div class="metric-label">Germination Vigor Test</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">ISO/Govt</div>
+                                            <div class="metric-label">Certified Protocol</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="glass-card-actions">
-                                    <a href="tel:+917013135345" class="btn btn--primary btn--block">
-                                        <i class="fa-solid fa-phone"></i> Call Store Now
-                                    </a>
-                                    <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20would%20like%20to%20order%20seeds" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
-                                        <i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Chat
-                                    </a>
+
+                                <div class="hero-card-col">
+                                    <div class="hero-glass-card">
+                                        <div class="glass-card-header">
+                                            <div class="store-badge"><i class="fa-solid fa-flask-vial"></i> Quality Assurance Protocol</div>
+                                            <div class="google-pill"><i class="fa-solid fa-shield-halved"></i> 100% Tested</div>
+                                        </div>
+                                        <div class="glass-card-body">
+                                            <h3>Seed Testing Standards</h3>
+                                            <p class="store-loc"><i class="fa-solid fa-building-circle-check"></i> Shetpalle R&amp;D Research Station</p>
+                                            <div class="card-feature-list">
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Tetrazolium Vigor &amp; Viability Testing</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Seed-Borne Pathogen &amp; Fungal Screening</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Protective Fungicide Polymer Coating</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Barcode Traceable Seed Lots</span>
+                                                </div>
+                                            </div>
+                                            <div class="glass-card-actions">
+                                                <a href="#about" class="btn btn--primary btn--block">
+                                                    <i class="fa-solid fa-circle-info"></i> Learn About Testing Process
+                                                </a>
+                                                <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20want%20to%20know%20about%20your%20seed%20germination%20reports" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
+                                                    <i class="fa-brands fa-whatsapp"></i> Request Quality Report
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <!-- SLIDE 3: Thriving Harvest & Farmer Prosperity -->
+                    <div class="hero-slide" data-slide="2" style="--slide-bg: url('assets/images/hero-harvest.jpg');">
+                        <div class="hero-slide-overlay"></div>
+                        <div class="container">
+                            <div class="hero-grid">
+                                <div class="hero-text-col">
+                                    <div class="hero-badge">
+                                        <span class="badge-icon"><i class="fa-solid fa-wheat-awn"></i></span>
+                                        <span>Farmer Prosperity &amp; Higher Acreage Profitability</span>
+                                    </div>
+                                    <h2 class="hero-title">
+                                        Empowering Farmers with <span class="highlight-text">Proven Crop Yields</span>
+                                    </h2>
+                                    <p class="hero-description">
+                                        Over 15,000+ acres of Telangana farmlands have seen up to 35% higher productivity with Ganga Supreme Paddy, Ganga Shakti Corn, and Gold Cotton hybrids.
+                                    </p>
+
+                                    <div class="hero-cta-group">
+                                        <a href="#calculator" class="btn btn--primary btn--lg">
+                                            <i class="fa-solid fa-calculator"></i> <span>Calculate Seed Requirement</span>
+                                        </a>
+                                        <a href="#reviews" class="btn btn--secondary btn--lg">
+                                            <i class="fa-solid fa-star"></i> <span>Read Farmer Testimonials</span>
+                                        </a>
+                                        <a href="https://www.google.com/maps/search/?api=1&query=Ganga+Agri+Genetics+Shetpalle+Telangana+503218" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--lg">
+                                            <i class="fa-solid fa-diamond-turn-right"></i> <span>Visit Shetpalle Store</span>
+                                        </a>
+                                    </div>
+
+                                    <div class="hero-metrics">
+                                        <div class="metric-card">
+                                            <div class="metric-value">+35%</div>
+                                            <div class="metric-label">Higher Yield Potential</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">25+</div>
+                                            <div class="metric-label">Telangana Mandals Served</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">24/7</div>
+                                            <div class="metric-label">Farmer Support Helpline</div>
+                                        </div>
+                                        <div class="metric-card">
+                                            <div class="metric-value">₹0</div>
+                                            <div class="metric-label">Free Crop Consultation</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="hero-card-col">
+                                    <div class="hero-glass-card">
+                                        <div class="glass-card-header">
+                                            <div class="store-badge"><i class="fa-solid fa-award"></i> 5.0 Star Farmer Satisfaction</div>
+                                            <div class="google-pill"><i class="fa-solid fa-heart"></i> Farmer Trusted</div>
+                                        </div>
+                                        <div class="glass-card-body">
+                                            <h3>Direct Store Dispatch</h3>
+                                            <p class="store-loc"><i class="fa-solid fa-truck-fast"></i> Shetpalle Retail &amp; Wholesale Outlet</p>
+                                            <div class="card-feature-list">
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Direct Breeder Prices – No Middlemen</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Bulk Booking for Farmer Cooperatives</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Quick Transport Across Telangana</span>
+                                                </div>
+                                                <div class="card-feature-item">
+                                                    <i class="fa-solid fa-circle-check"></i>
+                                                    <span>Pre-Season Booking Discounts Available</span>
+                                                </div>
+                                            </div>
+                                            <div class="glass-card-actions">
+                                                <a href="#contact" class="btn btn--primary btn--block">
+                                                    <i class="fa-solid fa-paper-plane"></i> Book Seeds Online
+                                                </a>
+                                                <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20want%20to%20book%20seeds%20in%20bulk" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
+                                                    <i class="fa-brands fa-whatsapp"></i> Bulk Booking WhatsApp
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CAROUSEL NAVIGATION CONTROLS -->
+                <button type="button" class="carousel-nav-btn prev-btn" id="heroPrevBtn" aria-label="Previous Carousel Slide" title="Previous Slide">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button type="button" class="carousel-nav-btn next-btn" id="heroNextBtn" aria-label="Next Carousel Slide" title="Next Slide">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+
+                <!-- CAROUSEL INDICATOR DOTS -->
+                <div class="carousel-indicators" id="heroIndicators">
+                    <button type="button" class="indicator-dot active" data-slide-to="0" aria-label="Go to slide 1 (Hybrid Seeds)" title="Slide 1"></button>
+                    <button type="button" class="indicator-dot" data-slide-to="1" aria-label="Go to slide 2 (R&D Lab)" title="Slide 2"></button>
+                    <button type="button" class="indicator-dot" data-slide-to="2" aria-label="Go to slide 3 (Crop Yields)" title="Slide 3"></button>
                 </div>
             </div>
         </section>
