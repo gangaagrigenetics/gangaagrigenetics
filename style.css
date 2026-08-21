@@ -424,21 +424,28 @@ p {
 }
 
 .brand-logo:hover {
-  transform: scale(1.02);
+  transform: scale(1.03);
 }
 
 .logo-image {
-  height: 64px;
+  height: 66px;
   width: auto;
-  max-width: 300px;
+  max-height: 72px;
   display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
 }
 
 .footer-logo {
-  height: 60px;
+  height: 64px;
   width: auto;
   margin-bottom: 16px;
-  display: block;
+  display: inline-block;
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
 }
 
 .nav {

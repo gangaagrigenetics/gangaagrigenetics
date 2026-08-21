@@ -6,6 +6,7 @@ const ASSETS_TO_CACHE = [
   './style.css',
   './app.js',
   './manifest.json',
+  './assets/images/logo.png',
   './assets/images/logo.svg',
   './assets/images/hero-art.svg',
   './assets/images/hero-farm.jpg',
