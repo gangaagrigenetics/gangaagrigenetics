@@ -1,9 +1,11 @@
 // Ganga Agri Genetics Service Worker - Offline Caching
-const CACHE_NAME = 'ganga-agri-v1';
+const CACHE_NAME = 'ganga-agri-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './404.html',
   './style.css',
+  './i18n.js',
   './app.js',
   './manifest.json',
   './assets/images/logo.png',
@@ -11,7 +13,9 @@ const ASSETS_TO_CACHE = [
   './assets/images/hero-art.svg',
   './assets/images/hero-farm.jpg',
   './assets/images/hero-harvest.jpg',
-  './assets/images/research-lab.jpg'
+  './assets/images/research-lab.jpg',
+  './assets/images/crop-paddy.jpg',
+  './assets/images/crop-maize.jpg'
 ];
 
 self.addEventListener('install', (event) => {
@@ -41,9 +45,30 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Stale-while-revalidate strategy for same-origin requests
   if (event.request.method !== 'GET') return;
 
+  // Network-first for HTML and scripts to ensure latest logic is always received
+  const url = new URL(event.request.url);
+  const isHtmlOrScript = url.pathname.endsWith('.html') || url.pathname.endsWith('.js') || url.pathname === '/';
+
+  if (isHtmlOrScript) {
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, responseToCache);
+            });
+          }
+          return networkResponse;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // Cache-first / Stale-while-revalidate for static media
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       const fetchPromise = fetch(event.request)
@@ -62,3 +87,4 @@ self.addEventListener('fetch', (event) => {
     })
   );
 });
+

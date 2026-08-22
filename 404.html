@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Ganga Agri Genetics</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#064e3b">
+
+    <!-- Favicon / Web App Manifest -->
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <link rel="apple-touch-icon" href="assets/images/logo.png">
+    <link rel="manifest" href="manifest.json">
+
+    <!-- External Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .error-page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #022c22 0%, #064e3b 60%, #065f46 100%);
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .error-page-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .error-header {
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(2, 44, 34, 0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .error-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .error-main {
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .error-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 48px 36px;
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .error-code-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 18px;
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid #f59e0b;
+            color: #fbbf24;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+
+        .error-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .error-desc {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-bottom: 36px;
+            line-height: 1.6;
+        }
+
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .error-support {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 24px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+
+        .error-support strong {
+            color: #f1f5f9;
+        }
+
+        .error-footer {
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.88rem;
+            color: #94a3b8;
+            background: rgba(2, 44, 34, 0.8);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-page-wrapper">
+        <!-- Minimal Header -->
+        <header class="error-header">
+            <div class="container">
+                <a href="index.html" class="brand-logo" aria-label="Ganga Agri Genetics Home">
+                    <img src="assets/images/logo.png" alt="Ganga Agri Genetics Official Logo" width="120" height="62" style="border-radius: 8px; background: #fff; padding: 4px;">
+                </a>
+                <a href="index.html" class="btn btn--secondary btn--sm">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+            </div>
+        </header>
+
+        <!-- Main 404 Card -->
+        <main class="error-main">
+            <div class="error-card">
+                <div class="error-code-badge">
+                    <i class="fa-solid fa-triangle-exclamation"></i> Error 404
+                </div>
+
+                <h1 class="error-title">Page Not Found</h1>
+
+                <p class="error-desc">
+                    The seed variety, tool, or page you were looking for doesn't exist or has moved. Let's get you back to our high-yielding seed varieties and agricultural advisory.
+                </p>
+
+                <div class="error-actions">
+                    <a href="index.html#products" class="btn btn--primary btn--lg">
+                        <i class="fa-solid fa-seedling"></i> Browse Seed Catalog
+                    </a>
+                    <a href="index.html#calculator" class="btn btn--secondary btn--lg">
+                        <i class="fa-solid fa-calculator"></i> Crop Calculator
+                    </a>
+                    <a href="https://wa.me/917013135345?text=Hello%20Ganga%20Agri%20Genetics,%20I%20need%20assistance" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--lg">
+                        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                    </a>
+                </div>
+
+                <div class="error-support">
+                    <p>
+                        Need immediate assistance? Visit our store at <strong>Plus Code: VCJF+5X7, Shetpalle, Telangana 503218</strong> or call <strong>+91 70131 35345</strong>.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Minimal Footer -->
+        <footer class="error-footer">
+            <div class="container">
+                <p>&copy; 2026 Ganga Agri Genetics. All rights reserved. 5.0★ Google Rated Agricultural Seed Enterprise.</p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>

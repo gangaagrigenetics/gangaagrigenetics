@@ -34,7 +34,6 @@ This repository contains the production-ready website engineered with modern web
    - Hybrid Jowar / Sorghum (Ganga Mahaveer)
    - Hybrid Bajra / Pearl Millet (Ganga Tejasvi)
    - High-Yield Soybean (Ganga Shakti-335)
-   - Vegetable Seeds (Ganga Teja Chilli, Ganga Lalita Tomato, Ganga Radhika Okra)
    - Oilseeds & Pulses (Ganga Gold Mustard, Redgram)
 3. **Dynamic Agronomic Specification Modal:**
    - Accessible native `<dialog>` modal displaying duration, yield potential, disease resistance traits, and sowing depth.

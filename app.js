@@ -1,35 +1,45 @@
 /**
  * GANGA AGRI GENETICS - OFFICIAL APPLICATION JAVASCRIPT
  * Hybrid Seed Catalog, Interactive Acreage Calculator, Store Status,
- * Bilingual (EN/TE) Localization, Variety Comparison & Offline PWA
+ * Variety Comparison & Offline PWA Engine
+ *
+ * NOTE: All localization dictionaries (English/Telugu) and Telugu translations
+ * are maintained in i18n.js. This file contains pure application logic.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
   'use strict';
 
+  // Helper to access central localization data & helpers from i18n.js
+  const getI18n = () => (typeof window !== 'undefined' && window.GANGA_I18N) ? window.GANGA_I18N : (typeof GANGA_I18N !== 'undefined' ? GANGA_I18N : null);
+
+  function getCropData(item, lang) {
+    const i18n = getI18n();
+    return i18n && typeof i18n.getCrop === 'function' ? i18n.getCrop(item, lang) : item;
+  }
+
+  function getCalcData(cropKey, baseCrop, lang) {
+    const i18n = getI18n();
+    return i18n && typeof i18n.getCalcCrop === 'function' ? i18n.getCalcCrop(cropKey, baseCrop, lang) : baseCrop;
+  }
+
   // -------------------------------------------------------------------------
-  // 1. DATA: CERTIFIED HYBRID SEEDS DATASET
+  // 1. DATA: CERTIFIED HYBRID SEEDS DATASET (English Master)
   // -------------------------------------------------------------------------
   const SEED_CATALOG = [
     {
       id: 'paddy-gold99',
       name: 'Ganga Supreme Gold-99 Hybrid Paddy',
-      teluguName: 'గంగ సుప్రీం గోల్డ్-99 హైబ్రిడ్ వరి',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-PD-99',
       duration: '125 - 130 Days',
-      durationTe: '125 - 130 రోజులు',
       yieldPotential: '32 - 36 Qtl / Acre',
-      yieldPotentialTe: '32 - 36 క్వింటాళ్లు / ఎకరానికి',
       germination: '98% Min',
       seedRate: '5 - 6 kg / Acre',
-      seedRateTe: '5 - 6 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Rabi (వానాకాలం & యాసంగి)',
+      season: 'Kharif & Rabi',
       grainType: 'Medium Slender, Non-Sticky & High Milling Recovery',
-      grainTypeTe: 'మధ్యస్థ సన్నపు గింజ, ఎక్కువ రికవరీ',
       keyTrait: 'High Resistance to Bacterial Leaf Blight (BLB) & Blast',
-      keyTraitTe: 'బాక్టీరియల్ ఆకు ఎండు తెగులు (BLB) మరియు అగ్గి తెగులు నిరోధకత',
       soilSuitability: 'Well-suited for Black Cotton and Clay Loam soils',
       tagline: 'Maximum Tillering & Top Market Price Hybrid Paddy',
       description: 'Ganga Supreme Gold-99 is an elite medium-duration paddy hybrid engineered for high tillering (30-35 tillers/hill) and synchronized flowering. Resistant to lodging due to sturdy culms.',
@@ -38,27 +48,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-bpt5204',
       name: 'Ganga BPT 5204 (Samba Masuri)',
-      teluguName: 'గంగ బి.పి.టి 5204 (సాంబ మసూరి)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-BPT-52',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.3mm), Width < 2.0mm (1.8mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.3 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '135 - 140 Days',
-      durationTe: '135 - 140 రోజులు',
       yieldPotential: '30 - 34 Qtl / Acre',
-      yieldPotentialTe: '30 - 34 క్వింటాళ్లు / ఎకరానికి',
       germination: '96% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Rabi (వానాకాలం & యాసంగి)',
+      season: 'Kharif & Rabi',
       grainType: 'Super Fine Sona Masoori Table Quality',
-      grainTypeTe: 'సూపర్ ఫైన్ సోనా మసూరి నాణ్యత (సన్న వడ్లు)',
       keyTrait: 'Telangana Govt ₹500/Qtl Bonus | High Shelling % & Zero Chalkiness',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | ఎక్కువ మిల్లింగ్ రికవరీ, నూకలు లేని గింజ',
       soilSuitability: 'Alluvial, Heavy Clay & Black Cotton Soils',
       tagline: 'Telangana ₹500/Qtl Bonus Eligible | Benchmark Premium Table Rice',
       description: 'BPT 5204 (Samba Masuri) is the benchmark fine-grain variety officially approved by the Telangana Government for the ₹500 per quintal procurement bonus. Meets all criteria (length <6mm, width <2mm, moisture <17%).',
@@ -67,27 +69,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-rnr15048',
       name: 'Ganga Telangana Sona (RNR 15048)',
-      teluguName: 'గంగ తెలంగాణ సోనా (RNR 15048)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-RNR-15',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.2mm), Width < 2.0mm (1.7mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.2 మి.మీ, వెడల్పు: 1.7 మి.మీ, తక్కువ గ్లైసెమిక్ ఇండెక్స్ (GI 51.5)',
       duration: '120 - 125 Days (Short Duration)',
-      durationTe: '120 - 125 రోజులు (స్వల్పకాలిక రకం)',
       yieldPotential: '30 - 35 Qtl / Acre',
-      yieldPotentialTe: '30 - 35 క్వింటాళ్లు / ఎకరానికి',
       germination: '97% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi',
       grainType: 'Super Fine Slender Grain with Low Glycemic Index (GI 51.5)',
-      grainTypeTe: 'షుగర్ పేషెంట్లకు అనువైన తక్కువ GI (51.5) సన్న బియ్యం',
       keyTrait: 'Telangana Govt ₹500 Bonus | Low GI Sugar-Free Rice & Blast Resistant',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | లో-గ్లైసెమిక్ ఇండెక్స్ & అగ్గి తెగులు నిరోధకత',
       soilSuitability: 'Suitable for All Telangana Soil Types',
       tagline: '₹500 Govt Bonus + Fast 120-Day Maturity + Low GI Rice',
       description: 'RNR 15048 (Telangana Sona) is PJTSAU developed champion short-duration (120-125 days) fine paddy eligible for the ₹500/Qtl bonus. Low GI (51.5) diabetic-friendly rice with exceptional blast resistance.',
@@ -96,27 +90,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-hmtsona',
       name: 'Ganga HMT Sona Super Fine Sannalu',
-      teluguName: 'గంగ హెచ్.ఎం.టి సోనా సూపర్ ఫైన్ సన్నాలు',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-HMT-08',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.4mm), Width < 2.0mm (1.85mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.4 మి.మీ (<6 మి.మీ), వెడల్పు: 1.85 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '130 - 135 Days',
-      durationTe: '130 - 135 రోజులు',
       yieldPotential: '28 - 32 Qtl / Acre',
-      yieldPotentialTe: '28 - 32 క్వింటాళ్లు / ఎకరానికి',
       germination: '96% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi',
       grainType: 'Aromatic Pearly White Fine Grain with >70% Head Rice Recovery',
-      grainTypeTe: 'సువాసన గల ముత్యపు తెలుపు సన్న గింజ, 70% కంటే ఎక్కువ రికవరీ',
       keyTrait: 'Telangana Govt ₹500 Bonus | Scented Sannalu with High Milling Shelling',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | సువాసన గల గింజ & అధిక మిల్లింగ్ రికవరీ',
       soilSuitability: 'Fertile Clay Loam & Red Sandy Soils',
       tagline: 'Telangana ₹500/Qtl Bonus | Fragrant Fine Rice Favorite',
       description: 'HMT Sona is officially recognized under the Telangana ₹500/Qtl bonus scheme. Celebrated for high head rice recovery, appealing scent, non-sticky cooking texture, and high market value.',
@@ -125,27 +111,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-jaisriram',
       name: 'Ganga Jai Sriram Premium Sannalu',
-      teluguName: 'గంగ జై శ్రీరామ్ ప్రీమియం సన్నాలు',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-JSR-01',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.5mm), Width < 2.0mm (1.8mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.5 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '135 - 140 Days',
-      durationTe: '135 - 140 రోజులు',
       yieldPotential: '26 - 30 Qtl / Acre',
-      yieldPotentialTe: '26 - 30 క్వింటాళ్లు / ఎకరానికి',
       germination: '95% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi',
       grainType: 'Elite Scented Slender Table Rice, Supreme Consumer Demand',
-      grainTypeTe: 'అత్యుత్తమ సువాసన గల సన్న గింజ, అత్యధిక వినియోగదారుల ఆదరణ',
       keyTrait: 'Telangana Govt ₹500 Bonus | Top Market Rate & Non-Lodging Habit',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | అత్యధిక బహిరంగ మార్కెట్ ధర, పడిపోని పైరు',
       soilSuitability: 'Medium to Heavy Black & Alluvial Soils',
       tagline: 'Telangana ₹500/Qtl Bonus | Premium Open Market & Govt Incentive',
       description: 'Jai Sriram is the golden standard for fine rice across Telangana. Approved for the ₹500/Qtl bonus, giving farmers both peak market prices from millers and government bonus rewards.',
@@ -154,27 +132,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-knm1638',
       name: 'Ganga Kunaram Sannalu (KNM 1638)',
-      teluguName: 'గంగ కూనారం సన్నాలు (KNM 1638)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-KNM-16',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.4mm), Width < 2.0mm (1.8mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.4 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '125 - 130 Days',
-      durationTe: '125 - 130 రోజులు',
       yieldPotential: '32 - 36 Qtl / Acre',
-      yieldPotentialTe: '32 - 36 క్వింటాళ్లు / ఎకరానికి',
       germination: '97% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi',
       grainType: 'Medium Slender Non-Chalky Sannalu',
-      grainTypeTe: 'మధ్యస్థ సన్నపు గింజ, నూకలు లేని తెల్లని బియ్యం',
       keyTrait: 'Telangana Govt ₹500 Bonus | BLB & Brown Planthopper (BPH) Resistant',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | బాక్టీరియల్ ఆకు ఎండు (BLB) & సుడిదోమ (BPH) నిరోధకత',
       soilSuitability: 'Deep Black & Clay Soils of Northern Telangana',
       tagline: 'Telangana ₹500/Qtl Bonus | Bumper 36 Qtl Yield + Disease Resistance',
       description: 'KNM 1638 (Kunaram Sannalu) from the Kunaram Agricultural Research Station is an elite high-yielding fine variety qualified for the ₹500 bonus. Exceptional tolerance to BLB and BPH pests.',
@@ -183,27 +153,19 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-wgl44',
       name: 'Ganga Siddhi (WGL 44 / Warangal-44)',
-      teluguName: 'గంగ సిద్ధి (WGL 44 / వరంగల్-44)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-WGL-44',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.3mm), Width < 2.0mm (1.75mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.3 మి.మీ (<6 మి.మీ), వెడల్పు: 1.75 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '130 - 135 Days',
-      durationTe: '130 - 135 రోజులు',
       yieldPotential: '30 - 35 Qtl / Acre',
-      yieldPotentialTe: '30 - 35 క్వింటాళ్లు / ఎకరానికి',
       germination: '96% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi',
       grainType: 'Short Slender Fine Grain with Heavy Panicle Grain Weight',
-      grainTypeTe: 'పొట్టి సన్నపు గింజ, బరువైన కంకి మరియు ఎక్కువ రికవరీ',
       keyTrait: 'Telangana Govt ₹500 Bonus | Gall Midge (Biotype-1) & Blast Resistant',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | ఉల్లికోడు (Gall Midge) మరియు అగ్గి తెగులు తట్టుకునే రకం',
       soilSuitability: 'Red Sandy Loams & Black Cotton Soils',
       tagline: 'Telangana ₹500/Qtl Bonus | Proven Gall Midge Resistant Sannalu',
       description: 'WGL 44 (Siddhi) is a celebrated fine variety from Warangal RRS, approved for the ₹500 bonus. Features sturdy lodging-resistant culms, heavy grain bearing per panicle, and Gall Midge resistance.',
@@ -212,51 +174,37 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'paddy-knm7715',
       name: 'Ganga Kunaram 7715 (KNM 7715)',
-      teluguName: 'గంగ కూనారం 7715 (KNM 7715)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-KNM-77',
       isGovtBonusEligible: true,
       bonusAmount: '₹500 / Qtl Bonus Eligible',
-      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
       grainDimensions: 'Length < 6.0mm (5.2mm), Width < 2.0mm (1.8mm), Moisture < 17%',
-      grainDimensionsTe: 'పొడవు: 5.2 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '120 - 125 Days (Fast Maturity)',
-      durationTe: '120 - 125 రోజులు (త్వరిత కోత)',
       yieldPotential: '30 - 34 Qtl / Acre',
-      yieldPotentialTe: '30 - 34 క్వింటాళ్లు / ఎకరానికి',
       germination: '96% Min',
       seedRate: '6 - 7 kg / Acre',
-      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
       season: 'Kharif & Rabi (Both Seasons)',
       grainType: 'Fine Slender Lustrous Grains with High Test Weight',
-      grainTypeTe: 'మెరుసే సన్నపు గింజ, అధిక బరువు మరియు నాణ్యత',
       keyTrait: 'Telangana Govt ₹500 Bonus | Early Maturity & Cold Weather Resilience',
-      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | చలిని తట్టుకునే శక్తి, యాసంగి & వానాకాలం అనువైనది',
       soilSuitability: 'Alluvial & Medium Loamy Soils',
       tagline: 'Telangana ₹500/Qtl Bonus | Early 120-Day Sannalu for Both Seasons',
       description: 'KNM 7715 is an approved fine-grain paddy variety qualifying for the ₹500/Qtl bonus. Offers rapid 120-day maturity and cold tolerance, making it ideal for both Kharif and Rabi sowings.',
-      sowingGuide: 'Direct seeding or nursery transplanting. Excellent choice for crop rotation before winter/spring vegetables.'
+      sowingGuide: 'Direct seeding or nursery transplanting. Excellent choice for crop rotation before winter pulses and oilseeds.'
     },
     {
       id: 'maize-surya',
       name: 'Ganga Surya Mahabali Hybrid Maize',
-      teluguName: 'గంగ సూర్య మహాబలి హైబ్రిడ్ మొక్కజొన్న',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-MZ-88',
       duration: '110 - 118 Days',
-      durationTe: '110 - 118 రోజులు',
       yieldPotential: '38 - 45 Qtl / Acre',
-      yieldPotentialTe: '38 - 45 క్వింటాళ్లు / ఎకరానికి',
       germination: '98% Min',
       seedRate: '7 - 8 kg / Acre',
-      seedRateTe: '7 - 8 కిలోలు / ఎకరానికి',
       season: 'Kharif, Rabi & Spring',
       grainType: 'Bold Orange-Yellow Flint Grains',
-      grainTypeTe: 'ముదురు నారింజ-పసుపు లావు గింజలు',
       keyTrait: 'Fall Armyworm (FAW) & Turcicum Leaf Blight Tolerant',
-      keyTraitTe: 'కత్తెర పురుగు (Fall Armyworm) మరియు ఆకు మచ్చ తెగులు తట్టుకునే రకం',
       soilSuitability: 'Well-drained Fertile Loams & Black Soils',
       tagline: 'Heavy Cob Girth with Deep Grain Depth',
       description: 'A champion single-cross yellow corn hybrid with tight husk cover extending to the cob tip, protecting against rain damage and ear rots. High test weight.',
@@ -265,22 +213,16 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'jowar-mahaveer',
       name: 'Ganga Mahaveer Hybrid White Jowar (Sorghum)',
-      teluguName: 'గంగ మహావీర్ హైబ్రిడ్ తెల్ల జొన్నలు',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-JW-09',
       duration: '105 - 112 Days',
-      durationTe: '105 - 112 రోజులు',
       yieldPotential: '22 - 28 Qtl Grain + 6-8 Ton Fodder / Acre',
-      yieldPotentialTe: '22 - 28 క్వింటాళ్ల గింజలు + 6-8 టన్నుల మేత / ఎకరానికి',
       germination: '95% Min',
       seedRate: '3.5 - 4 kg / Acre',
-      seedRateTe: '3.5 - 4 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Rabi (వానాకాలం & యాసంగి)',
+      season: 'Kharif & Rabi',
       grainType: 'Pearly White Bold Grains & Sweet Juicy Stalks',
-      grainTypeTe: 'ముత్యపు తెలుపు లావు గింజలు, తియ్యని పశుగ్రాసం',
       keyTrait: 'Drought Hardy, Grain Mold & Shoot Fly Tolerant',
-      keyTraitTe: 'కరువును తట్టుకునే రకం, కాండం ఈగ మరియు బూజు తెగులు నిరోధకత',
       soilSuitability: 'Medium to Heavy Black & Red Soils',
       tagline: 'Dual Purpose Champion: High Grain Yield + Sweet Fodder',
       description: 'Ganga Mahaveer is an outstanding high-yielding dual-purpose sorghum hybrid bred for South Indian climates. Produces massive semi-compact ear heads with high flour recovery and palatable green fodder.',
@@ -289,22 +231,16 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'bajra-tejasvi',
       name: 'Ganga Tejasvi Hybrid Bajra (Pearl Millet)',
-      teluguName: 'గంగ తేజస్వి హైబ్రిడ్ సజ్జలు',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-BJ-06',
       duration: '85 - 90 Days (Super Fast Maturity)',
-      durationTe: '85 - 90 రోజులు (అతి తక్కువ కాలపరిమితి)',
       yieldPotential: '16 - 22 Qtl / Acre',
-      yieldPotentialTe: '16 - 22 క్వింటాళ్లు / ఎకరానికి',
       germination: '95% Min',
       seedRate: '1.5 - 2 kg / Acre',
-      seedRateTe: '1.5 - 2 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Summer (వేసవి & వానాకాలం)',
+      season: 'Kharif & Summer',
       grainType: 'Dense Grey-Brown Bold Grains with High Biofortified Iron',
-      grainTypeTe: 'లావు గింజలు, సహజ ఐరన్ & జింక్ పోషకాలు',
       keyTrait: 'Downy Mildew & Rust Immune with 6-8 Productive Tillers',
-      keyTraitTe: 'డౌనీ మిల్డ్యూ (వెర్రి తెగులు) మరియు తుప్పు తెగులు నిరోధకత',
       soilSuitability: 'Light Sandy Loams, Red Soils & Dryland Tracts',
       tagline: 'Ultra-Fast Duration with Thick 28-32cm Compact Candle Spikes',
       description: 'Exceptional climate-resilient pearl millet hybrid with strong tillering capacity, synchronous maturity, and stay-green stalks. Highly remunerative in low-rainfall and summer cultivation.',
@@ -313,118 +249,34 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       id: 'soybean-shakti',
       name: 'Ganga Shakti-335 High-Yield Soybean',
-      teluguName: 'గంగ శక్తి-335 అధిక దిగుబడి సోయాబీన్',
       category: 'oilseeds',
       categoryLabel: 'Oilseed & Pulse',
       varietyCode: 'GAG-SB-33',
       duration: '90 - 98 Days',
-      durationTe: '90 - 98 రోజులు',
       yieldPotential: '12 - 16 Qtl / Acre',
-      yieldPotentialTe: '12 - 16 క్వింటాళ్లు / ఎకరానికి',
       germination: '92% Min',
       seedRate: '25 - 30 kg / Acre (1 Bag - 30 kg)',
-      seedRateTe: '25 - 30 కిలోలు / ఎకరానికి (1 బస్తా)',
-      season: 'Kharif (Monsoon / వానాకాలం)',
+      season: 'Kharif (Monsoon)',
       grainType: 'Bold Tawny Golden-Yellow Grains with 20% Oil & 40% Protein',
-      grainTypeTe: 'బంగారు పసుపు లావు గింజలు, 20% నూనె & 40% ప్రోటీన్',
       keyTrait: 'Yellow Mosaic Virus (YMV), Rust & Pod Shattering Resistant',
-      keyTraitTe: 'పల్లాకు తెగులు (YMV), తుప్పు మరియు కాయ పగులుడు నిరోధకత',
       soilSuitability: 'Deep Black Soils & Fertile Loams',
       tagline: 'Heavy Pod Clustering with Anti-Shattering Resilience',
       description: 'Ganga Shakti-335 is a premium high-yielding soybean variety specially bred for Telangana Kharif seasons. High branching, 3-4 seeded bold pods, superior nodulation, and excellent resistance to pod shattering.',
       sowingGuide: 'Treat seeds with Bradyrhizobium and Trichoderma. Sow on ridges or flat beds at 45cm x 5cm spacing at 3-4cm depth. Ensure adequate drainage.'
     },
     {
-      id: 'chilli-teja',
-      name: 'Ganga Teja Super Hot F1 Chilli',
-      teluguName: 'గంగ తేజ సూపర్ హాట్ F1 మిరప',
-      category: 'vegetables',
-      categoryLabel: 'Vegetable Seed',
-      varietyCode: 'GAG-CH-11',
-      duration: '150 - 160 Days (Continuous Picking)',
-      durationTe: '150 - 160 రోజులు (నిరంతర కోతలు)',
-      yieldPotential: '28 - 35 Qtl Dry / Acre',
-      yieldPotentialTe: '28 - 35 క్వింటాళ్లు ఎండు మిర్చి / ఎకరానికి',
-      germination: '92% Min',
-      seedRate: '80 - 100g / Acre',
-      seedRateTe: '80 - 100 గ్రాములు / ఎకరానికి',
-      season: 'Kharif & Rabi',
-      grainType: 'Glossy Deep Red, 8 - 10cm Length',
-      grainTypeTe: 'మెరుసే ఎరుపు రంగు, 8-10 సెం.మీ పొడవు, అధిక కారం',
-      keyTrait: 'High Scoville Pungency & Murda Complex (Thrips) Tolerant',
-      keyTraitTe: 'అధిక ఘాటు, తామర పురుగులు (నల్లి) తట్టుకునే రకం',
-      soilSuitability: 'Red Loam & Well Drained Black Soil',
-      tagline: 'High Export Quality Capsaicin & Color Value',
-      description: 'Ideal for both dry red chilli processing and fresh green market. Vigorous erect plant habit with heavy cluster bearing capacity.',
-      sowingGuide: 'Raise nursery under 50% shade net. Transplant 30-35 day seedlings. Spacing: 75cm x 45cm on raised beds with drip fertigation.'
-    },
-    {
-      id: 'tomato-lalita',
-      name: 'Ganga Lalita High-Yield Tomato F1',
-      teluguName: 'గంగ లలిత హైబ్రిడ్ టమాట',
-      category: 'vegetables',
-      categoryLabel: 'Vegetable Seed',
-      varietyCode: 'GAG-TM-07',
-      duration: '120 - 130 Days',
-      durationTe: '120 - 130 రోజులు',
-      yieldPotential: '35 - 45 Tons / Acre',
-      yieldPotentialTe: '35 - 45 టన్నులు / ఎకరానికి',
-      germination: '95% Min',
-      seedRate: '50 - 60g / Acre',
-      seedRateTe: '50 - 60 గ్రాములు / ఎకరానికి',
-      season: 'Year Round (All Seasons)',
-      grainType: 'Square-Round Firm Red Fruits (90 - 100g)',
-      grainTypeTe: 'గట్టి ఎర్రటి కాయలు (90-100 గ్రాములు), రవాణాకు అనుకూలం',
-      keyTrait: 'TLCV (Tomato Leaf Curl Virus) & Early Blight Resistant',
-      keyTraitTe: 'ఆకుముడత వైరస్ (TLCV) మరియు ముందస్తు మచ్చ తెగులు నిరోధకత',
-      soilSuitability: 'Rich Organic Sandy Loams & Black Soils',
-      tagline: 'Excellent Shelf Life (12+ Days) for Long Distance Transit',
-      description: 'Determinate to semi-determinate vigorous hybrid. Produces uniform, deep-red firm fruits with high lycopene and superior TSS for market premium.',
-      sowingGuide: 'Transplant on raised beds with silver-black mulch. Staking recommended for higher Grade-A fruit yields.'
-    },
-    {
-      id: 'okra-radhika',
-      name: 'Ganga Radhika Hybrid Okra / Bhindi',
-      teluguName: 'గంగ రాధిక హైబ్రిడ్ బెండ',
-      category: 'vegetables',
-      categoryLabel: 'Vegetable Seed',
-      varietyCode: 'GAG-OK-05',
-      duration: '90 - 105 Days (First pick in 42 days)',
-      durationTe: '90 - 105 రోజులు (42 రోజుల్లో మొదటి కోత)',
-      yieldPotential: '8 - 11 Tons / Acre',
-      yieldPotentialTe: '8 - 11 టన్నులు / ఎకరానికి',
-      germination: '95% Min',
-      seedRate: '2 - 2.5 kg / Acre',
-      seedRateTe: '2 - 2.5 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Summer',
-      grainType: '5-Ridged Dark Green, Tender & Slender',
-      grainTypeTe: '5 పలకల ముదురు ఆకుపచ్చ లేత కాయలు',
-      keyTrait: 'Yellow Vein Mosaic Virus (YVMV) & ELCV Immune',
-      keyTraitTe: 'పల్లాకు తెగులు (YVMV) మరియు ఈనె ముడత వైరస్ నిరోధకత',
-      soilSuitability: 'All Types of Cultivable Soils',
-      tagline: 'Short Internodes & Heavy Continuous Picking',
-      description: 'Prolific yielder with attractive glossy dark green tender pods. Highly preferred by vegetable traders for superior market fetching value.',
-      sowingGuide: 'Direct seed dibbling at 45cm x 30cm spacing. Irrigate every 5-6 days during summer.'
-    },
-    {
       id: 'mustard-gold',
       name: 'Ganga Gold Super Hybrid Mustard',
-      teluguName: 'గంగ గోల్డ్ హైబ్రిడ్ ఆవాలు',
       category: 'oilseeds',
       categoryLabel: 'Oilseed Crop',
       varietyCode: 'GAG-MS-01',
       duration: '105 - 115 Days',
-      durationTe: '105 - 115 రోజులు',
       yieldPotential: '10 - 14 Qtl / Acre',
-      yieldPotentialTe: '10 - 14 క్వింటాళ్లు / ఎకరానికి',
       germination: '96% Min',
       seedRate: '1.5 - 2 kg / Acre',
-      seedRateTe: '1.5 - 2 కిలోలు / ఎకరానికి',
       season: 'Rabi (Winter)',
       grainType: 'Bold Brownish Grains with 42% Oil Content',
-      grainTypeTe: 'లావు గింజలు, 42% నూనె శాతం',
       keyTrait: 'White Rust & Alternaria Blight Resistant',
-      keyTraitTe: 'తెల్ల తుప్పు మరియు ఆల్టర్నేరియా తెగులు తట్టుకునే రకం',
       soilSuitability: 'Loamy to Heavy Soils',
       tagline: 'High Oil Recovery & Cold-Tolerance',
       description: 'Specially developed for South and Central India Rabi sowing. High branching from base with 40-45 siliquae per branch.',
@@ -433,88 +285,18 @@ document.addEventListener('DOMContentLoaded', function () {
   ];
 
   // -------------------------------------------------------------------------
-  // 2. BILINGUAL LOCALIZATION ENGINE (EN & TE)
+  // 2. BILINGUAL LOCALIZATION STATE & EVENT HANDLERS
   // -------------------------------------------------------------------------
   let currentLang = localStorage.getItem('ganga_lang') || 'en';
-
-  const I18N = {
-    en: {
-      langLabel: 'తెలుగు',
-      storeStatusChecking: 'Checking Hours...',
-      storeOpen: 'STORE OPEN NOW (Closes {time})',
-      storeClosed: 'STORE CLOSED (Opens 8:00 AM)',
-      navHome: 'Home',
-      navProducts: 'Hybrid Seeds',
-      navCalc: 'Yield Calculator',
-      navAbout: 'R&D & About',
-      navServices: 'Services',
-      navCalendar: 'Crop Calendar',
-      navReviews: 'Reviews (5.0★)',
-      navLocation: 'Store Location',
-      navBookSeeds: 'Book Seeds',
-      heroBadge: 'Certified Telangana Agricultural Seed Enterprise',
-      heroTitlePrefix: 'High-Yielding',
-      heroTitleHighlight: 'Hybrid Seeds',
-      heroTitleSuffix: '& Agricultural Genetics',
-      heroDesc: 'Engineered for maximum vigor, superior germination, and climate resilience. Ganga Agri Genetics delivers trusted hybrid paddy, maize, jowar, bajra, soybean, and vegetable seeds directly to farmers across Telangana and South India.',
-      heroCtaExplore: 'Explore Seed Catalog',
-      heroCtaCalc: 'Seed & Yield Calculator',
-      heroCtaDirections: 'Get Directions (Shetpalle)',
-      calcHeading: 'Interactive Seed Rate & Yield Calculator',
-      calcSub: 'Calculate exact seed quantity needed for your land, recommended row spacing, and estimated harvest yield potential for Telangana farming conditions.',
-      calcBtnRecalc: 'Recalculate Recommendation',
-      calcBtnPrint: 'Print / Save Agronomy Card',
-      calcBtnOrder: 'Order This Seed Quantity via WhatsApp',
-      catalogHeading: 'Our Premium Hybrid Seeds Catalog',
-      catalogSub: 'Scientifically bred for exceptional vigor, disease tolerance, high milling recovery, and maximum market value.',
-      catalogSearchPlaceholder: 'Search by crop, variety name, or trait (e.g. BLB, Mahabali, Paddy)...',
-      compareBtnText: 'Compare Varieties',
-      orderViaWhatsApp: 'Order',
-      viewSpecs: 'View Specs'
-    },
-    te: {
-      langLabel: 'English',
-      storeStatusChecking: 'సమయం తనిఖీ చేస్తోంది...',
-      storeOpen: 'దుకాణం తెరిచి ఉంది ({time} వరకు)',
-      storeClosed: 'దుకాణం మూసివేయబడింది (ఉదయం 8:00 కి తెరుస్తారు)',
-      navHome: 'హోమ్',
-      navProducts: 'హైబ్రిడ్ విత్తనాలు',
-      navCalc: 'దిగుబడి కాలిక్యులేటర్',
-      navAbout: 'పరిశోధన & వివరాలు',
-      navServices: 'సేవలు',
-      navCalendar: 'పంటల క్యాలెండర్',
-      navReviews: 'రైతుల సమీక్షలు (5.0★)',
-      navLocation: 'దుకాణం చిరునామా',
-      navBookSeeds: 'విత్తనాలు బుక్ చేయండి',
-      heroBadge: 'తెలంగాణ ధ్రువీకృత వ్యవసాయ విత్తన సంస్థ',
-      heroTitlePrefix: 'అధిక దిగుబడినిచ్చే',
-      heroTitleHighlight: 'హైబ్రిడ్ విత్తనాలు',
-      heroTitleSuffix: '& వ్యవసాయ జెనెటిక్స్',
-      heroDesc: 'అధిక మొలక శాతం, అత్యధిక దిగుబడి, మరియు తెగుళ్లను తట్టుకునే శక్తి కలిగిన గంగ అగ్రి జెనెటిక్స్ హైబ్రిడ్ వరి, మొక్కజొన్న, జొన్నలు, సజ్జలు, సోయాబీన్, మరియు కూరగాయల విత్తనాలు తెలంగాణ రైతులకు నేరుగా లభించును.',
-      heroCtaExplore: 'విత్తనాల వివరాలు చూడండి',
-      heroCtaCalc: 'దిగుబడి కాలిక్యులేటర్',
-      heroCtaDirections: 'రూట్ మ్యాప్ (షెట్పల్లె)',
-      calcHeading: 'స్మార్ట్ విత్తన మోతాదు & దిగుబడి కాలిక్యులేటర్',
-      calcSub: 'మీ పొలానికి కావలసిన ఖచ్చితమైన విత్తన పరిమాణం, మొక్కల మధ్య దూరం మరియు ఆశించిన దిగుబడిని తెలంగాణ నేలల ప్రకారం సులభంగా లెక్కించండి.',
-      calcBtnRecalc: 'మరలా లెక్కించండి',
-      calcBtnPrint: 'వివరాలు ప్రింట్ / సేవ్ చేయండి',
-      calcBtnOrder: 'వాట్సాప్ ద్వారా విత్తనాలు ఆర్డర్ చేయండి',
-      catalogHeading: 'మా ప్రామాణిక హైబ్రిడ్ విత్తనాల కేటలాగ్',
-      catalogSub: 'శాస్త్రీయంగా అభివృద్ధి చేసిన మేలు రకపు హైబ్రిడ్ విత్తనాలు - అధిక దిగుబడి, వ్యాధి నిరోధకత మరియు అధిక మార్కెట్ ధర.',
-      catalogSearchPlaceholder: 'పంట పేరు, రకం లేదా తెగులు పేరుతో శోధించండి (ఉదా: వరి, మహాబలి, BLB)...',
-      compareBtnText: 'విత్తన రకాలను పోల్చండి',
-      orderViaWhatsApp: 'ఆర్డర్ చేయండి',
-      viewSpecs: 'వివరాలు'
-    }
-  };
 
   function updateLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('ganga_lang', lang);
-    const t = I18N[lang];
+    const i18n = getI18n();
+    const t = (i18n && i18n.ui && i18n.ui[lang]) ? i18n.ui[lang] : {};
 
     const langLabel = document.getElementById('langLabel');
-    if (langLabel) langLabel.textContent = t.langLabel;
+    if (langLabel && t.langLabel) langLabel.textContent = t.langLabel;
 
     // Translate specific elements by id
     const elMap = {
@@ -529,22 +311,79 @@ document.addEventListener('DOMContentLoaded', function () {
       'printCalcBtnText': t.calcBtnPrint,
       'catalogHeadingText': t.catalogHeading,
       'catalogSubText': t.catalogSub,
-      'compareBtnLabel': t.compareBtnText
+      'compareBtnLabel': t.compareBtnText,
+      'compareModalHeading': t.compareModalHeading,
+      'compareModalSubtitle': t.compareModalSubtitle,
+      'compareLabelA': t.compareLabelA,
+      'compareLabelB': t.compareLabelB
     };
 
     for (const [id, text] of Object.entries(elMap)) {
       const el = document.getElementById(id);
-      if (el) el.textContent = text;
+      if (el && text) el.textContent = text;
     }
 
     const searchInput = document.getElementById('seedSearchInput');
-    if (searchInput) {
+    if (searchInput && t.catalogSearchPlaceholder) {
       searchInput.placeholder = t.catalogSearchPlaceholder;
     }
 
+    updateCalculatorDropdownLabels();
     renderProducts();
     computeCalculator();
     checkStoreOpenStatus();
+    if (compareModal && (compareModal.open || compareModal.hasAttribute('open'))) {
+      populateComparisonDropdowns();
+      renderComparisonTable();
+    }
+  }
+
+  function updateCalculatorDropdownLabels() {
+    const isTe = (currentLang === 'te');
+    const i18n = getI18n();
+    const cropSelect = document.getElementById('calcCropSelect');
+    const areaUnitSelect = document.getElementById('calcAreaUnit');
+    const soilSelect = document.getElementById('calcSoilType');
+    const seasonSelect = document.getElementById('calcSeason');
+
+    if (cropSelect && typeof CROP_CALC_DATA !== 'undefined') {
+      const selectedCrop = cropSelect.value;
+      Array.from(cropSelect.options).forEach(opt => {
+        const cropData = CROP_CALC_DATA[opt.value];
+        if (cropData) {
+          const locCrop = getCalcData(opt.value, cropData, currentLang);
+          opt.textContent = locCrop.name;
+        }
+      });
+      cropSelect.value = selectedCrop;
+    }
+
+    if (areaUnitSelect && i18n && i18n.dropdowns && i18n.dropdowns.areaUnits) {
+      const selectedUnit = areaUnitSelect.value;
+      Array.from(areaUnitSelect.options).forEach(opt => {
+        const entry = i18n.dropdowns.areaUnits[opt.value];
+        if (entry) opt.textContent = isTe ? entry.te : entry.en;
+      });
+      areaUnitSelect.value = selectedUnit;
+    }
+
+    if (soilSelect && i18n && i18n.dropdowns && i18n.dropdowns.soilTypes) {
+      const selectedSoil = soilSelect.value;
+      Array.from(soilSelect.options).forEach(opt => {
+        const entry = i18n.dropdowns.soilTypes[opt.value];
+        if (entry) opt.textContent = isTe ? entry.te : entry.en;
+      });
+      soilSelect.value = selectedSoil;
+    }
+
+    if (seasonSelect && i18n && i18n.dropdowns && i18n.dropdowns.seasons) {
+      const selectedSeason = seasonSelect.value;
+      Array.from(seasonSelect.options).forEach(opt => {
+        const entry = i18n.dropdowns.seasons[opt.value];
+        if (entry) opt.textContent = isTe ? entry.te : entry.en;
+      });
+      seasonSelect.value = selectedSeason;
+    }
   }
 
   const langToggleBtn = document.getElementById('langToggleBtn');
@@ -552,7 +391,9 @@ document.addEventListener('DOMContentLoaded', function () {
     langToggleBtn.addEventListener('click', function () {
       const nextLang = currentLang === 'en' ? 'te' : 'en';
       updateLanguage(nextLang);
-      showToast(nextLang === 'te' ? 'భాష తెలుగులోకి మార్చబడింది' : 'Language switched to English', 'info');
+      const i18n = getI18n();
+      const toastMsg = (i18n && i18n.ui && i18n.ui[nextLang]) ? i18n.ui[nextLang].toastLangSwitched : 'Language updated';
+      showToast(toastMsg, 'info');
     });
   }
 
@@ -574,7 +415,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function renderProducts() {
     if (!productsGrid) return;
-    const isTe = (currentLang === 'te');
+    const i18n = getI18n();
+    const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
     const filtered = SEED_CATALOG.filter(item => {
       const matchesCategory = (
@@ -583,9 +425,10 @@ document.addEventListener('DOMContentLoaded', function () {
         (currentCategory === 'bonus_sannalu' && item.isGovtBonusEligible)
       );
       const query = currentSearchQuery.toLowerCase().trim();
+      const loc = getCropData(item, currentLang);
       const matchesSearch = !query || 
         item.name.toLowerCase().includes(query) ||
-        item.teluguName.toLowerCase().includes(query) ||
+        loc.name.toLowerCase().includes(query) ||
         item.varietyCode.toLowerCase().includes(query) ||
         item.keyTrait.toLowerCase().includes(query) ||
         item.categoryLabel.toLowerCase().includes(query);
@@ -595,97 +438,88 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (filtered.length === 0) {
       productsGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 48px 20px; background: #ffffff; border-radius: 16px; border: 1px dashed #cbd5e1;">
-          <div style="font-size: 2.5rem; color: #94a3b8; margin-bottom: 12px;"><i class="fa-solid fa-seedling"></i></div>
-          <h3 style="font-size: 1.3rem; color: #0f172a; margin-bottom: 6px;">${isTe ? 'ఎటువంటి విత్తనాలు కనుగొనబడలేదు' : 'No Matching Hybrid Seeds Found'}</h3>
-          <p style="color: #64748b; margin-bottom: 16px;">${isTe ? 'దయచేసి వేరొక పేరుతో శోధించండి లేదా "అన్ని విత్తనాలు" ఎంచుకోండి.' : 'Try adjusting your search terms or select "All Seeds".'}</p>
-          <button type="button" class="btn btn--secondary btn--sm" id="resetCatalogBtn">${isTe ? 'ఫిల్టర్లు రీసెట్ చేయండి' : 'Reset Filters'}</button>
+        <div class="no-results-box" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px;">
+          <i class="fa-solid fa-seedling" style="font-size: 3rem; color: #94a3b8; margin-bottom: 16px;"></i>
+          <h3>No Hybrid Seeds Found</h3>
+          <p>No seeds matched "${currentSearchQuery}". Try clearing filters or searching for "Paddy", "Maize", or "Bonus".</p>
+          <button type="button" class="btn btn--secondary" onclick="document.getElementById('clearSearchBtn').click()">
+            <i class="fa-solid fa-arrows-rotate"></i> Reset Filters
+          </button>
         </div>
       `;
-      const resetBtn = document.getElementById('resetCatalogBtn');
-      if (resetBtn) {
-        resetBtn.addEventListener('click', () => {
-          currentCategory = 'all';
-          currentSearchQuery = '';
-          if (searchInput) searchInput.value = '';
-          if (clearSearchBtn) clearSearchBtn.style.display = 'none';
-          filterPills.forEach(p => p.classList.toggle('active', p.dataset.category === 'all'));
-          renderProducts();
-        });
-      }
       return;
     }
 
-    productsGrid.innerHTML = filtered.map(item => `
-      <article class="seed-card ${item.isGovtBonusEligible ? 'seed-card--bonus' : ''}" data-id="${item.id}">
-        <div class="seed-card-header">
-          <div class="seed-badges-row">
-            <span class="seed-type-badge">${item.categoryLabel}</span>
-            ${item.isGovtBonusEligible ? `
-              <span class="seed-bonus-badge" title="Eligible for Telangana Govt ₹500/Qtl Sannalu Bonus">
-                <i class="fa-solid fa-award"></i> ${isTe ? '₹500 బోనస్ రకం' : '₹500/Qtl TG Bonus'}
-              </span>
-            ` : ''}
-          </div>
-          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
-            <h3>${isTe ? item.teluguName : item.name}</h3>
-          </div>
-          <span class="seed-variety-code">${item.varietyCode}</span>
-        </div>
+    productsGrid.innerHTML = filtered.map(baseItem => {
+      const item = getCropData(baseItem, currentLang);
+      const isBonus = item.isGovtBonusEligible;
+      const cardCategoryClass = `cat-${item.category}`;
 
-        <div class="seed-card-body">
-          <div class="seed-features-list">
-            <div class="seed-feature-row">
-              <span><i class="fa-solid fa-clock"></i> ${isTe ? 'పంట కాలం:' : 'Maturity:'}</span>
-              <strong>${isTe && item.durationTe ? item.durationTe : item.duration}</strong>
+      return `
+        <div class="seed-card product-card ${cardCategoryClass} ${isBonus ? 'bonus-highlight-card' : ''}" data-category="${item.category}" data-id="${item.id}">
+          <div class="seed-card-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="seed-type-badge">${item.categoryLabel}</span>
+              ${isBonus ? `
+                <span class="badge badge--success seed-bonus-badge" style="font-size: 0.72rem; padding: 2px 6px;">
+                  <i class="fa-solid fa-award"></i> ${item.bonusAmount || '₹500 TG Bonus'}
+                </span>
+              ` : ''}
             </div>
-            <div class="seed-feature-row">
-              <span><i class="fa-solid fa-chart-line"></i> ${isTe ? 'దిగుబడి సామర్థ్యం:' : 'Yield Potential:'}</span>
-              <strong style="color: #047857;">${isTe && item.yieldPotentialTe ? item.yieldPotentialTe : item.yieldPotential}</strong>
-            </div>
-            <div class="seed-feature-row">
-              <span><i class="fa-solid fa-seedling"></i> ${isTe ? 'మొలక శాతం:' : 'Germination:'}</span>
-              <strong>${item.germination}</strong>
-            </div>
-            <div class="seed-feature-row">
-              <span><i class="fa-solid fa-calendar-day"></i> ${isTe ? 'అనువైన కాలం:' : 'Best Season:'}</span>
-              <strong>${item.season.split('(')[0]}</strong>
-            </div>
-            ${item.grainDimensions ? `
-              <div class="seed-feature-row grain-spec-row">
-                <span><i class="fa-solid fa-ruler"></i> ${isTe ? 'ధాన్యపు కొలత:' : 'Grain Size:'}</span>
-                <span class="grain-dim-val">${isTe && item.grainDimensionsTe ? item.grainDimensionsTe : item.grainDimensions}</span>
+            <h3 class="product-title" title="${item.name}">${item.name}</h3>
+            <div class="seed-variety-code">${item.varietyCode}</div>
+          </div>
+
+          <div class="seed-card-body">
+            <div class="seed-features-list">
+              <div class="seed-feature-row">
+                <span><i class="fa-regular fa-clock"></i> ${t.duration || 'Maturity'}:</span>
+                <strong>${item.duration}</strong>
               </div>
-            ` : ''}
-          </div>
+              <div class="seed-feature-row">
+                <span><i class="fa-solid fa-chart-line"></i> ${t.yieldPotential || 'Yield Potential'}:</span>
+                <strong style="color: #047857;">${item.yieldPotential}</strong>
+              </div>
+              <div class="seed-feature-row">
+                <span><i class="fa-solid fa-seedling"></i> ${t.germination || 'Germination'}:</span>
+                <strong>${item.germination}</strong>
+              </div>
+              <div class="seed-feature-row">
+                <span><i class="fa-regular fa-calendar"></i> ${t.season || 'Best Season'}:</span>
+                <strong>${item.season}</strong>
+              </div>
+            </div>
 
-          <div class="seed-trait-tag" title="${item.keyTrait}">
-            <i class="fa-solid fa-shield-halved" style="color: #059669;"></i>
-            <span>${isTe && item.keyTraitTe ? item.keyTraitTe : item.keyTrait}</span>
-          </div>
+            <div class="seed-trait-tag" title="${item.keyTrait}">
+              <i class="fa-solid fa-shield-halved" style="color: #047857; flex-shrink: 0;"></i>
+              <span style="overflow: hidden; text-overflow: ellipsis; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; line-height: 1.35;">${item.keyTrait}</span>
+            </div>
 
-          <div class="seed-card-footer">
-            <button type="button" class="btn btn--outline btn--sm view-spec-btn" data-id="${item.id}">
-              <i class="fa-solid fa-circle-info"></i> ${isTe ? 'వివరాలు' : 'View Specs'}
-            </button>
-            <a href="https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to inquire/order ' + item.name + ' (' + item.varietyCode + ')')}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
-              <i class="fa-brands fa-whatsapp"></i> ${isTe ? 'ఆర్డర్' : 'Order'}
-            </a>
+            <div class="seed-card-footer product-card-actions">
+              <button type="button" class="btn btn--outline-primary btn--sm view-specs-btn view-spec-btn" data-seed-id="${item.id}" aria-label="View specifications for ${item.name}">
+                <i class="fa-solid fa-circle-info"></i> <span>${t.viewSpecs || 'View Specs'}</span>
+              </button>
+              <a href="https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + baseItem.name + ' (' + item.varietyCode + ')')}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm" aria-label="Order ${item.name} on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i> <span>${t.orderViaWhatsApp || 'Order'}</span>
+              </a>
+            </div>
           </div>
         </div>
-      </article>
-    `).join('');
+      `;
+    }).join('');
 
-    // Attach spec modal triggers
-    document.querySelectorAll('.view-spec-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const seedId = btn.getAttribute('data-id');
+    // Attach View Specs button click listeners
+    const viewButtons = productsGrid.querySelectorAll('.view-specs-btn');
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        const seedId = this.getAttribute('data-seed-id');
         openProductModal(seedId);
       });
     });
   }
 
-  // Category filters
+  // Filter Pill Click Handlers
   filterPills.forEach(pill => {
     pill.addEventListener('click', function () {
       filterPills.forEach(p => p.classList.remove('active'));
@@ -695,104 +529,173 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // Real-time search
+  // Search Input Handler
   if (searchInput) {
     searchInput.addEventListener('input', function () {
       currentSearchQuery = this.value;
       if (clearSearchBtn) {
-        clearSearchBtn.style.display = this.value ? 'block' : 'none';
+        clearSearchBtn.style.display = currentSearchQuery ? 'block' : 'none';
       }
       renderProducts();
     });
   }
 
-  if (clearSearchBtn && searchInput) {
+  // Clear Search Button
+  if (clearSearchBtn) {
     clearSearchBtn.addEventListener('click', function () {
-      searchInput.value = '';
-      currentSearchQuery = '';
-      this.style.display = 'none';
-      renderProducts();
-      searchInput.focus();
+      if (searchInput) {
+        searchInput.value = '';
+        currentSearchQuery = '';
+        this.style.display = 'none';
+        renderProducts();
+        searchInput.focus();
+      }
     });
   }
 
-  renderProducts();
+  // Bonus Scheme Hub Variety Card Trigger Handlers
+  document.querySelectorAll('.bonus-variety-card, .bonus-spec-btn').forEach(card => {
+    card.addEventListener('click', function (e) {
+      e.preventDefault();
+      const seedId = this.getAttribute('data-seed-id');
+      if (seedId) {
+        openProductModal(seedId);
+      }
+    });
+  });
 
   // -------------------------------------------------------------------------
-  // 4. PRODUCT SPECIFICATIONS MODAL (<dialog>)
+  // 4. PRODUCT SPECIFICATION MODAL (<dialog id="productSpecModal">)
   // -------------------------------------------------------------------------
-  const modal = document.getElementById('productSpecModal');
+  const productModal = document.getElementById('productSpecModal') || document.getElementById('productModal');
   const closeModalBtn = document.getElementById('closeModalBtn');
-  const closeModalFooterBtn = document.getElementById('closeModalFooterBtn');
+  const modalCloseFooterBtn = document.getElementById('closeModalFooterBtn') || document.getElementById('modalCloseFooterBtn');
 
   function openProductModal(seedId) {
-    const seed = SEED_CATALOG.find(s => s.id === seedId);
-    if (!seed || !modal) return;
-    const isTe = (currentLang === 'te');
+    const baseItem = SEED_CATALOG.find(s => s.id === seedId);
+    const targetModal = document.getElementById('productSpecModal') || document.getElementById('productModal') || productModal;
+    if (!baseItem || !targetModal) return;
+    const item = getCropData(baseItem, currentLang);
+    const isBonus = item.isGovtBonusEligible;
 
-    document.getElementById('modalCategory').textContent = seed.categoryLabel;
-    document.getElementById('modalTitle').textContent = isTe ? seed.teluguName : seed.name;
-    document.getElementById('modalTagline').textContent = seed.tagline;
-    document.getElementById('modalDuration').textContent = isTe && seed.durationTe ? seed.durationTe : seed.duration;
-    document.getElementById('modalYield').textContent = isTe && seed.yieldPotentialTe ? seed.yieldPotentialTe : seed.yieldPotential;
-    document.getElementById('modalGermination').textContent = seed.germination;
-    document.getElementById('modalSeason').textContent = seed.season;
-    document.getElementById('modalSeedRate').textContent = isTe && seed.seedRateTe ? seed.seedRateTe : seed.seedRate;
-    document.getElementById('modalGrain').textContent = isTe && seed.grainTypeTe ? seed.grainTypeTe : seed.grainType;
+    // Populate modal fields supporting multiple ID aliases
+    const modalProductTitle = document.getElementById('modalTitle') || document.getElementById('modalProductTitle');
+    const modalTagline = document.getElementById('modalTagline');
+    const modalVarietyBadge = document.getElementById('modalCategory') || document.getElementById('modalVarietyBadge');
+    const modalDuration = document.getElementById('modalDuration');
+    const modalYield = document.getElementById('modalYield');
+    const modalGermination = document.getElementById('modalGermination');
+    const modalSeedRate = document.getElementById('modalSeedRate');
+    const modalSeason = document.getElementById('modalSeason');
+    const modalGrainType = document.getElementById('modalGrain') || document.getElementById('modalGrainType');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalSowingGuide = document.getElementById('modalSowingGuide');
+    const bonusContainer = document.getElementById('modalBonusAlert') || document.getElementById('modalBonusContainer');
+    const modalWhatsAppBtn = document.getElementById('modalWhatsAppOrderBtn') || document.getElementById('modalWhatsAppBtn');
+    const modalCompareVarietyBtn = document.getElementById('modalCompareVarietyBtn');
 
-    const modalBonusAlert = document.getElementById('modalBonusAlert');
-    if (modalBonusAlert) {
-      if (seed.isGovtBonusEligible) {
-        modalBonusAlert.innerHTML = `
-          <div class="bonus-notice-card">
-            <div class="bonus-notice-icon"><i class="fa-solid fa-award"></i></div>
-            <div>
-              <strong>${isTe ? 'తెలంగాణ ప్రభుత్వ ₹500/క్వింటాల్ బోనస్ అర్హత' : 'Telangana Govt ₹500 / Quintal Bonus Eligible'}</strong>
-              <p>${isTe ? 'ఈ రకం ధాన్యపు కొలతలు (పొడవు <6mm, వెడల్పు <2mm, తేమ <17%) కలిగి ఉండి ₹500 బోనస్‌కు అర్హత పొందింది. స్థానిక AEO ద్వారా డిజిటల్ పోర్టల్‌లో నమోదు చేసుకోవాలి.' : 'Meets all fine grain standards (length <6mm, width <2mm, moisture <17%). Sowing details must be booked via digital portals through your local Agricultural Extension Officer (AEO).'}</p>
+    if (modalProductTitle) modalProductTitle.textContent = item.name;
+    if (modalTagline) modalTagline.textContent = item.tagline || '';
+    if (modalVarietyBadge) modalVarietyBadge.textContent = `${item.varietyCode} • ${item.categoryLabel}`;
+    if (modalDuration) modalDuration.textContent = item.duration;
+    if (modalYield) modalYield.textContent = item.yieldPotential;
+    if (modalGermination) modalGermination.textContent = item.germination;
+    if (modalSeedRate) modalSeedRate.textContent = item.seedRate;
+    if (modalSeason) modalSeason.textContent = item.season;
+    if (modalGrainType) modalGrainType.textContent = item.grainType;
+    if (modalDescription) modalDescription.textContent = item.description;
+    if (modalSowingGuide) modalSowingGuide.textContent = item.sowingGuide;
+
+    // Government Bonus Notice Container
+    if (bonusContainer) {
+      if (isBonus) {
+        bonusContainer.innerHTML = `
+          <div class="modal-bonus-banner">
+            <div class="bonus-banner-head">
+              <i class="fa-solid fa-award"></i>
+              <strong>${item.bonusAmount || 'Telangana Govt ₹500 / Qtl Bonus Eligible'}</strong>
             </div>
+            <p>This variety officially qualifies for the Government of Telangana ₹500/Quintal procurement incentive over MSP. Grain standard: ${item.grainDimensions || 'Length <6mm, Width <2mm, Moisture <17%'}.</p>
           </div>
         `;
-        modalBonusAlert.style.display = 'block';
+        bonusContainer.style.display = 'block';
       } else {
-        modalBonusAlert.style.display = 'none';
+        bonusContainer.innerHTML = '';
+        bonusContainer.style.display = 'none';
       }
     }
 
-    document.getElementById('modalDescription').textContent = seed.description + ' Key trait: ' + (isTe && seed.keyTraitTe ? seed.keyTraitTe : seed.keyTrait) + '. ' + seed.soilSuitability + '.';
-    document.getElementById('modalSowingGuide').textContent = seed.sowingGuide;
-
-    const whatsappBtn = document.getElementById('modalWhatsAppOrderBtn');
-    if (whatsappBtn) {
-      whatsappBtn.href = `https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + seed.name + ' (' + seed.varietyCode + ')')}`;
+    if (modalWhatsAppBtn) {
+      const msg = `Hello Ganga Agri Genetics, I am interested in ordering: ${baseItem.name} (${item.varietyCode}). Please share price and availability.`;
+      modalWhatsAppBtn.href = `https://wa.me/917013135345?text=${encodeURIComponent(msg)}`;
     }
 
-    modal.showModal();
+    if (modalCompareVarietyBtn) {
+      modalCompareVarietyBtn.onclick = function () {
+        closeModal();
+        openCompareModal(baseItem.id);
+      };
+    }
+
+    // Open modal safely
+    document.body.classList.add('modal-open');
+    if (typeof targetModal.showModal === 'function') {
+      try {
+        if (!targetModal.open) {
+          targetModal.showModal();
+        }
+      } catch (err) {
+        targetModal.setAttribute('open', '');
+      }
+    } else {
+      targetModal.setAttribute('open', '');
+    }
+    targetModal.scrollTop = 0;
+  }
+
+  function updateModalOpenState() {
+    const prodModal = document.getElementById('productSpecModal') || document.getElementById('productModal');
+    const compModal = document.getElementById('compareModal');
+    const isProdOpen = prodModal && (prodModal.open || prodModal.hasAttribute('open'));
+    const isCompOpen = compModal && (compModal.open || compModal.hasAttribute('open'));
+    if (isProdOpen || isCompOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
   }
 
   function closeModal() {
-    if (modal && modal.open) {
-      modal.close();
+    const targetModal = document.getElementById('productSpecModal') || document.getElementById('productModal');
+    if (targetModal) {
+      if (typeof targetModal.close === 'function') {
+        try {
+          targetModal.close();
+        } catch (e) {
+          targetModal.removeAttribute('open');
+        }
+      } else {
+        targetModal.removeAttribute('open');
+      }
     }
+    updateModalOpenState();
   }
 
   if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
-  if (closeModalFooterBtn) closeModalFooterBtn.addEventListener('click', closeModal);
+  if (modalCloseFooterBtn) modalCloseFooterBtn.addEventListener('click', closeModal);
 
-  if (modal) {
-    modal.addEventListener('click', function (e) {
-      const rect = modal.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
+  if (productModal) {
+    productModal.addEventListener('close', updateModalOpenState);
+    productModal.addEventListener('cancel', updateModalOpenState);
+    productModal.addEventListener('click', function (e) {
+      if (e.target === productModal) {
         closeModal();
       }
     });
   }
 
   // -------------------------------------------------------------------------
-  // 5. INTERACTIVE SEED RATE & CROP YIELD CALCULATOR
+  // 5. INTERACTIVE SEED REQUIREMENT & YIELD ESTIMATOR
   // -------------------------------------------------------------------------
   const calcCropSelect = document.getElementById('calcCropSelect');
   const calcLandArea = document.getElementById('calcLandArea');
@@ -803,7 +706,6 @@ document.addEventListener('DOMContentLoaded', function () {
   const printCalcBtn = document.getElementById('printCalcBtn');
   const calcOrderWhatsAppBtn = document.getElementById('calcOrderWhatsAppBtn');
 
-  // Result displays
   const calcCropBadge = document.getElementById('calcCropBadge');
   const resultSeedRate = document.getElementById('resultSeedRate');
   const resultSeedPkt = document.getElementById('resultSeedPkt');
@@ -911,7 +813,7 @@ document.addEventListener('DOMContentLoaded', function () {
       advice: 'High-tillering champion hybrid paddy (30-35 tillers/hill) with exceptional BLB resistance.'
     },
     maize: {
-      name: 'Hybrid Maize (మొక్కజొన్న)',
+      name: 'Hybrid Maize / Corn',
       seedRatePerAcre: 7.5,
       seedUnit: 'kg',
       packetSize: 4,
@@ -922,7 +824,7 @@ document.addEventListener('DOMContentLoaded', function () {
       advice: 'Dibble single seed at 4-5cm depth into moist soil. Apply Coragen or Emamectin benzoate at 15-20 days after germination against Fall Armyworm.'
     },
     jowar: {
-      name: 'Hybrid Jowar / Sorghum (జొన్నలు)',
+      name: 'Hybrid Jowar / White Sorghum',
       seedRatePerAcre: 3.5,
       seedUnit: 'kg',
       packetSize: 3,
@@ -933,7 +835,7 @@ document.addEventListener('DOMContentLoaded', function () {
       advice: 'Ideal for drought-prone red & black soils. Dual purpose crop for grain and sweet fodder. Seed treatment with Thiamethoxam prevents shoot fly in early growth.'
     },
     bajra: {
-      name: 'Hybrid Bajra / Pearl Millet (సజ్జలు)',
+      name: 'Hybrid Bajra / Pearl Millet',
       seedRatePerAcre: 1.8,
       seedUnit: 'kg',
       packetSize: 1.5,
@@ -944,7 +846,7 @@ document.addEventListener('DOMContentLoaded', function () {
       advice: 'Ultra-fast maturity and drought-hardy. High iron & zinc nutrition. Sowing in shallow moist soil (2-3 cm) guarantees fast germination within 4 days.'
     },
     soybean: {
-      name: 'High-Yield Soybean (సోయాబీన్)',
+      name: 'High-Yield Soybean',
       seedRatePerAcre: 28,
       seedUnit: 'kg (30 kg Bag)',
       packetSize: 30,
@@ -954,41 +856,8 @@ document.addEventListener('DOMContentLoaded', function () {
       duration: '90 - 98 Days',
       advice: 'Treat seeds with Rhizobium & Carbendazim before sowing. Sowing on 45cm ridges ensures superior field drainage and maximum pod setting. High resistance to pod shattering.'
     },
-    chilli: {
-      name: 'Hybrid Chilli (మిరప)',
-      seedRatePerAcre: 0.1, // 100g
-      seedUnit: 'kg (100 Grams)',
-      packetSize: 0.05,
-      yieldMinPerAcre: 26,
-      yieldMaxPerAcre: 34,
-      spacing: '75 cm × 45 cm',
-      duration: '150 - 165 Days',
-      advice: 'Transplant 30-day sturdy seedlings onto raised beds with drip irrigation. Apply neem oil 10,000 ppm periodically against thrips & mites.'
-    },
-    tomato: {
-      name: 'Hybrid Tomato F1 (టమాట)',
-      seedRatePerAcre: 0.06, // 60g
-      seedUnit: 'kg (60 Grams)',
-      packetSize: 0.02,
-      yieldMinPerAcre: 350, // in quintals (35 tons)
-      yieldMaxPerAcre: 450,
-      spacing: '90 cm × 45 cm',
-      duration: '120 - 130 Days',
-      advice: 'Support vines with trellising/bamboo stakes for disease-free high grade fruits. Apply calcium nitrate during fruit setting to prevent Blossom End Rot.'
-    },
-    okra: {
-      name: 'Hybrid Okra / Bhindi (బెండ)',
-      seedRatePerAcre: 2.2,
-      seedUnit: 'kg',
-      packetSize: 1,
-      yieldMinPerAcre: 75,
-      yieldMaxPerAcre: 95,
-      spacing: '45 cm × 30 cm',
-      duration: '90 - 100 Days',
-      advice: 'Soak seeds in warm water for 6 hours prior to sowing to accelerate germination. High field resistance to Yellow Vein Mosaic Virus (YVMV).'
-    },
     mustard: {
-      name: 'Hybrid Mustard (ఆవాలు)',
+      name: 'Hybrid Mustard / Oilseed',
       seedRatePerAcre: 1.8,
       seedUnit: 'kg',
       packetSize: 1,
@@ -999,7 +868,7 @@ document.addEventListener('DOMContentLoaded', function () {
       advice: 'Best for winter (Rabi) sowing in October-November. First irrigation at 30 days during branching is critical.'
     },
     redgram: {
-      name: 'Hybrid Redgram / Toor (కంది)',
+      name: 'Hybrid Redgram / Toor',
       seedRatePerAcre: 3.5,
       seedUnit: 'kg',
       packetSize: 2,
@@ -1013,11 +882,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function computeCalculator() {
     if (!calcCropSelect || !calcLandArea) return;
+    const isTe = (currentLang === 'te');
+    const i18n = getI18n();
+    const u = (i18n && i18n.units && i18n.units[currentLang]) ? i18n.units[currentLang] : {
+      grams: 'Grams',
+      kg: 'kg',
+      quintals: 'Quintals',
+      qtlPerAcre: 'Qtl / Acre',
+      approxPackets: 'approx. {count} Packet(s) / Bags'
+    };
+    const bannerT = (i18n && i18n.bonusBanner && i18n.bonusBanner[currentLang]) ? i18n.bonusBanner[currentLang] : {
+      header: 'Telangana Govt ₹500/Qtl Sannalu Bonus Extra Income',
+      subBadge: 'Extra Cash Incentive',
+      note: 'This variety qualifies for ₹500/Qtl extra bonus over MSP. Ensure moisture is under 17% and register crop details with your local AEO.'
+    };
 
     const cropKey = calcCropSelect.value;
     const rawArea = parseFloat(calcLandArea.value) || 1;
     const unit = calcAreaUnit ? calcAreaUnit.value : 'acres';
-    const cropData = CROP_CALC_DATA[cropKey] || CROP_CALC_DATA.paddy;
+    const baseCropData = CROP_CALC_DATA[cropKey] || CROP_CALC_DATA.paddy;
+    const cropData = getCalcData(cropKey, baseCropData, currentLang);
 
     // Convert area to Acres
     let areaInAcres = rawArea;
@@ -1033,26 +917,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const totalYieldMax = Math.round(cropData.yieldMaxPerAcre * areaInAcres);
 
     // Update DOM
-    if (calcCropBadge) calcCropBadge.textContent = cropData.name;
+    if (calcCropBadge) {
+      calcCropBadge.textContent = cropData.name;
+    }
 
     if (resultSeedRate) {
       if (totalSeedKg < 1) {
-        resultSeedRate.textContent = `${Math.round(totalSeedKg * 1000)} Grams`;
+        resultSeedRate.textContent = `${Math.round(totalSeedKg * 1000)} ${u.grams}`;
       } else {
-        resultSeedRate.textContent = `${totalSeedKg.toFixed(1)} kg`;
+        resultSeedRate.textContent = `${totalSeedKg.toFixed(1)} ${u.kg}`;
       }
     }
 
     if (resultSeedPkt) {
-      resultSeedPkt.textContent = `approx. ${totalBags} Packet(s) / Bags`;
+      resultSeedPkt.textContent = u.approxPackets.replace('{count}', totalBags);
     }
 
     if (resultYield) {
-      resultYield.textContent = `${totalYieldMin} - ${totalYieldMax} Quintals`;
+      resultYield.textContent = `${totalYieldMin} - ${totalYieldMax} ${u.quintals}`;
     }
 
     if (resultYieldPerAcre) {
-      resultYieldPerAcre.textContent = `(${cropData.yieldMinPerAcre} - ${cropData.yieldMaxPerAcre} Qtl / Acre)`;
+      resultYieldPerAcre.textContent = `(${cropData.yieldMinPerAcre} - ${cropData.yieldMaxPerAcre} ${u.qtlPerAcre})`;
     }
 
     if (resultSpacing) {
@@ -1077,14 +963,14 @@ document.addEventListener('DOMContentLoaded', function () {
           <div class="calc-bonus-box">
             <div class="bonus-box-header">
               <i class="fa-solid fa-award"></i>
-              <strong>${isTe ? 'తెలంగాణ ప్రభుత్వ ₹500/క్వింటాల్ బోనస్ అంచనా' : 'Telangana Govt ₹500/Qtl Sannalu Bonus Extra Income'}</strong>
+              <strong>${bannerT.header}</strong>
             </div>
             <div class="bonus-box-amount">
               + ₹${minBonus.toLocaleString('en-IN')} - ₹${maxBonus.toLocaleString('en-IN')}
-              <span class="bonus-sub-badge">${isTe ? 'అదనపు నగదు ప్రోత్సాహకం' : 'Extra Cash Incentive'}</span>
+              <span class="bonus-sub-badge">${bannerT.subBadge}</span>
             </div>
             <p class="bonus-box-note">
-              <i class="fa-solid fa-circle-check"></i> ${isTe ? 'ఈ రకానికి ప్రభుత్వం క్వింటాలుకు ₹500 అదనపు బోనస్ ఇస్తుంది (ధాన్యం తేమ <17%, పొడవు <6mm, వెడల్పు <2mm). స్థానిక AEO ద్వారా డిజిటల్ పోర్టల్‌లో నమోదు చేసుకోండి.' : 'This variety qualifies for ₹500/Qtl extra bonus over MSP. Ensure moisture is under 17% and register crop details with your local AEO.'}
+              <i class="fa-solid fa-circle-check"></i> ${bannerT.note}
             </p>
           </div>
         `;
@@ -1096,7 +982,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update WhatsApp Order Button
     if (calcOrderWhatsAppBtn) {
-      const msg = `Hello Ganga Agri Genetics, I calculated seed requirements for ${cropData.name} on ${rawArea} ${unit} (Approx ${resultSeedRate ? resultSeedRate.textContent : ''}, ${totalBags} Packets). Please provide quotation and availability.`;
+      const msg = `Hello Ganga Agri Genetics, I calculated seed requirements for ${baseCropData.name} on ${rawArea} ${unit} (Approx ${resultSeedRate ? resultSeedRate.textContent : ''}, ${totalBags} Packets). Please provide quotation and availability.`;
       calcOrderWhatsAppBtn.onclick = () => {
         window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
       };
@@ -1129,567 +1015,774 @@ document.addEventListener('DOMContentLoaded', function () {
   const compareCropB = document.getElementById('compareCropB');
   const comparisonTableBody = document.getElementById('comparisonTableBody');
 
-  function populateComparisonDropdowns() {
-    if (!compareCropA || !compareCropB) return;
+  function openCompareModal(cropAId, cropBId) {
+    const targetModal = document.getElementById('compareModal') || compareModal;
+    if (!targetModal) return;
+    populateComparisonDropdowns(cropAId, cropBId);
+    renderComparisonTable();
 
-    const optionsHtml = SEED_CATALOG.map((s, idx) => `
-      <option value="${s.id}" ${idx === 0 ? 'selected' : ''}>${s.name} (${s.varietyCode})</option>
-    `).join('');
+    document.body.classList.add('modal-open');
+    if (typeof targetModal.showModal === 'function') {
+      try {
+        if (!targetModal.open) {
+          targetModal.showModal();
+        }
+      } catch (err) {
+        targetModal.setAttribute('open', '');
+      }
+    } else {
+      targetModal.setAttribute('open', '');
+    }
+    targetModal.scrollTop = 0;
+  }
 
-    const optionsHtmlB = SEED_CATALOG.map((s, idx) => `
-      <option value="${s.id}" ${idx === 1 ? 'selected' : ''}>${s.name} (${s.varietyCode})</option>
-    `).join('');
+  function closeCompareModal() {
+    const targetModal = document.getElementById('compareModal') || compareModal;
+    if (targetModal) {
+      if (typeof targetModal.close === 'function') {
+        try {
+          targetModal.close();
+        } catch (e) {
+          targetModal.removeAttribute('open');
+        }
+      } else {
+        targetModal.removeAttribute('open');
+      }
+    }
+    updateModalOpenState();
+  }
 
-    compareCropA.innerHTML = optionsHtml;
-    compareCropB.innerHTML = optionsHtmlB;
+  // Expose globally on window for inline handlers & external triggers
+  window.openCompareModal = openCompareModal;
+  window.closeCompareModal = closeCompareModal;
+  window.openProductModal = openProductModal;
+  window.closeModal = closeModal;
+
+  function populateComparisonDropdowns(cropAId, cropBId) {
+    const selA = document.getElementById('compareCropA') || compareCropA;
+    const selB = document.getElementById('compareCropB') || compareCropB;
+    if (!selA || !selB) return;
+    const isTe = (currentLang === 'te');
+    const i18n = getI18n();
+    const optg = (i18n && i18n.dropdowns && i18n.dropdowns.compareOptgroups) ? i18n.dropdowns.compareOptgroups : {};
+
+    let valA = cropAId || selA.value || 'paddy-rnr15048';
+    let valB = cropBId || selB.value || 'paddy-bpt5204';
+
+    if (valA === valB && SEED_CATALOG.length > 1) {
+      const other = SEED_CATALOG.find(s => s.id !== valA);
+      if (other) valB = other.id;
+    }
+
+    function buildGroupedOptionsHtml(selectedVal) {
+      const bonusPaddy = SEED_CATALOG.filter(s => s.isGovtBonusEligible);
+      const otherCereals = SEED_CATALOG.filter(s => !s.isGovtBonusEligible && s.category === 'cereals');
+      const oilseeds = SEED_CATALOG.filter(s => s.category === 'oilseeds');
+      const vegetables = SEED_CATALOG.filter(s => s.category === 'vegetables');
+
+      let html = '';
+
+      if (bonusPaddy.length > 0) {
+        const lbl = optg.bonusPaddy ? (isTe ? optg.bonusPaddy.te : optg.bonusPaddy.en) : '⭐ Bonus Fine Paddy';
+        html += `<optgroup label="${lbl}">`;
+        bonusPaddy.forEach(s => {
+          const loc = getCropData(s, currentLang);
+          html += `<option value="${s.id}" ${s.id === selectedVal ? 'selected' : ''}>${loc.name} (${s.varietyCode})</option>`;
+        });
+        html += `</optgroup>`;
+      }
+
+      if (otherCereals.length > 0) {
+        const lbl = optg.cereals ? (isTe ? optg.cereals.te : optg.cereals.en) : '🌾 Cereals & Millets';
+        html += `<optgroup label="${lbl}">`;
+        otherCereals.forEach(s => {
+          const loc = getCropData(s, currentLang);
+          html += `<option value="${s.id}" ${s.id === selectedVal ? 'selected' : ''}>${loc.name} (${s.varietyCode})</option>`;
+        });
+        html += `</optgroup>`;
+      }
+
+      if (oilseeds.length > 0) {
+        const lbl = optg.oilseeds ? (isTe ? optg.oilseeds.te : optg.oilseeds.en) : '🌱 Oilseeds & Pulses';
+        html += `<optgroup label="${lbl}">`;
+        oilseeds.forEach(s => {
+          const loc = getCropData(s, currentLang);
+          html += `<option value="${s.id}" ${s.id === selectedVal ? 'selected' : ''}>${loc.name} (${s.varietyCode})</option>`;
+        });
+        html += `</optgroup>`;
+      }
+
+      return html;
+    }
+
+    selA.innerHTML = buildGroupedOptionsHtml(valA);
+    selB.innerHTML = buildGroupedOptionsHtml(valB);
+
+    selA.value = valA;
+    selB.value = valB;
   }
 
   function renderComparisonTable() {
-    if (!comparisonTableBody || !compareCropA || !compareCropB) return;
+    const tableBody = document.getElementById('comparisonTableBody') || comparisonTableBody;
+    const selA = document.getElementById('compareCropA') || compareCropA;
+    const selB = document.getElementById('compareCropB') || compareCropB;
+    if (!tableBody || !selA || !selB) return;
+    const i18n = getI18n();
+    const c = (i18n && i18n.comparison && i18n.comparison[currentLang]) ? i18n.comparison[currentLang] : {
+      featureHeader: 'Feature / Parameter',
+      tgBonusScheme: 'TG ₹500 Bonus Scheme',
+      cropDuration: 'Crop Duration',
+      yieldPotential: 'Yield Potential',
+      germination: 'Germination Purity',
+      seedRate: 'Recommended Seed Rate',
+      suitableSeason: 'Suitable Season',
+      grainQuality: 'Grain / Fruit Quality',
+      grainDimensions: 'Grain Dimensions',
+      diseaseResistance: 'Key Disease Resistance',
+      soilSuitability: 'Soil Suitability',
+      quickOrder: 'Quick WhatsApp Order',
+      bonusEligibleBadge: '₹500/Qtl TG Bonus',
+      standardMarketBadge: 'Standard Market',
+      orderBtn: 'Order'
+    };
 
-    const cropA = SEED_CATALOG.find(s => s.id === compareCropA.value) || SEED_CATALOG[0];
-    const cropB = SEED_CATALOG.find(s => s.id === compareCropB.value) || SEED_CATALOG[1];
+    const baseA = SEED_CATALOG.find(s => s.id === selA.value) || SEED_CATALOG[0];
+    const baseB = SEED_CATALOG.find(s => s.id === selB.value) || (SEED_CATALOG[1] || SEED_CATALOG[0]);
+    const cropA = getCropData(baseA, currentLang);
+    const cropB = getCropData(baseB, currentLang);
 
-    comparisonTableBody.innerHTML = `
+    const colAHeader = document.getElementById('compareColAHeader');
+    const colBHeader = document.getElementById('compareColBHeader');
+    const colParamHeader = document.getElementById('compareColParamHeader');
+
+    if (colParamHeader) {
+      colParamHeader.textContent = c.featureHeader;
+    }
+    if (colAHeader) {
+      colAHeader.innerHTML = `
+        <div style="font-size: 0.95rem; color: #047857; font-weight: 700;">${cropA.name}</div>
+        <span class="compare-col-badge">${cropA.varietyCode} • ${cropA.categoryLabel}</span>
+      `;
+    }
+    if (colBHeader) {
+      colBHeader.innerHTML = `
+        <div style="font-size: 0.95rem; color: #047857; font-weight: 700;">${cropB.name}</div>
+        <span class="compare-col-badge">${cropB.varietyCode} • ${cropB.categoryLabel}</span>
+      `;
+    }
+
+    const bonusBadgeA = cropA.isGovtBonusEligible
+      ? `<span class="badge badge--success" style="background:#ecfdf5; color:#065f46; border:1px solid #10b981; padding:3px 8px; border-radius:4px; font-weight:700;"><i class="fa-solid fa-award"></i> ${c.bonusEligibleBadge}</span>`
+      : `<span class="badge" style="background:#f1f5f9; color:#64748b; padding:3px 8px; border-radius:4px;">${c.standardMarketBadge}</span>`;
+
+    const bonusBadgeB = cropB.isGovtBonusEligible
+      ? `<span class="badge badge--success" style="background:#ecfdf5; color:#065f46; border:1px solid #10b981; padding:3px 8px; border-radius:4px; font-weight:700;"><i class="fa-solid fa-award"></i> ${c.bonusEligibleBadge}</span>`
+      : `<span class="badge" style="background:#f1f5f9; color:#64748b; padding:3px 8px; border-radius:4px;">${c.standardMarketBadge}</span>`;
+
+    const waLinkA = `https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + baseA.name + ' (' + baseA.varietyCode + ')')}`;
+    const waLinkB = `https://wa.me/917013135345?text=${encodeURIComponent('Hello Ganga Agri Genetics, I would like to order: ' + baseB.name + ' (' + baseB.varietyCode + ')')}`;
+
+    tableBody.innerHTML = `
       <tr>
-        <td><strong>Category</strong></td>
-        <td>${cropA.categoryLabel}</td>
-        <td>${cropB.categoryLabel}</td>
+        <td class="param-name"><strong>${c.tgBonusScheme}</strong></td>
+        <td class="crop-col">${bonusBadgeA}</td>
+        <td class="crop-col">${bonusBadgeB}</td>
       </tr>
       <tr>
-        <td><strong>Crop Duration</strong></td>
-        <td><strong style="color: #047857;">${cropA.duration}</strong></td>
-        <td><strong style="color: #047857;">${cropB.duration}</strong></td>
+        <td class="param-name"><strong>${c.cropDuration}</strong></td>
+        <td class="crop-col"><strong style="color: #047857;">${cropA.duration}</strong></td>
+        <td class="crop-col"><strong style="color: #047857;">${cropB.duration}</strong></td>
       </tr>
       <tr>
-        <td><strong>Yield Potential</strong></td>
-        <td><strong style="color: #d97706;">${cropA.yieldPotential}</strong></td>
-        <td><strong style="color: #d97706;">${cropB.yieldPotential}</strong></td>
+        <td class="param-name"><strong>${c.yieldPotential}</strong></td>
+        <td class="crop-col"><strong style="color: #d97706;">${cropA.yieldPotential}</strong></td>
+        <td class="crop-col"><strong style="color: #d97706;">${cropB.yieldPotential}</strong></td>
       </tr>
       <tr>
-        <td><strong>Germination Purity</strong></td>
-        <td>${cropA.germination}</td>
-        <td>${cropB.germination}</td>
+        <td class="param-name"><strong>${c.germination}</strong></td>
+        <td class="crop-col">${cropA.germination}</td>
+        <td class="crop-col">${cropB.germination}</td>
       </tr>
       <tr>
-        <td><strong>Recommended Seed Rate</strong></td>
-        <td>${cropA.seedRate}</td>
-        <td>${cropB.seedRate}</td>
+        <td class="param-name"><strong>${c.seedRate}</strong></td>
+        <td class="crop-col">${cropA.seedRate}</td>
+        <td class="crop-col">${cropB.seedRate}</td>
       </tr>
       <tr>
-        <td><strong>Suitable Season</strong></td>
-        <td>${cropA.season}</td>
-        <td>${cropB.season}</td>
+        <td class="param-name"><strong>${c.suitableSeason}</strong></td>
+        <td class="crop-col">${cropA.season}</td>
+        <td class="crop-col">${cropB.season}</td>
       </tr>
       <tr>
-        <td><strong>Grain / Fruit Quality</strong></td>
-        <td>${cropA.grainType}</td>
-        <td>${cropB.grainType}</td>
+        <td class="param-name"><strong>${c.grainQuality}</strong></td>
+        <td class="crop-col">${cropA.grainType}</td>
+        <td class="crop-col">${cropB.grainType}</td>
+      </tr>
+      ${(cropA.grainDimensions || cropB.grainDimensions) ? `
+        <tr>
+          <td class="param-name"><strong>${c.grainDimensions}</strong></td>
+          <td class="crop-col" style="font-size: 0.82rem;">${cropA.grainDimensions || '-'}</td>
+          <td class="crop-col" style="font-size: 0.82rem;">${cropB.grainDimensions || '-'}</td>
+        </tr>
+      ` : ''}
+      <tr>
+        <td class="param-name"><strong>${c.diseaseResistance}</strong></td>
+        <td class="crop-col"><span class="badge badge--success" style="background:#ecfdf5; color:#047857; padding:4px 8px; border-radius:4px; display:inline-block; font-size:0.82rem;">${cropA.keyTrait}</span></td>
+        <td class="crop-col"><span class="badge badge--success" style="background:#ecfdf5; color:#047857; padding:4px 8px; border-radius:4px; display:inline-block; font-size:0.82rem;">${cropB.keyTrait}</span></td>
       </tr>
       <tr>
-        <td><strong>Key Disease Resistance</strong></td>
-        <td><span class="badge badge--success">${cropA.keyTrait}</span></td>
-        <td><span class="badge badge--success">${cropB.keyTrait}</span></td>
+        <td class="param-name"><strong>${c.soilSuitability}</strong></td>
+        <td class="crop-col" style="font-size: 0.85rem;">${cropA.soilSuitability}</td>
+        <td class="crop-col" style="font-size: 0.85rem;">${cropB.soilSuitability}</td>
       </tr>
       <tr>
-        <td><strong>Soil Suitability</strong></td>
-        <td>${cropA.soilSuitability}</td>
-        <td>${cropB.soilSuitability}</td>
+        <td class="param-name"><strong>${c.quickOrder}</strong></td>
+        <td class="crop-col">
+          <a href="${waLinkA}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm" style="width: 100%; text-align: center; justify-content: center;">
+            <i class="fa-brands fa-whatsapp"></i> ${c.orderBtn} ${cropA.varietyCode}
+          </a>
+        </td>
+        <td class="crop-col">
+          <a href="${waLinkB}" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm" style="width: 100%; text-align: center; justify-content: center;">
+            <i class="fa-brands fa-whatsapp"></i> ${c.orderBtn} ${cropB.varietyCode}
+          </a>
+        </td>
       </tr>
     `;
   }
 
-  if (openCompareModalBtn && compareModal) {
-    openCompareModalBtn.addEventListener('click', () => {
-      populateComparisonDropdowns();
-      renderComparisonTable();
-      compareModal.showModal();
+  // Bind click on openCompareModalBtn
+  if (openCompareModalBtn) {
+    openCompareModalBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      openCompareModal();
     });
   }
 
-  if (closeCompareModalBtn && compareModal) {
-    closeCompareModalBtn.addEventListener('click', () => compareModal.close());
+  // Document-level delegated click listener for any compare button trigger
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('#openCompareModalBtn, [data-action="open-compare"]');
+    if (btn) {
+      e.preventDefault();
+      openCompareModal();
+    }
+  });
+
+  if (closeCompareModalBtn) {
+    closeCompareModalBtn.addEventListener('click', closeCompareModal);
   }
 
-  if (closeCompareFooterBtn && compareModal) {
-    closeCompareFooterBtn.addEventListener('click', () => compareModal.close());
+  if (closeCompareFooterBtn) {
+    closeCompareFooterBtn.addEventListener('click', closeCompareModal);
   }
 
-  if (compareCropA) compareCropA.addEventListener('change', renderComparisonTable);
-  if (compareCropB) compareCropB.addEventListener('change', renderComparisonTable);
+  if (compareCropA) {
+    compareCropA.addEventListener('change', renderComparisonTable);
+    compareCropA.addEventListener('input', renderComparisonTable);
+  }
+  if (compareCropB) {
+    compareCropB.addEventListener('change', renderComparisonTable);
+    compareCropB.addEventListener('input', renderComparisonTable);
+  }
 
   if (compareModal) {
+    compareModal.addEventListener('close', updateModalOpenState);
+    compareModal.addEventListener('cancel', updateModalOpenState);
+
     compareModal.addEventListener('click', function (e) {
-      const rect = compareModal.getBoundingClientRect();
-      const isInDialog = (
-        rect.top <= e.clientY && e.clientY <= rect.top + rect.height &&
-        rect.left <= e.clientX && e.clientX <= rect.left + rect.width
-      );
-      if (!isInDialog) {
-        compareModal.close();
+      if (e.target === compareModal) {
+        closeCompareModal();
       }
     });
   }
 
   // -------------------------------------------------------------------------
-  // 7. LIVE STORE OPERATING HOURS STATUS (IST / TELANGANA)
+  // 7. REAL-TIME STORE OPEN/CLOSED STATUS ENGINE
   // -------------------------------------------------------------------------
   function checkStoreOpenStatus() {
-    const liveStoreStatus = document.getElementById('liveStoreStatus');
+    const storeStatusLive = document.getElementById('storeStatusLive');
     const hoursLiveBadge = document.getElementById('hoursLiveBadge');
-    const isTe = (currentLang === 'te');
+    const i18n = getI18n();
+    const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
-    try {
-      // Calculate current IST (UTC+5:30)
-      const now = new Date();
-      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
-      const istTime = new Date(utc + (3600000 * 5.5));
+    const now = new Date();
+    // Indian Standard Time (IST is UTC +5:30)
+    const istOffset = 5.5 * 60 * 60 * 1000;
+    const istDate = new Date(now.getTime() + (now.getTimezoneOffset() * 60000) + istOffset);
+    const day = istDate.getDay(); // 0 = Sun, 1 = Mon, ... 6 = Sat
+    const hour = istDate.getHours();
+    const minute = istDate.getMinutes();
+    const currentTimeMinutes = hour * 60 + minute;
 
-      const day = istTime.getDay(); // 0 = Sunday, 1 = Monday ... 6 = Saturday
-      const hours = istTime.getHours();
-      const minutes = istTime.getMinutes();
-      const currentTimeDecimal = hours + (minutes / 60);
+    let isOpen = false;
+    let closingTime = '8:00 PM';
 
-      let isOpen = false;
-      let closingTime = '';
+    if (day === 0) { // Sunday: 8:00 AM – 2:00 PM
+      isOpen = (currentTimeMinutes >= 8 * 60 && currentTimeMinutes < 14 * 60);
+      closingTime = '2:00 PM';
+    } else { // Monday - Saturday: 8:00 AM – 8:00 PM
+      isOpen = (currentTimeMinutes >= 8 * 60 && currentTimeMinutes < 20 * 60);
+      closingTime = '8:00 PM';
+    }
 
-      if (day === 0) {
-        // Sunday: 8:30 AM to 1:30 PM (8.5 to 13.5)
-        isOpen = (currentTimeDecimal >= 8.5 && currentTimeDecimal < 13.5);
-        closingTime = '1:30 PM';
-      } else {
-        // Monday - Saturday: 8:00 AM to 7:30 PM (8.0 to 19.5)
-        isOpen = (currentTimeDecimal >= 8.0 && currentTimeDecimal < 19.5);
-        closingTime = '7:30 PM';
-      }
-
+    if (storeStatusLive) {
       if (isOpen) {
-        if (liveStoreStatus) {
-          liveStoreStatus.innerHTML = `
-            <span class="status-dot pulse"></span>
-            <strong class="status-text" style="color: #6ee7b7;">${isTe ? `దుకాణం తెరిచి ఉంది (${closingTime} వరకు)` : `STORE OPEN NOW (Closes ${closingTime})`}</strong>
-          `;
-        }
+        const text = (t.storeOpen || 'STORE OPEN NOW (Closes {time})').replace('{time}', closingTime);
+        storeStatusLive.innerHTML = `
+          <span class="status-indicator online"></span>
+          <strong class="status-text" style="color: #6ee7b7;">${text}</strong>
+        `;
         if (hoursLiveBadge) {
-          hoursLiveBadge.textContent = isTe ? 'తెరిచి ఉంది' : 'OPEN NOW';
-          hoursLiveBadge.style.background = '#dcfce7';
-          hoursLiveBadge.style.color = '#166534';
+          hoursLiveBadge.className = 'hours-badge open';
+          hoursLiveBadge.textContent = t.badgeOpen || 'OPEN NOW';
         }
       } else {
-        if (liveStoreStatus) {
-          liveStoreStatus.innerHTML = `
-            <span class="status-dot" style="background-color: #fbbf24;"></span>
-            <strong class="status-text" style="color: #fde68a;">${isTe ? 'దుకాణం మూసివేయబడింది (ఉదయం 8:00 కి తెరుస్తారు)' : 'STORE CLOSED (Opens 8:00 AM)'}</strong>
-          `;
-        }
+        const text = t.storeClosed || 'STORE CLOSED (Opens 8:00 AM)';
+        storeStatusLive.innerHTML = `
+          <span class="status-indicator offline"></span>
+          <strong class="status-text" style="color: #fde68a;">${text}</strong>
+        `;
         if (hoursLiveBadge) {
-          hoursLiveBadge.textContent = isTe ? 'మూసివేయబడింది' : 'CLOSED NOW';
-          hoursLiveBadge.style.background = '#fee2e2';
-          hoursLiveBadge.style.color = '#991b1b';
+          hoursLiveBadge.className = 'hours-badge closed';
+          hoursLiveBadge.textContent = t.badgeClosed || 'CLOSED NOW';
         }
       }
-    } catch (err) {
-      console.warn('Could not calculate IST store status:', err);
     }
   }
 
   checkStoreOpenStatus();
-  setInterval(checkStoreOpenStatus, 60000);
+  setInterval(checkStoreOpenStatus, 60000); // Check every minute
 
   // -------------------------------------------------------------------------
-  // 8. COPY STORE ADDRESS TO CLIPBOARD
+  // 8. COPY ADDRESS TO CLIPBOARD
   // -------------------------------------------------------------------------
   const copyAddressBtn = document.getElementById('copyAddressBtn');
   if (copyAddressBtn) {
     copyAddressBtn.addEventListener('click', function () {
-      const addressText = 'Ganga Agri Genetics, VCJF+5X7, Shetpalle, Telangana 503218, India. Phone: +91-7013135345';
+      const addressText = 'Ganga Agri Genetics, Shetpalle, Nizamabad / Armoor Road, Telangana 503218 (Plus Code: VCJF+5X7 Shetpalle)';
+      const i18n = getI18n();
+      const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+      const successMsg = t.toastAddressCopied || 'Store Address copied to clipboard!';
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(addressText).then(() => {
-          showToast(currentLang === 'te' ? 'దుకాణం చిరునామా కాపీ చేయబడింది!' : 'Store Address copied to clipboard!', 'success');
+          showToast(successMsg, 'success');
         }).catch(() => {
-          showToast('Address: VCJF+5X7, Shetpalle, Telangana 503218', 'info');
+          fallbackCopyText(addressText, successMsg);
         });
       } else {
-        showToast('Address: VCJF+5X7, Shetpalle, Telangana 503218', 'info');
+        fallbackCopyText(addressText, successMsg);
       }
     });
   }
 
-  // -------------------------------------------------------------------------
-  // 9. SEED BOOKING & INQUIRY FORM SUBMISSION
-  // -------------------------------------------------------------------------
-  const seedInquiryForm = document.getElementById('seedInquiryForm');
-  const submitViaWhatsAppBtn = document.getElementById('submitViaWhatsAppBtn');
-
-  function getFormData() {
-    const name = document.getElementById('farmerName')?.value.trim() || '';
-    const phone = document.getElementById('farmerPhone')?.value.trim() || '';
-    const village = document.getElementById('farmerVillage')?.value.trim() || '';
-    const crop = document.getElementById('cropInterest')?.value || '';
-    const acreage = document.getElementById('farmerAcreage')?.value.trim() || 'N/A';
-    const reason = document.getElementById('inquiryReason')?.value || '';
-    const message = document.getElementById('farmerMessage')?.value.trim() || 'None';
-
-    return { name, phone, village, crop, acreage, reason, message };
+  function fallbackCopyText(text, successMsg) {
+    const tempInput = document.createElement('textarea');
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    tempInput.select();
+    try {
+      document.execCommand('copy');
+      showToast(successMsg, 'success');
+    } catch (e) {
+      showToast('Address: ' + text, 'info');
+    }
+    document.body.removeChild(tempInput);
   }
 
-  if (seedInquiryForm) {
-    seedInquiryForm.addEventListener('submit', function (e) {
+  // -------------------------------------------------------------------------
+  // 9. BOOKING FORM & DIRECT WHATSAPP / TELEPHONE ACTIONS
+  // -------------------------------------------------------------------------
+  const seedBookingForm = document.getElementById('seedBookingForm');
+  const bookViaWhatsAppBtn = document.getElementById('bookViaWhatsAppBtn');
+
+  if (seedBookingForm) {
+    seedBookingForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const data = getFormData();
+      const i18n = getI18n();
+      const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
-      if (!data.name || !data.phone || !data.village || !data.crop) {
-        showToast(currentLang === 'te' ? 'దయచేసి అవసరమైన అన్ని వివరాలు నింపండి (*)' : 'Please fill all required fields (*)', 'error');
+      const name = document.getElementById('farmerName')?.value.trim() || '';
+      const phone = document.getElementById('farmerPhone')?.value.trim() || '';
+      const village = document.getElementById('farmerVillage')?.value.trim() || '';
+      const crop = document.getElementById('cropInterest')?.value || '';
+      const acreage = document.getElementById('farmerAcreage')?.value.trim() || '';
+      const reason = document.getElementById('inquiryReason')?.value || '';
+
+      if (!name || !phone || !village || !crop) {
+        showToast(t.toastFillRequired || 'Please fill all required fields (*)', 'error');
         return;
       }
 
-      showToast(`Thank you ${data.name}! Your seed inquiry for ${data.crop} has been registered. Our agronomist will contact you at ${data.phone}.`, 'success');
-      seedInquiryForm.reset();
+      const msg = `*Ganga Agri Genetics - Seed Booking Inquiry*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Village / Mandal:* ${village}\n*Crop Required:* ${crop}\n*Acreage / Quantity:* ${acreage || 'Not specified'}\n*Purpose:* ${reason}\n\n_Sent via Ganga Agri Genetics Web Application_`;
+      window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
+      showToast(t.toastNewsletterSuccess || 'Inquiry submitted successfully!', 'success');
+      seedBookingForm.reset();
     });
   }
 
-  if (submitViaWhatsAppBtn) {
-    submitViaWhatsAppBtn.addEventListener('click', function () {
-      const data = getFormData();
+  if (bookViaWhatsAppBtn) {
+    bookViaWhatsAppBtn.addEventListener('click', function () {
+      const i18n = getI18n();
+      const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
-      if (!data.name || !data.phone || !data.village || !data.crop) {
-        showToast(currentLang === 'te' ? 'దయచేసి పేరు, ఫోన్, ఊరు మరియు పంట రకం వివరాలు నింపండి' : 'Please fill Name, Phone, Village and Crop Variety to send WhatsApp message', 'error');
+      const name = document.getElementById('farmerName')?.value.trim() || '';
+      const phone = document.getElementById('farmerPhone')?.value.trim() || '';
+      const village = document.getElementById('farmerVillage')?.value.trim() || '';
+      const crop = document.getElementById('cropInterest')?.value || '';
+      const acreage = document.getElementById('farmerAcreage')?.value.trim() || '';
+      const reason = document.getElementById('inquiryReason')?.value || '';
+
+      if (!name || !phone || !village) {
+        showToast(t.toastFillBookingDetails || 'Please fill Name, Phone, Village and Crop Variety to send WhatsApp message', 'error');
         return;
       }
 
-      const text = `*New Seed Inquiry - Ganga Agri Genetics*\n` +
-        `👤 *Name:* ${data.name}\n` +
-        `📞 *Phone:* ${data.phone}\n` +
-        `📍 *Village / Location:* ${data.village}\n` +
-        `🌾 *Crop Variety:* ${data.crop}\n` +
-        `📏 *Acreage / Quantity:* ${data.acreage}\n` +
-        `🎯 *Purpose:* ${data.reason}\n` +
-        `📝 *Notes:* ${data.message}`;
-
-      window.open(`https://wa.me/917013135345?text=${encodeURIComponent(text)}`, '_blank');
-      showToast('Opening WhatsApp with your inquiry...', 'success');
+      const msg = `*Ganga Agri Genetics - Quick WhatsApp Seed Booking*\n\n*Farmer Name:* ${name}\n*Phone:* ${phone}\n*Village / District:* ${village}\n*Crop Needed:* ${crop}\n*Acreage / Bags:* ${acreage || 'Immediate purchase'}\n*Inquiry Type:* ${reason}`;
+      window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
     });
   }
 
   // -------------------------------------------------------------------------
-  // 10. TOAST NOTIFICATION UTILITY
+  // 10. TOAST NOTIFICATION SYSTEM
   // -------------------------------------------------------------------------
-  function showToast(message, type = 'success') {
-    const container = document.getElementById('toastNotification');
-    if (!container) return;
+  const toastContainer = document.getElementById('toastNotification');
 
+  function showToast(message, type = 'info') {
+    if (!toastContainer) return;
     const toast = document.createElement('div');
-    toast.className = `toast toast--${type}`;
-    const icon = type === 'success' ? 'fa-circle-check' : (type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-info');
-    toast.innerHTML = `<i class="fa-solid ${icon}"></i> <span>${message}</span>`;
+    toast.className = `toast-item toast--${type}`;
 
-    container.appendChild(toast);
+    const iconMap = {
+      'success': 'fa-circle-check',
+      'error': 'fa-circle-exclamation',
+      'info': 'fa-circle-info'
+    };
+    const iconClass = iconMap[type] || 'fa-bell';
+
+    toast.innerHTML = `
+      <i class="fa-solid ${iconClass}"></i>
+      <span>${message}</span>
+    `;
+
+    toastContainer.appendChild(toast);
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
 
     setTimeout(() => {
-      if (toast.parentNode) {
-        toast.parentNode.removeChild(toast);
-      }
-    }, 3200);
+      toast.classList.remove('show');
+      setTimeout(() => {
+        if (typeof toast.remove === 'function') {
+          toast.remove();
+        } else if (toastContainer.contains && toastContainer.contains(toast)) {
+          toastContainer.removeChild(toast);
+        }
+      }, 300);
+    }, 3500);
   }
 
   // -------------------------------------------------------------------------
-  // 11. RESPONSIVE MOBILE NAVIGATION & SCROLL MANAGEMENT
+  // 11. NAVBAR SCROLL EFFECT & MOBILE MENU
   // -------------------------------------------------------------------------
-  const navToggle = document.getElementById('navToggle');
+  const mainNav = document.getElementById('mainHeader') || document.getElementById('mainNav');
+  const mobileToggle = document.getElementById('navToggle') || document.getElementById('mobileNavToggle');
   const navMenu = document.getElementById('navMenu');
   const navLinks = document.querySelectorAll('.nav-link');
-  const mainHeader = document.getElementById('mainHeader');
-  const backToTopBtn = document.getElementById('backToTopBtn');
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      const isActive = navMenu.classList.toggle('active');
-      navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-    });
-
-    // Close on navigation link click
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          navMenu.classList.remove('active');
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    // Close when clicking outside
-    document.addEventListener('click', function (e) {
-      if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
-        if (!navMenu.contains(e.target) && !navToggle.contains(e.target)) {
-          navMenu.classList.remove('active');
-          navToggle.setAttribute('aria-expanded', 'false');
-        }
-      }
-    });
-  }
-
-  // Scroll Header Shadow & Back to Top visibility
   window.addEventListener('scroll', function () {
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (mainHeader) {
-      if (scrollY > 40) {
-        mainHeader.classList.add('sticky-scrolled');
+    if (mainNav) {
+      if (window.scrollY > 40) {
+        mainNav.classList.add('scrolled');
       } else {
-        mainHeader.classList.remove('sticky-scrolled');
-      }
-    }
-
-    if (backToTopBtn) {
-      if (scrollY > 350) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
+        mainNav.classList.remove('scrolled');
       }
     }
   }, { passive: true });
 
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener('click', function () {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', function () {
+      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
     });
   }
 
-  // Active section scroll spy via IntersectionObserver
-  const sections = document.querySelectorAll('section[id], footer[id]');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
-        navLinks.forEach(link => {
-          const href = link.getAttribute('href');
-          if (href === `#${id}`) {
-            link.classList.add('active');
-          } else if (href && href.startsWith('#')) {
-            link.classList.remove('active');
-          }
+  // Close mobile menu on nav link click
+  navLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      if (navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        if (mobileToggle) {
+          mobileToggle.classList.remove('active');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // 12. SMOOTH SCROLL FOR INTERNAL ANCHORS
+  // -------------------------------------------------------------------------
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#' || href === '#!') return;
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        const headerOffset = 75;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
         });
       }
     });
-  }, { rootMargin: '-20% 0px -70% 0px' });
+  });
 
-  sections.forEach(sec => observer.observe(sec));
+  // -------------------------------------------------------------------------
+  // 13. INTERSECTION OBSERVER FOR ACTIVE NAV HIGHLIGHTING
+  // -------------------------------------------------------------------------
+  const sections = document.querySelectorAll('section[id]');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const activeId = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${activeId}`) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
 
-  // Update copyright year
-  const copyrightYear = document.getElementById('copyrightYear');
-  if (copyrightYear) {
-    copyrightYear.textContent = new Date().getFullYear();
+    sections.forEach(section => observer.observe(section));
   }
 
   // -------------------------------------------------------------------------
-  // 11. HERO CAROUSEL / SLIDER CONTROLLER
+  // 14. HERO SLIDESHOW CAROUSEL ENGINE
   // -------------------------------------------------------------------------
   function initHeroCarousel() {
+    const carousel = document.getElementById('heroCarousel') || document.querySelector('.hero-carousel');
     const track = document.getElementById('heroTrack');
-    const slides = document.querySelectorAll('.hero-slide');
-    const prevBtn = document.getElementById('heroPrevBtn');
-    const nextBtn = document.getElementById('heroNextBtn');
-    const indicatorDots = document.querySelectorAll('.indicator-dot');
-    const carouselContainer = document.getElementById('heroCarousel');
+    const prevBtn = document.getElementById('heroPrevBtn') || document.getElementById('carouselPrevBtn');
+    const nextBtn = document.getElementById('heroNextBtn') || document.getElementById('carouselNextBtn');
+    const indicatorsContainer = document.getElementById('heroIndicators') || document.getElementById('carouselIndicators');
 
-    if (!track || slides.length === 0) return;
+    if (!carousel || !track) return;
 
-    let currentIndex = 0;
-    let autoPlayTimer = null;
+    const slides = Array.from(track.querySelectorAll('.hero-slide'));
     const totalSlides = slides.length;
-    const intervalTime = 2000; // 2 seconds per slide
+    if (totalSlides <= 1) return;
 
-    function goToSlide(index) {
-      if (index < 0) {
-        currentIndex = totalSlides - 1;
-      } else if (index >= totalSlides) {
-        currentIndex = 0;
-      } else {
-        currentIndex = index;
-      }
+    let currentSlide = 0;
+    let autoplayTimer = null;
+    const AUTOPLAY_INTERVAL = 2000;
 
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    // Attach existing or generated indicator clicks
+    const existingDots = indicatorsContainer ? Array.from(indicatorsContainer.querySelectorAll('.indicator-dot, .carousel-indicator')) : [];
+    if (existingDots.length === totalSlides) {
+      existingDots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => {
+          goToSlide(idx);
+          resetAutoplay();
+        });
+      });
+    } else if (indicatorsContainer) {
+      indicatorsContainer.innerHTML = '';
+      slides.forEach((_, idx) => {
+        const dot = document.createElement('button');
+        dot.className = `indicator-dot ${idx === 0 ? 'active' : ''}`;
+        dot.setAttribute('type', 'button');
+        dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+        dot.addEventListener('click', () => {
+          goToSlide(idx);
+          resetAutoplay();
+        });
+        indicatorsContainer.appendChild(dot);
+      });
+    }
 
-      slides.forEach((slide, i) => {
-        if (i === currentIndex) {
-          slide.classList.add('active');
-        } else {
-          slide.classList.remove('active');
-        }
+    function updateSlidePosition() {
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentSlide);
       });
 
-      indicatorDots.forEach((dot, i) => {
-        if (i === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
+      const currentDots = indicatorsContainer ? indicatorsContainer.querySelectorAll('.indicator-dot, .carousel-indicator') : [];
+      currentDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
       });
     }
 
     function nextSlide() {
-      goToSlide(currentIndex + 1);
+      currentSlide = (currentSlide + 1) % totalSlides;
+      updateSlidePosition();
     }
 
     function prevSlide() {
-      goToSlide(currentIndex - 1);
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      updateSlidePosition();
     }
 
-    function startAutoPlay() {
-      stopAutoPlay();
-      autoPlayTimer = setInterval(nextSlide, intervalTime);
-    }
-
-    function stopAutoPlay() {
-      if (autoPlayTimer) {
-        clearInterval(autoPlayTimer);
-        autoPlayTimer = null;
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides) {
+        currentSlide = index;
+        updateSlidePosition();
       }
     }
 
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayTimer = setInterval(nextSlide, AUTOPLAY_INTERVAL);
+    }
+
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    function resetAutoplay() {
+      stopAutoplay();
+      startAutoplay();
+    }
+
     if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         nextSlide();
-        startAutoPlay();
+        resetAutoplay();
       });
     }
 
     if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
         prevSlide();
-        startAutoPlay();
+        resetAutoplay();
       });
     }
 
-    indicatorDots.forEach((dot) => {
-      dot.addEventListener('click', () => {
-        const slideIndex = parseInt(dot.getAttribute('data-slide-to'), 10);
-        if (!isNaN(slideIndex)) {
-          goToSlide(slideIndex);
-          startAutoPlay();
-        }
-      });
-    });
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', startAutoplay);
 
-    if (carouselContainer) {
-      carouselContainer.addEventListener('mouseenter', stopAutoPlay);
-      carouselContainer.addEventListener('mouseleave', startAutoPlay);
+    // Touch swipe gestures
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchEndX = 0;
+    let touchEndY = 0;
 
-      // Touch swipe gestures on mobile
-      let touchStartX = 0;
-      let touchEndX = 0;
+    carousel.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchEndX = touchStartX;
+      touchEndY = touchStartY;
+      stopAutoplay();
+    }, { passive: true });
 
-      carouselContainer.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-        stopAutoPlay();
-      }, { passive: true });
+    carousel.addEventListener('touchmove', (e) => {
+      touchEndX = e.touches[0].clientX;
+      touchEndY = e.touches[0].clientY;
+    }, { passive: true });
 
-      carouselContainer.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        const diffX = touchEndX - touchStartX;
-        if (diffX > 45) {
-          prevSlide();
-        } else if (diffX < -45) {
+    carousel.addEventListener('touchend', () => {
+      const diffX = touchStartX - touchEndX;
+      const diffY = touchStartY - touchEndY;
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+        if (diffX > 0) {
           nextSlide();
-        }
-        startAutoPlay();
-      }, { passive: true });
-    }
-
-    // Keyboard navigation (ArrowLeft / ArrowRight)
-    document.addEventListener('keydown', (e) => {
-      const heroSection = document.getElementById('hero');
-      if (!heroSection) return;
-      const rect = heroSection.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-      if (inView) {
-        if (e.key === 'ArrowLeft') {
+        } else {
           prevSlide();
-          startAutoPlay();
-        } else if (e.key === 'ArrowRight') {
-          nextSlide();
-          startAutoPlay();
         }
       }
-    });
+      startAutoplay();
+    }, { passive: true });
 
-    // Start auto-play
-    startAutoPlay();
+    updateSlidePosition();
+    startAutoplay();
   }
 
-  initHeroCarousel();
-
   // -------------------------------------------------------------------------
-  // 12. AGRICULTURE UPDATES & SCHEMES NEWSLETTER
+  // 15. AGRICULTURE UPDATES NEWSLETTER SUBSCRIPTION ENGINE
   // -------------------------------------------------------------------------
-  const newsletterForm = document.getElementById('agriNewsletterForm');
-  const newsletterSuccessBox = document.getElementById('newsletterSuccessBox');
+  const newsletterForm = document.getElementById('agriNewsletterForm') || document.getElementById('newsletterForm');
+  const newsletterSuccessMsg = document.getElementById('newsletterSuccessBox') || document.getElementById('newsletterSuccessMsg');
   const newsResetBtn = document.getElementById('newsResetBtn');
 
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const contactInput = document.getElementById('newsContact');
-      const farmerNameInput = document.getElementById('newsFarmerName');
-      const isTe = (currentLang === 'te');
+      const input = document.getElementById('newsContact') || document.getElementById('newsletterContact');
+      const val = input ? input.value.trim() : '';
+      const i18n = getI18n();
+      const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
-      if (!contactInput || !contactInput.value.trim()) {
-        showToast(isTe ? 'దయచేసి మీ ఇమెయిల్ లేదా వాట్సాప్ నంబర్ నమోదు చేయండి' : 'Please enter your email address or WhatsApp number', 'error');
-        if (contactInput) contactInput.focus();
+      if (!val || val.length < 5) {
+        showToast(t.toastEnterEmailOrPhone || 'Please enter your email address or WhatsApp number', 'error');
+        if (input) input.focus();
         return;
       }
 
-      const contactVal = contactInput.value.trim();
-      const nameVal = farmerNameInput ? farmerNameInput.value.trim() : 'Farmer';
-      const checkedTopics = Array.from(document.querySelectorAll('input[name="alertTopics"]:checked')).map(el => el.value);
-
-      // Save subscriber in localStorage
+      // Save to localStorage for demo persistence
       try {
         const subscribers = JSON.parse(localStorage.getItem('ganga_subscribers') || '[]');
-        subscribers.push({
-          contact: contactVal,
-          name: nameVal,
-          topics: checkedTopics,
-          date: new Date().toISOString()
-        });
-        localStorage.setItem('ganga_subscribers', JSON.stringify(subscribers));
-      } catch (err) {
-        console.warn('LocalStorage subscriber save error:', err);
+        if (!subscribers.includes(val)) {
+          subscribers.push(val);
+          localStorage.setItem('ganga_subscribers', JSON.stringify(subscribers));
+        }
+      } catch (err) {}
+
+      newsletterForm.style.display = 'none';
+      if (newsletterSuccessMsg) {
+        newsletterSuccessMsg.style.display = 'block';
       }
 
-      // Show success UI
-      if (newsletterSuccessBox) {
-        newsletterForm.style.display = 'none';
-        newsletterSuccessBox.style.display = 'block';
-      }
-
-      showToast(isTe ? 'గంగ అగ్రి జెనెటిక్స్ వ్యవసాయ అలర్ట్స్ సబ్‌స్క్రిప్షన్ విజయవంతమైంది!' : 'Successfully subscribed to Ganga Agri Genetics Updates!', 'success');
+      const successToast = t.toastNewsletterSuccess || 'Successfully subscribed to Ganga Agri Genetics Updates!';
+      showToast(successToast, 'success');
     });
   }
 
-  if (newsResetBtn && newsletterForm && newsletterSuccessBox) {
+  if (newsResetBtn && newsletterForm && newsletterSuccessMsg) {
     newsResetBtn.addEventListener('click', function () {
+      newsletterSuccessMsg.style.display = 'none';
       newsletterForm.reset();
-      newsletterSuccessBox.style.display = 'none';
       newsletterForm.style.display = 'block';
     });
   }
 
   // -------------------------------------------------------------------------
-  // 13. PWA SERVICE WORKER REGISTRATION (OFFLINE SUPPORT)
+  // 16. SERVICE WORKER PWA REGISTRATION
   // -------------------------------------------------------------------------
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
         .then((reg) => {
-          console.log('Ganga Agri Genetics ServiceWorker registered with scope:', reg.scope);
+          console.log('Ganga Agri Genetics Service Worker registered:', reg.scope);
         })
         .catch((err) => {
-          console.log('ServiceWorker registration skipped or failed:', err);
+          console.warn('Service Worker registration skipped or failed:', err);
         });
     });
   }
+
+  // -------------------------------------------------------------------------
+  // 17. INITIALIZE APPLICATION
+  // -------------------------------------------------------------------------
+  renderProducts();
+  updateLanguage(currentLang);
+  initHeroCarousel();
 
   console.log('Ganga Agri Genetics web application initialized successfully.');
 });
