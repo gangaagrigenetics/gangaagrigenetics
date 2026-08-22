@@ -54,7 +54,12 @@
         toastFillRequired: 'Please fill all required fields (*)',
         toastFillBookingDetails: 'Please fill Name, Phone, Village and Crop Variety to send WhatsApp message',
         toastEnterEmailOrPhone: 'Please enter your email address or WhatsApp number',
-        toastNewsletterSuccess: 'Successfully subscribed to Ganga Agri Genetics Updates!'
+        toastNewsletterSuccess: 'Successfully subscribed to Ganga Agri Genetics Updates!',
+        navGallery: 'Photo Gallery',
+        galleryHeading: 'Moments from Our Fields & Research Lab',
+        gallerySub: 'Visual highlights of our hybrid seed trial plots, seed germination quality testing in Shetpalle, and flourishing harvests across Telangana.',
+        galleryViewFull: 'View Photo',
+        galleryClose: 'Close'
       },
       te: {
         langLabel: 'English',
@@ -100,7 +105,12 @@
         toastFillRequired: 'దయచేసి అవసరమైన అన్ని వివరాలు నింపండి (*)',
         toastFillBookingDetails: 'దయచేసి పేరు, ఫోన్, ఊరు మరియు పంట రకం వివరాలు నింపండి',
         toastEnterEmailOrPhone: 'దయచేసి మీ ఇమెయిల్ లేదా వాట్సాప్ నంబర్ నమోదు చేయండి',
-        toastNewsletterSuccess: 'గంగ అగ్రి జెనెటిక్స్ వ్యవసాయ అలర్ట్స్ సబ్‌స్క్రిప్షన్ విజయవంతమైంది!'
+        toastNewsletterSuccess: 'గంగ అగ్రి జెనెటిక్స్ వ్యవసాయ అలర్ట్స్ సబ్‌స్క్రిప్షన్ విజయవంతమైంది!',
+        navGallery: 'ఫోటో గ్యాలరీ',
+        galleryHeading: 'మా పరిశోధనా క్షేత్రాలు & నాణ్యతా ల్యాబ్ దృశ్యాలు',
+        gallerySub: 'షెట్పల్లె నాణ్యతా ల్యాబ్, తెలంగాణలోని హైబ్రిడ్ ప్రయోగాత్మక క్షేత్రాలు మరియు రైతుల అధిక దిగుబడి పంటల ప్రత్యక్ష చిత్రాలు.',
+        galleryViewFull: 'ఫోటో చూడండి',
+        galleryClose: 'మూసివేయి'
       }
     },
 
@@ -427,7 +437,131 @@
         subBadge: 'అదనపు నగదు ప్రోత్సాహకం',
         note: 'ఈ రకానికి ప్రభుత్వం క్వింటాలుకు ₹500 అదనపు బోనస్ ఇస్తుంది (ధాన్యం తేమ <17%, పొడవు <6mm, వెడల్పు <2mm). స్థానిక AEO ద్వారా డిజిటల్ పోర్టల్‌లో నమోదు చేసుకోండి.'
       }
-    }
+    },
+
+    // 7. PHOTO GALLERY CAROUSEL DATA
+    gallery: [
+      {
+        id: 'gal-paddy',
+        image: 'assets/images/gallery-paddy.jpg',
+        category: {
+          en: '🌾 Field Harvest',
+          te: '🌾 వరి క్షేత్ర దిగుబడి'
+        },
+        title: {
+          en: 'Bumper Paddy Harvest in Telangana',
+          te: 'తెలంగాణలో బంగారు వరి పంట దిగుబడి'
+        },
+        location: {
+          en: 'Shetpalle & Nizamabad District',
+          te: 'షెట్పల్లె & నిజామాబాద్ జిల్లా'
+        },
+        description: {
+          en: 'High-yielding BPT-5204 & Telangana Sona trial fields in Nizamabad.',
+          te: 'వరి క్షేత్రంలో మేలు రకపు ధాన్యపు కంకుల సమృద్ధి.'
+        }
+      },
+      {
+        id: 'gal-lab',
+        image: 'assets/images/gallery-lab.jpg',
+        category: {
+          en: '🔬 Quality Testing',
+          te: '🔬 విత్తన నాణ్యతా పరీక్షలు'
+        },
+        title: {
+          en: 'Advanced Seed Testing & Germination Lab',
+          te: 'అధునాతన విత్తన మొలక & నాణ్యతా ల్యాబ్'
+        },
+        location: {
+          en: 'R&D Center, Shetpalle',
+          te: 'పరిశోధనా కేంద్రం, షెట్పల్లె'
+        },
+        description: {
+          en: 'Daily 98%+ germination viability and moisture testing in Shetpalle.',
+          te: 'ల్యాబ్‌లో ప్రతి బ్యాచ్‌పై 98%+ మొలక శాతం నాణ్యతా పరీక్షలు.'
+        }
+      },
+      {
+        id: 'gal-maize',
+        image: 'assets/images/gallery-maize.jpg',
+        category: {
+          en: '🌽 Happy Farmers',
+          te: '🌽 రైతుల సంతృప్తి'
+        },
+        title: {
+          en: 'Ganga Surya Hybrid Maize Success',
+          te: 'గంగ సూర్య మొక్కజొన్న రైతు విజయం'
+        },
+        location: {
+          en: 'Commercial Maize Plot, Telangana',
+          te: 'మొక్కజొన్న సాగు క్షేత్రం, తెలంగాణ'
+        },
+        description: {
+          en: 'Farmer celebrating bumper cob weight with Ganga Surya Hybrid Maize.',
+          te: 'గంగ సూర్య మొక్కజొన్నతో రైతు సాధించిన అధిక దిగుబడి.'
+        }
+      },
+      {
+        id: 'gal-warehouse',
+        image: 'assets/images/gallery-warehouse.jpg',
+        category: {
+          en: '🏭 Processing & Storage',
+          te: '🏭 విత్తన ప్రాసెసింగ్ & నిల్వ'
+        },
+        title: {
+          en: 'Certified Seed Packaging & Logistics',
+          te: 'ధ్రువీకృత విత్తన ప్యాకేజింగ్ & పంపిణీ'
+        },
+        location: {
+          en: 'Main Logistics Hub, Shetpalle',
+          te: 'ప్రధాన నిల్వ కేంద్రం, షెట్పల్లె'
+        },
+        description: {
+          en: 'Certified seed bags packed and ready for distribution in Telangana.',
+          te: 'రైతుల కోసం సిద్ధంగా ఉన్న నాణ్యమైన సీల్డ్ విత్తన బస్తాలు.'
+        }
+      },
+      {
+        id: 'gal-field-day',
+        image: 'assets/images/gallery-field-day.jpg',
+        category: {
+          en: '🤝 Farmer Field Meets',
+          te: '🤝 రైతు క్షేత్ర సదస్సులు'
+        },
+        title: {
+          en: 'Telangana Sannalu Field Demonstration Day',
+          te: 'తెలంగాణ సన్నాలు క్షేత్ర ప్రదర్శన సదస్సు'
+        },
+        location: {
+          en: 'Demonstration Plot, Shetpalle Mandals',
+          te: 'ప్రదర్శనా క్షేత్రం, షెట్పల్లె పరిసరాలు'
+        },
+        description: {
+          en: 'Agronomists demonstrating Telangana Sannalu bonus traits to farmers.',
+          te: 'రైతులకు ₹500 బోనస్ మరియు సన్నాల సాగుపై ప్రత్యక్ష అవగాహన.'
+        }
+      },
+      {
+        id: 'gal-soybean',
+        image: 'assets/images/gallery-soybean.jpg',
+        category: {
+          en: '🌱 Oilseeds & Pulses',
+          te: '🌱 సోయాబీన్ & నూనెగింజలు'
+        },
+        title: {
+          en: 'High-Yield Shakti Soybean Trial Plot',
+          te: 'గంగ శక్తి-335 సోయాబీన్ సాగు క్షేత్రం'
+        },
+        location: {
+          en: 'Kharif Demonstration Field',
+          te: 'ఖరీఫ్ ప్రదర్శనా క్షేత్రం'
+        },
+        description: {
+          en: 'Prolific pod clustering and zero shattering in Ganga Shakti Soybean.',
+          te: 'ఎక్కువ కాయలు, అధిక దిగుబడినిచ్చే గంగ శక్తి సోయాబీన్ పంట.'
+        }
+      }
+    ]
   };
 
   // Localized crop lookup helper

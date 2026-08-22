@@ -315,7 +315,9 @@ document.addEventListener('DOMContentLoaded', function () {
       'compareModalHeading': t.compareModalHeading,
       'compareModalSubtitle': t.compareModalSubtitle,
       'compareLabelA': t.compareLabelA,
-      'compareLabelB': t.compareLabelB
+      'compareLabelB': t.compareLabelB,
+      'galleryHeading': t.galleryHeading,
+      'gallerySubtitle': t.gallerySub
     };
 
     for (const [id, text] of Object.entries(elMap)) {
@@ -330,6 +332,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     updateCalculatorDropdownLabels();
     renderProducts();
+    renderGalleryCarousel();
     computeCalculator();
     checkStoreOpenStatus();
     if (compareModal && (compareModal.open || compareModal.hasAttribute('open'))) {
@@ -1300,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 7. REAL-TIME STORE OPEN/CLOSED STATUS ENGINE
   // -------------------------------------------------------------------------
   function checkStoreOpenStatus() {
-    const storeStatusLive = document.getElementById('storeStatusLive');
+    const liveStoreStatus = document.getElementById('liveStoreStatus') || document.getElementById('storeStatusLive');
     const hoursLiveBadge = document.getElementById('hoursLiveBadge');
     const i18n = getI18n();
     const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
@@ -1315,35 +1318,37 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentTimeMinutes = hour * 60 + minute;
 
     let isOpen = false;
-    let closingTime = '8:00 PM';
+    let closingTime = '7:30 PM';
 
-    if (day === 0) { // Sunday: 8:00 AM – 2:00 PM
-      isOpen = (currentTimeMinutes >= 8 * 60 && currentTimeMinutes < 14 * 60);
-      closingTime = '2:00 PM';
-    } else { // Monday - Saturday: 8:00 AM – 8:00 PM
-      isOpen = (currentTimeMinutes >= 8 * 60 && currentTimeMinutes < 20 * 60);
-      closingTime = '8:00 PM';
+    if (day === 0) { // Sunday: 8:30 AM – 1:30 PM
+      isOpen = (currentTimeMinutes >= 8 * 60 + 30 && currentTimeMinutes < 13 * 60 + 30);
+      closingTime = '1:30 PM';
+    } else { // Monday - Saturday: 8:00 AM – 7:30 PM
+      isOpen = (currentTimeMinutes >= 8 * 60 && currentTimeMinutes < 19 * 60 + 30);
+      closingTime = '7:30 PM';
     }
 
-    if (storeStatusLive) {
+    if (liveStoreStatus) {
       if (isOpen) {
         const text = (t.storeOpen || 'STORE OPEN NOW (Closes {time})').replace('{time}', closingTime);
-        storeStatusLive.innerHTML = `
-          <span class="status-indicator online"></span>
+        liveStoreStatus.className = 'status-indicator-pill open';
+        liveStoreStatus.innerHTML = `
+          <span class="status-dot pulse" style="background-color: #34d399;"></span>
           <strong class="status-text" style="color: #6ee7b7;">${text}</strong>
         `;
         if (hoursLiveBadge) {
-          hoursLiveBadge.className = 'hours-badge open';
+          hoursLiveBadge.className = 'live-tag-inline open';
           hoursLiveBadge.textContent = t.badgeOpen || 'OPEN NOW';
         }
       } else {
         const text = t.storeClosed || 'STORE CLOSED (Opens 8:00 AM)';
-        storeStatusLive.innerHTML = `
-          <span class="status-indicator offline"></span>
-          <strong class="status-text" style="color: #fde68a;">${text}</strong>
+        liveStoreStatus.className = 'status-indicator-pill closed';
+        liveStoreStatus.innerHTML = `
+          <span class="status-dot" style="background-color: #f87171; box-shadow: none; animation: none;"></span>
+          <strong class="status-text" style="color: #fca5a5;">${text}</strong>
         `;
         if (hoursLiveBadge) {
-          hoursLiveBadge.className = 'hours-badge closed';
+          hoursLiveBadge.className = 'live-tag-inline closed';
           hoursLiveBadge.textContent = t.badgeClosed || 'CLOSED NOW';
         }
       }
@@ -1763,7 +1768,336 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // -------------------------------------------------------------------------
-  // 16. SERVICE WORKER PWA REGISTRATION
+  // 16. PHOTO GALLERY CAROUSEL & LIGHTBOX ENGINE
+  // -------------------------------------------------------------------------
+  const DEFAULT_GALLERY = [
+    {
+      id: 'gal-paddy',
+      image: 'assets/images/gallery-paddy.jpg',
+      category: 'Field Harvest',
+      title: 'Bumper Paddy Harvest in Telangana',
+      location: 'Shetpalle & Nizamabad District',
+      description: 'High-yielding BPT-5204 & Telangana Sona trial fields in Nizamabad.'
+    },
+    {
+      id: 'gal-lab',
+      image: 'assets/images/gallery-lab.jpg',
+      category: 'Quality Testing',
+      title: 'Advanced Seed Testing & Germination Lab',
+      location: 'R&D Center, Shetpalle',
+      description: 'Daily 98%+ germination viability and moisture testing in Shetpalle.'
+    },
+    {
+      id: 'gal-maize',
+      image: 'assets/images/gallery-maize.jpg',
+      category: 'Happy Farmers',
+      title: 'Ganga Surya Hybrid Maize Success',
+      location: 'Commercial Maize Plot, Telangana',
+      description: 'Farmer celebrating bumper cob weight with Ganga Surya Hybrid Maize.'
+    },
+    {
+      id: 'gal-warehouse',
+      image: 'assets/images/gallery-warehouse.jpg',
+      category: 'Processing & Storage',
+      title: 'Certified Seed Packaging & Logistics',
+      location: 'Main Logistics Hub, Shetpalle',
+      description: 'Certified seed bags packed and ready for distribution in Telangana.'
+    },
+    {
+      id: 'gal-field-day',
+      image: 'assets/images/gallery-field-day.jpg',
+      category: 'Farmer Field Meets',
+      title: 'Telangana Sannalu Field Demonstration Day',
+      location: 'Demonstration Plot, Shetpalle Mandals',
+      description: 'Agronomists demonstrating Telangana Sannalu bonus traits to farmers.'
+    },
+    {
+      id: 'gal-soybean',
+      image: 'assets/images/gallery-soybean.jpg',
+      category: 'Oilseeds & Pulses',
+      title: 'High-Yield Shakti Soybean Trial Plot',
+      location: 'Kharif Demonstration Field',
+      description: 'Prolific pod clustering and zero shattering in Ganga Shakti Soybean.'
+    }
+  ];
+
+  let currentGalleryIndex = 0;
+  let activeLightboxIndex = 0;
+  let galleryAutoPlayTimer = null;
+  const galleryTrack = document.getElementById('galleryTrack');
+  const galleryDots = document.getElementById('galleryDots');
+  const galleryPrevBtn = document.getElementById('galleryPrevBtn');
+  const galleryNextBtn = document.getElementById('galleryNextBtn');
+  const galleryLightboxModal = document.getElementById('galleryLightboxModal');
+  const closeLightboxBtn = document.getElementById('closeLightboxBtn');
+  const lightboxPrevBtn = document.getElementById('lightboxPrevBtn');
+  const lightboxNextBtn = document.getElementById('lightboxNextBtn');
+
+  function getGalleryList() {
+    const i18n = getI18n();
+    if (i18n && Array.isArray(i18n.gallery) && i18n.gallery.length > 0) {
+      const isTe = (currentLang === 'te');
+      return i18n.gallery.map(item => ({
+        id: item.id,
+        image: item.image,
+        category: (item.category && item.category[currentLang]) ? item.category[currentLang] : (isTe ? item.category.te : item.category.en),
+        title: (item.title && item.title[currentLang]) ? item.title[currentLang] : (isTe ? item.title.te : item.title.en),
+        location: (item.location && item.location[currentLang]) ? item.location[currentLang] : (isTe ? item.location.te : item.location.en),
+        description: (item.description && item.description[currentLang]) ? item.description[currentLang] : (isTe ? item.description.te : item.description.en)
+      }));
+    }
+    return DEFAULT_GALLERY;
+  }
+
+  function renderGalleryCarousel() {
+    if (!galleryTrack) return;
+    const items = getGalleryList();
+
+    galleryTrack.innerHTML = items.map((item, idx) => `
+      <div class="gallery-card ${idx === currentGalleryIndex ? 'active' : ''}" data-gallery-index="${idx}">
+        <div class="gallery-card-media">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" width="600" height="450">
+          <span class="gallery-category-badge">${item.category}</span>
+          <button type="button" class="gallery-zoom-btn" data-action="zoom-gallery" data-index="${idx}" aria-label="View photo">
+            <i class="fa-solid fa-expand"></i>
+          </button>
+        </div>
+        <div class="gallery-card-content">
+          <div class="gallery-card-meta">
+            <span class="gallery-location"><i class="fa-solid fa-location-dot"></i> ${item.location}</span>
+          </div>
+          <h3 class="gallery-card-title">${item.title}</h3>
+          <p class="gallery-card-desc">${item.description}</p>
+        </div>
+      </div>
+    `).join('');
+
+    if (galleryDots) {
+      galleryDots.innerHTML = items.map((_, idx) => `
+        <button type="button" class="gallery-dot ${idx === currentGalleryIndex ? 'active' : ''}" data-index="${idx}" role="tab" aria-selected="${idx === currentGalleryIndex}" aria-label="Slide ${idx + 1}"></button>
+      `).join('');
+    }
+
+    updateGallerySlidePosition();
+    updateLightboxContent();
+  }
+
+  function updateGallerySlidePosition() {
+    if (!galleryTrack) return;
+    const cards = galleryTrack.querySelectorAll('.gallery-card');
+    const dots = galleryDots ? galleryDots.querySelectorAll('.gallery-dot') : [];
+    const total = cards.length;
+    if (total === 0) return;
+
+    if (currentGalleryIndex < 0) currentGalleryIndex = 0;
+    if (currentGalleryIndex >= total) currentGalleryIndex = total - 1;
+
+    cards.forEach((card, idx) => {
+      card.classList.toggle('active', idx === currentGalleryIndex);
+    });
+
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentGalleryIndex);
+      dot.setAttribute('aria-selected', idx === currentGalleryIndex);
+    });
+
+    galleryTrack.style.transform = `translateX(-${currentGalleryIndex * 100}%)`;
+  }
+
+  function nextGallerySlide() {
+    const items = getGalleryList();
+    if (items.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex + 1) % items.length;
+    updateGallerySlidePosition();
+  }
+
+  function prevGallerySlide() {
+    const items = getGalleryList();
+    if (items.length === 0) return;
+    currentGalleryIndex = (currentGalleryIndex - 1 + items.length) % items.length;
+    updateGallerySlidePosition();
+  }
+
+  function goToGallerySlide(idx) {
+    currentGalleryIndex = idx;
+    updateGallerySlidePosition();
+  }
+
+  function startGalleryAutoplay() {
+    stopGalleryAutoplay();
+    galleryAutoPlayTimer = setInterval(nextGallerySlide, 4000);
+  }
+
+  function stopGalleryAutoplay() {
+    if (galleryAutoPlayTimer) {
+      clearInterval(galleryAutoPlayTimer);
+      galleryAutoPlayTimer = null;
+    }
+  }
+
+  function openGalleryLightbox(idx) {
+    const targetModal = document.getElementById('galleryLightboxModal') || galleryLightboxModal;
+    if (!targetModal) return;
+    activeLightboxIndex = idx;
+    updateLightboxContent();
+
+    document.body.classList.add('modal-open');
+    if (typeof targetModal.showModal === 'function') {
+      try {
+        if (!targetModal.open) targetModal.showModal();
+      } catch (e) {
+        targetModal.setAttribute('open', '');
+      }
+    } else {
+      targetModal.setAttribute('open', '');
+    }
+  }
+
+  function closeGalleryLightbox() {
+    const targetModal = document.getElementById('galleryLightboxModal') || galleryLightboxModal;
+    if (targetModal) {
+      if (typeof targetModal.close === 'function') {
+        try {
+          targetModal.close();
+        } catch (e) {
+          targetModal.removeAttribute('open');
+        }
+      } else {
+        targetModal.removeAttribute('open');
+      }
+    }
+    updateModalOpenState();
+  }
+
+  function updateLightboxContent() {
+    const items = getGalleryList();
+    if (items.length === 0) return;
+    if (activeLightboxIndex < 0) activeLightboxIndex = 0;
+    if (activeLightboxIndex >= items.length) activeLightboxIndex = items.length - 1;
+
+    const item = items[activeLightboxIndex];
+    if (!item) return;
+
+    const imgEl = document.getElementById('lightboxImg');
+    const catEl = document.getElementById('lightboxCategory');
+    const locEl = document.getElementById('lightboxLocation');
+    const titleEl = document.getElementById('lightboxTitle');
+    const descEl = document.getElementById('lightboxDesc');
+    const counterEl = document.getElementById('lightboxCounter');
+
+    if (imgEl) {
+      imgEl.src = item.image;
+      imgEl.alt = item.title;
+    }
+    if (catEl) catEl.textContent = item.category;
+    if (locEl) locEl.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${item.location}`;
+    if (titleEl) titleEl.textContent = item.title;
+    if (descEl) descEl.textContent = item.description;
+    if (counterEl) counterEl.textContent = `${activeLightboxIndex + 1} / ${items.length}`;
+  }
+
+  function nextLightbox() {
+    const items = getGalleryList();
+    if (items.length === 0) return;
+    activeLightboxIndex = (activeLightboxIndex + 1) % items.length;
+    updateLightboxContent();
+  }
+
+  function prevLightbox() {
+    const items = getGalleryList();
+    if (items.length === 0) return;
+    activeLightboxIndex = (activeLightboxIndex - 1 + items.length) % items.length;
+    updateLightboxContent();
+  }
+
+  // Bind gallery events
+  if (galleryPrevBtn) {
+    galleryPrevBtn.addEventListener('click', () => {
+      prevGallerySlide();
+      stopGalleryAutoplay();
+    });
+  }
+  if (galleryNextBtn) {
+    galleryNextBtn.addEventListener('click', () => {
+      nextGallerySlide();
+      stopGalleryAutoplay();
+    });
+  }
+
+  if (galleryDots) {
+    galleryDots.addEventListener('click', (e) => {
+      const dot = e.target.closest('.gallery-dot');
+      if (dot && dot.dataset.index !== undefined) {
+        goToGallerySlide(parseInt(dot.dataset.index, 10));
+        stopGalleryAutoplay();
+      }
+    });
+  }
+
+  if (galleryTrack) {
+    galleryTrack.addEventListener('click', (e) => {
+      const zoomBtn = e.target.closest('[data-action="zoom-gallery"]') || e.target.closest('.gallery-card');
+      if (zoomBtn) {
+        const idx = zoomBtn.dataset.index || zoomBtn.dataset.galleryIndex;
+        if (idx !== undefined) {
+          openGalleryLightbox(parseInt(idx, 10));
+        }
+      }
+    });
+  }
+
+  const galleryViewport = document.getElementById('galleryViewport');
+  if (galleryViewport) {
+    galleryViewport.addEventListener('mouseenter', stopGalleryAutoplay);
+    galleryViewport.addEventListener('mouseleave', startGalleryAutoplay);
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+    galleryViewport.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+    galleryViewport.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 45) {
+        nextGallerySlide();
+        stopGalleryAutoplay();
+      } else if (touchEndX - touchStartX > 45) {
+        prevGallerySlide();
+        stopGalleryAutoplay();
+      }
+    }, { passive: true });
+  }
+
+  // Lightbox navigation bindings
+  if (closeLightboxBtn) closeLightboxBtn.addEventListener('click', closeGalleryLightbox);
+  if (lightboxPrevBtn) lightboxPrevBtn.addEventListener('click', prevLightbox);
+  if (lightboxNextBtn) lightboxNextBtn.addEventListener('click', nextLightbox);
+
+  if (galleryLightboxModal) {
+    galleryLightboxModal.addEventListener('click', (e) => {
+      if (e.target === galleryLightboxModal) {
+        closeGalleryLightbox();
+      }
+    });
+  }
+
+  // Keyboard navigation for carousel & lightbox
+  window.addEventListener('keydown', (e) => {
+    const isLightboxOpen = galleryLightboxModal && (galleryLightboxModal.open || galleryLightboxModal.hasAttribute('open'));
+    if (isLightboxOpen) {
+      if (e.key === 'Escape') closeGalleryLightbox();
+      else if (e.key === 'ArrowLeft') prevLightbox();
+      else if (e.key === 'ArrowRight') nextLightbox();
+    }
+  });
+
+  // Expose global helpers
+  window.openGalleryLightbox = openGalleryLightbox;
+  window.closeGalleryLightbox = closeGalleryLightbox;
+
+  // -------------------------------------------------------------------------
+  // 17. SERVICE WORKER PWA REGISTRATION
   // -------------------------------------------------------------------------
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -1778,9 +2112,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // -------------------------------------------------------------------------
-  // 17. INITIALIZE APPLICATION
+  // 18. INITIALIZE APPLICATION
   // -------------------------------------------------------------------------
   renderProducts();
+  renderGalleryCarousel();
+  startGalleryAutoplay();
   updateLanguage(currentLang);
   initHeroCarousel();
 

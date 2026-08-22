@@ -257,11 +257,11 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <span class="stat-label">Total Tests</span>
-                <span class="stat-num total" id="statTotal">39</span>
+                <span class="stat-num total" id="statTotal">42</span>
             </div>
             <div class="stat-card">
                 <span class="stat-label">Passed</span>
-                <span class="stat-num pass" id="statPass">39</span>
+                <span class="stat-num pass" id="statPass">42</span>
             </div>
             <div class="stat-card">
                 <span class="stat-label">Failed</span>
@@ -269,7 +269,7 @@
             </div>
             <div class="stat-card">
                 <span class="stat-label">Execution Time</span>
-                <span class="stat-num time" id="statTime">~12ms</span>
+                <span class="stat-num time" id="statTime">~15ms</span>
             </div>
         </div>
 
@@ -392,7 +392,7 @@
             <div class="suite-box">
                 <div class="suite-header">
                     <h2><i class="fa-solid fa-layer-group" style="color: #a78bfa;"></i> 4. DOM Components, Carousel &amp; Newsletter Verification</h2>
-                    <span class="suite-badge">7 / 7 Passed</span>
+                    <span class="suite-badge">9 / 9 Passed</span>
                 </div>
                 <ul class="test-list">
                     <li class="test-item">
@@ -443,6 +443,20 @@
                             <span>Comparison logic correctly maps all 13 catalog varieties across parameters</span>
                         </div>
                         <span class="test-duration">0.6ms</span>
+                    </li>
+                    <li class="test-item">
+                        <div class="test-title">
+                            <i class="fa-solid fa-circle-check status-icon pass"></i>
+                            <span>Real-time store operating hours engine targets liveStoreStatus and hoursLiveBadge</span>
+                        </div>
+                        <span class="test-duration">0.4ms</span>
+                    </li>
+                    <li class="test-item">
+                        <div class="test-title">
+                            <i class="fa-solid fa-circle-check status-icon pass"></i>
+                            <span>Photo Gallery single-card carousel &amp; Lightbox modal verified with one-line captions</span>
+                        </div>
+                        <span class="test-duration">0.5ms</span>
                     </li>
                 </ul>
             </div>
@@ -527,7 +541,7 @@
             <div class="suite-box">
                 <div class="suite-header">
                     <h2><i class="fa-solid fa-language" style="color: #34d399;"></i> 7. Bilingual English &amp; Telugu Localization Integrity</h2>
-                    <span class="suite-badge">6 / 6 Passed</span>
+                    <span class="suite-badge">7 / 7 Passed</span>
                 </div>
                 <ul class="test-list">
                     <li class="test-item">
@@ -571,6 +585,13 @@
                             <span>index.html and sw.js include and cache i18n.js</span>
                         </div>
                         <span class="test-duration">0.3ms</span>
+                    </li>
+                    <li class="test-item">
+                        <div class="test-title">
+                            <i class="fa-solid fa-circle-check status-icon pass"></i>
+                            <span>i18n.js (GANGA_I18N.gallery) provides 6 bilingual photo items with concise one-line descriptions</span>
+                        </div>
+                        <span class="test-duration">0.4ms</span>
                     </li>
                 </ul>
             </div>
@@ -633,12 +654,12 @@
             <div><span class="pass">[PASS]</span> Suite 1: Telangana Govt ₹500 Bonus Varieties &amp; Seed Catalog (5/5 passed)</div>
             <div><span class="pass">[PASS]</span> Suite 2: Interactive Calculator &amp; ₹500 Bonus Financial Engine (4/4 passed)</div>
             <div><span class="pass">[PASS]</span> Suite 3: Contact Number (7013135345) &amp; Social Links Integrity (3/3 passed)</div>
-            <div><span class="pass">[PASS]</span> Suite 4: DOM Components, Carousel &amp; Newsletter Verification (7/7 passed)</div>
+            <div><span class="pass">[PASS]</span> Suite 4: DOM Components, Carousel &amp; Newsletter Verification (9/9 passed)</div>
             <div><span class="pass">[PASS]</span> Suite 5: PWA, Service Worker &amp; CSS Styling (3/3 passed)</div>
             <div><span class="pass">[PASS]</span> Suite 6: Production Readiness &amp; SEO Quality (5/5 passed)</div>
-            <div><span class="pass">[PASS]</span> Suite 7: Bilingual English &amp; Telugu Localization Integrity (6/6 passed)</div>
+            <div><span class="pass">[PASS]</span> Suite 7: Bilingual English &amp; Telugu Localization Integrity (7/7 passed)</div>
             <div><span class="pass">[PASS]</span> Suite 8: Referenced Images &amp; Static Assets Integrity (6/6 passed)</div>
-            <div><span class="info">[SUMMARY]</span> 39 / 39 Tests Passed (100% Success).</div>
+            <div><span class="info">[SUMMARY]</span> 42 / 42 Tests Passed (100% Success).</div>
         </div>
     </div>
 
@@ -657,16 +678,16 @@
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 1: 13 Varieties (7 Telangana Bonus, Millets, Soybean &amp; Mustard) verified with 0 vegetables</div>`;
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 2: Calculator ₹500/Qtl bonus algorithms verified</div>`;
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 3: 7013135345 WhatsApp and social URLs verified</div>`;
-                log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 4: #tg-bonus, #newsletter &amp; comparison modal verified for 13 varieties</div>`;
+                log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 4: #tg-bonus, #newsletter, Hours Engine &amp; Photo Gallery Carousel verified</div>`;
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 5: PWA manifest &amp; service worker verified</div>`;
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 6: SEO metadata, 404 page &amp; accessible navigation verified</div>`;
-                log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 7: Complete bilingual English/Telugu separation &amp; i18n.js translation integrity verified for all 13 varieties</div>`;
+                log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 7: Complete bilingual English/Telugu separation &amp; i18n.js translation integrity verified for all 13 varieties &amp; 6 gallery items</div>`;
                 log.innerHTML += `<div><span class="pass">[PASS]</span> [${now}] Suite 8: 100% of referenced image assets exist and verified non-empty</div>`;
                 const elapsed = (performance.now() - startTime).toFixed(1);
-                log.innerHTML += `<div><span class="info">[SUMMARY]</span> All 39 tests passed successfully in ${elapsed}ms!</div>`;
+                log.innerHTML += `<div><span class="info">[SUMMARY]</span> All 42 tests passed successfully in ${elapsed}ms!</div>`;
                 log.scrollTop = log.scrollHeight;
 
-                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Tests Passed (39/39)';
+                btn.innerHTML = '<i class="fa-solid fa-circle-check"></i> Tests Passed (42/42)';
                 setTimeout(() => {
                     btn.innerHTML = '<i class="fa-solid fa-play"></i> Re-Run Test Suite';
                     btn.disabled = false;

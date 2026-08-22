@@ -258,6 +258,26 @@ describe('4. DOM Sections & Interactive Component Tests', () => {
       assert.ok(crop.soilSuitability, `${crop.name} must have soilSuitability`);
     }
   });
+
+  test('Real-time Store Operating Hours engine must target liveStoreStatus and hoursLiveBadge', () => {
+    assert.ok(indexHtmlContent.includes('id="liveStoreStatus"'), 'Missing #liveStoreStatus in index.html');
+    assert.ok(indexHtmlContent.includes('id="hoursLiveBadge"'), 'Missing #hoursLiveBadge in index.html');
+    assert.ok(appJsContent.includes('checkStoreOpenStatus'), 'Missing checkStoreOpenStatus function');
+    assert.ok(appJsContent.includes('liveStoreStatus'), 'checkStoreOpenStatus must look up liveStoreStatus');
+  });
+
+  test('Photo Gallery Carousel and Lightbox modal must be present in index.html, app.js and style.css', () => {
+    assert.ok(indexHtmlContent.includes('id="gallery"'), 'Missing #gallery section in index.html');
+    assert.ok(indexHtmlContent.includes('id="galleryTrack"'), 'Missing #galleryTrack in index.html');
+    assert.ok(indexHtmlContent.includes('id="galleryPrevBtn"'), 'Missing #galleryPrevBtn in index.html');
+    assert.ok(indexHtmlContent.includes('id="galleryNextBtn"'), 'Missing #galleryNextBtn in index.html');
+    assert.ok(indexHtmlContent.includes('id="galleryDots"'), 'Missing #galleryDots in index.html');
+    assert.ok(indexHtmlContent.includes('id="galleryLightboxModal"'), 'Missing #galleryLightboxModal in index.html');
+    assert.ok(appJsContent.includes('renderGalleryCarousel'), 'Missing renderGalleryCarousel in app.js');
+    assert.ok(appJsContent.includes('openGalleryLightbox'), 'Missing openGalleryLightbox in app.js');
+    assert.ok(styleCssContent.includes('.gallery-section'), 'Missing .gallery-section in style.css');
+    assert.ok(styleCssContent.includes('.gallery-lightbox-dialog'), 'Missing .gallery-lightbox-dialog in style.css');
+  });
 });
 
 describe('5. CSS & PWA Standards Tests', () => {
@@ -409,6 +429,25 @@ describe('7. Bilingual English & Telugu Localization Integrity Tests', () => {
   test('index.html and sw.js must include and cache i18n.js', () => {
     assert.ok(indexHtmlContent.includes('src="i18n.js'), 'index.html must load i18n.js script');
     assert.ok(swContent.includes('./i18n.js'), 'sw.js must cache ./i18n.js');
+  });
+
+  test('i18n.js (GANGA_I18N.gallery) must provide 6 bilingual photo items with valid Telugu and English keys', () => {
+    const i18n = extractI18n();
+    assert.ok(Array.isArray(i18n.gallery), 'GANGA_I18N.gallery must be an array');
+    assert.equal(i18n.gallery.length, 6, `Expected 6 gallery items, found ${i18n.gallery.length}`);
+    const teluguRegex = /[\u0C00-\u0C7F]/;
+    for (const item of i18n.gallery) {
+      assert.ok(item.id, 'Gallery item must have id');
+      assert.ok(item.image, 'Gallery item must have image');
+      assert.ok(item.category.en && item.category.te, `${item.id} must have bilingual category`);
+      assert.ok(item.title.en && item.title.te, `${item.id} must have bilingual title`);
+      assert.ok(item.location.en && item.location.te, `${item.id} must have bilingual location`);
+      assert.ok(item.description.en && item.description.te, `${item.id} must have bilingual description`);
+      assert.ok(teluguRegex.test(item.category.te), `${item.id} category.te must contain Telugu`);
+      assert.ok(teluguRegex.test(item.title.te), `${item.id} title.te must contain Telugu`);
+      assert.ok(teluguRegex.test(item.location.te), `${item.id} location.te must contain Telugu`);
+      assert.ok(teluguRegex.test(item.description.te), `${item.id} description.te must contain Telugu`);
+    }
   });
 });
 

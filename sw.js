@@ -1,5 +1,5 @@
 // Ganga Agri Genetics Service Worker - Offline Caching
-const CACHE_NAME = 'ganga-agri-v8';
+const CACHE_NAME = 'ganga-agri-v9';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -15,7 +15,13 @@ const ASSETS_TO_CACHE = [
   './assets/images/hero-harvest.jpg',
   './assets/images/research-lab.jpg',
   './assets/images/crop-paddy.jpg',
-  './assets/images/crop-maize.jpg'
+  './assets/images/crop-maize.jpg',
+  './assets/images/gallery-paddy.jpg',
+  './assets/images/gallery-lab.jpg',
+  './assets/images/gallery-maize.jpg',
+  './assets/images/gallery-warehouse.jpg',
+  './assets/images/gallery-field-day.jpg',
+  './assets/images/gallery-soybean.jpg'
 ];
 
 self.addEventListener('install', (event) => {
