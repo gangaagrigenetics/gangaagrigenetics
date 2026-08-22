@@ -1852,73 +1852,179 @@ p {
 }
 
 /* --------------------------------------------------------------------------
-   10. ABOUT & R&D EXCELLENCE SECTION
+   10. ABOUT & R&D QUALITY ASSURANCE SECTION (#quality)
    -------------------------------------------------------------------------- */
 .about-section {
-  padding: 90px 0;
-  background-color: var(--white);
+  padding: 85px 0 95px;
+  background-color: #ffffff;
+  position: relative;
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.95fr;
-  gap: 56px;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 52px;
   align-items: center;
 }
 
-.lead-text {
-  font-size: 1.15rem;
-  color: var(--primary-950);
-  font-weight: 500;
-  line-height: 1.7;
-  margin-bottom: 16px;
+@media (max-width: 960px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
-.about-feature-cards {
-  display: flex;
-  flex-direction: column;
+.about-content h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.35rem);
+  color: #0f172a;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 12px 0 16px;
+}
+
+.about-content p {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 24px;
+}
+
+/* 2x2 Highlights Grid for 4 Quality Pillars */
+.about-highlights-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  margin: 32px 0;
+  margin: 28px 0;
 }
 
-.about-card {
+@media (max-width: 580px) {
+  .about-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.highlight-box {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  background: var(--slate-50);
+  gap: 14px;
+  padding: 16px 18px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
   border-radius: var(--radius-lg);
-  border: 1px solid var(--slate-200);
+  transition: all var(--transition-fast);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
-.about-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--primary-100);
-  color: var(--primary-700);
+.highlight-box:hover {
+  background: #ffffff;
+  border-color: #10b981;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.12);
+}
+
+.highlight-box i {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlight-box div {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-box strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 4px;
+  display: block;
+}
+
+.highlight-box p {
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 0;
+}
+
+/* Image Card with Floating Accreditation Badge */
+.about-image-wrapper {
+  position: relative;
+}
+
+.about-img-card {
+  position: relative;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+  border: 1.5px solid #e2e8f0;
+  background: #0f172a;
+}
+
+.about-img {
+  width: 100%;
+  height: auto;
+  min-height: 340px;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.about-img-card:hover .about-img {
+  transform: scale(1.03);
+}
+
+.about-badge-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.about-badge-overlay i {
+  font-size: 1.6rem;
+  color: #fbbf24;
   flex-shrink: 0;
 }
 
-.about-card h4 {
-  font-size: 1.05rem;
-  color: var(--slate-900);
-  margin-bottom: 4px;
-}
-
-.about-card p {
-  font-size: 0.9rem;
-  color: var(--color-text-muted);
-}
-
-.about-cta {
+.about-badge-overlay div {
   display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.about-badge-overlay strong {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.about-badge-overlay span {
+  font-size: 0.8rem;
+  color: #a7f3d0;
+  font-weight: 600;
 }
 
 /* 4-Stage Quality Pillar Card */
