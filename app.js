@@ -657,7 +657,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // 3. RENDER PRODUCTS CATALOG WITH SEARCH & FILTER
   // -------------------------------------------------------------------------
   const productsGrid = document.getElementById('productsGrid') || document.getElementById('seedCatalogGrid') || document.getElementById('seedGrid');
-  const filterPills = document.querySelectorAll('.filter-pill, .filter-btn');
+  const filterPills = document.querySelectorAll('.filter-pill, .filter-btn[data-filter], .filter-btn[data-category]');
   const searchInput = document.getElementById('seedSearchInput');
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const countAll = document.getElementById('count-all');
@@ -1620,7 +1620,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Document-level delegated click listener for any compare button trigger
   document.addEventListener('click', function (e) {
-    const btn = e.target.closest('#openCompareModalBtn, [data-action="open-compare"]');
+    const btn = e.target.closest('#openCompareModalBtn, #openCompareBtn, .compare-trigger-btn, [data-action="open-compare"]');
     if (btn) {
       e.preventDefault();
       openCompareModal();
