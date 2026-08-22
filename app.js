@@ -1299,7 +1299,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (calcExpertAdvice) {
-      calcExpertAdvice.innerHTML = `<strong>${cropData.advice}</strong><br><span style="display:inline-block; margin-top:6px; color:#047857; font-size:0.92em;">${soilNote}</span><br><span style="display:inline-block; margin-top:4px; color:#b45309; font-size:0.92em;">${seasonNote}</span>`;
+      calcExpertAdvice.innerHTML = `
+        <p style="margin-bottom: 12px; font-weight: 600; color: #0f172a; line-height: 1.55;">${cropData.advice}</p>
+        <div class="advice-tags-container">
+          <div class="advice-badge-item soil-badge">
+            <span>${soilNote}</span>
+          </div>
+          <div class="advice-badge-item season-badge">
+            <span>${seasonNote}</span>
+          </div>
+        </div>
+      `;
     }
 
     // Update Telangana Govt ₹500 Bonus Highlight Banner
