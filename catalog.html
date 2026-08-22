@@ -441,7 +441,7 @@
                 </div>
 
                 <!-- Dynamic Seed Products Grid -->
-                <div class="seed-grid" id="seedCatalogGrid" aria-live="polite">
+                <div class="products-grid seed-grid" id="productsGrid" aria-live="polite">
                     <!-- Populated dynamically by app.js -->
                 </div>
 
@@ -457,67 +457,105 @@
     </main>
 
     <!-- PRODUCT SPECS DIALOG MODAL -->
-    <dialog id="productSpecsModal" class="specs-modal-dialog" aria-labelledby="modalProductTitle" aria-modal="true">
-        <div class="modal-dialog-content">
+    <dialog id="productSpecModal" class="product-modal" aria-labelledby="modalTitle" aria-modal="true">
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" id="closeModalBtn" aria-label="Close product details modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
             <div class="modal-header">
-                <div>
-                    <span class="modal-category-badge" id="modalCategoryBadge">CEREAL CROP</span>
-                    <h3 id="modalProductTitle">Ganga Supreme Gold-99 Hybrid Paddy</h3>
+                <span class="modal-crop-category" id="modalCategory">Cereal Crop</span>
+                <h3 id="modalTitle">Ganga Supreme Gold-99</h3>
+                <p class="modal-tagline" id="modalTagline">High-Yielding Fine Grain Hybrid Paddy</p>
+            </div>
+
+            <!-- Bonus Banner if applicable -->
+            <div id="modalBonusAlert" style="display: none; margin-bottom: 20px;"></div>
+
+            <div class="modal-specs-grid">
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specDuration">Duration</span>
+                    <span class="spec-val" id="modalDuration">125 - 130 Days</span>
                 </div>
-                <button type="button" class="modal-close-btn" id="closeSpecsModalBtn" aria-label="Close Product Details">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specYield">Yield Potential</span>
+                    <span class="spec-val" id="modalYield">30 - 35 Q/Acre</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specGermination">Germination</span>
+                    <span class="spec-val" id="modalGermination">90% Min</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specSeedRate">Seed Rate</span>
+                    <span class="spec-val" id="modalSeedRate">8 - 10 Kg/Acre</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specSeason">Season</span>
+                    <span class="spec-val" id="modalSeason">Kharif / Rabi</span>
+                </div>
+                <div class="spec-tile">
+                    <span class="spec-name" data-i18n="specGrainType">Grain Type</span>
+                    <span class="spec-val" id="modalGrain">Super Fine</span>
+                </div>
             </div>
-            <div class="modal-body" id="modalProductBody">
-                <!-- Dynamically populated by app.js -->
+
+            <div class="modal-description-box">
+                <h4><i class="fa-solid fa-shield-halved"></i> <span data-i18n="modalTraitHeading">Key Agronomic Traits &amp; Description</span></h4>
+                <p id="modalDescription">High-yielding variety with exceptional blast and BPH resistance.</p>
             </div>
+
+            <div class="modal-sowing-tips">
+                <h4><i class="fa-solid fa-lightbulb"></i> <span data-i18n="modalSowingHeading">Sowing &amp; Cultivation Guide</span></h4>
+                <p id="modalSowingGuide">Standard nursery and transplantation guidelines.</p>
+            </div>
+
             <div class="modal-footer">
-                <a href="#" id="modalWhatsAppBtn" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--block">
-                    <i class="fa-brands fa-whatsapp"></i> <span>Order This Variety on WhatsApp</span>
+                <button type="button" class="btn btn--outline btn--sm" id="modalCompareVarietyBtn">
+                    <i class="fa-solid fa-code-compare"></i> <span>Compare Variety</span>
+                </button>
+                <a href="#" id="modalWhatsAppOrderBtn" target="_blank" rel="noopener noreferrer" class="btn btn--whatsapp btn--sm">
+                    <i class="fa-brands fa-whatsapp"></i> <span>Order on WhatsApp</span>
                 </a>
             </div>
         </div>
     </dialog>
 
     <!-- VARIETY COMPARISON MODAL -->
-    <dialog id="varietyCompareModal" class="specs-modal-dialog compare-dialog" aria-labelledby="compareModalHeading" aria-modal="true">
-        <div class="modal-dialog-content compare-dialog-content">
+    <dialog id="compareModal" class="product-modal compare-modal" aria-labelledby="compareModalHeading" aria-modal="true">
+        <div class="modal-card">
+            <button type="button" class="modal-close-btn" id="closeCompareModalBtn" aria-label="Close variety comparison modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
             <div class="modal-header">
-                <div>
-                    <h3 id="compareModalHeading" data-i18n="compareModalHeading">Compare Seed Varieties Side-by-Side</h3>
-                    <p class="modal-subtitle" id="compareModalSubtitle" data-i18n="compareModalSubtitle">Select any two Ganga hybrid varieties to compare duration, yield potential, germination, and traits.</p>
-                </div>
-                <button type="button" class="modal-close-btn" id="closeCompareModalBtn" aria-label="Close Comparison Modal">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+                <h3 id="compareModalHeading" data-i18n="compareModalHeading">Compare Seed Varieties Side-by-Side</h3>
+                <p class="modal-tagline" id="compareModalSubtitle" data-i18n="compareModalSubtitle">Select any two Ganga hybrid varieties to compare duration, yield potential, germination, and traits.</p>
             </div>
-            <div class="modal-body">
-                <div class="compare-selectors-grid">
-                    <div class="compare-select-col">
-                        <label for="compareSelectA" id="compareLabelA" data-i18n="compareLabelA">Select Variety A:</label>
-                        <select id="compareSelectA" class="form-control"></select>
-                    </div>
-                    <div class="compare-vs-badge">VS</div>
-                    <div class="compare-select-col">
-                        <label for="compareSelectB" id="compareLabelB" data-i18n="compareLabelB">Select Variety B:</label>
-                        <select id="compareSelectB" class="form-control"></select>
-                    </div>
-                </div>
 
-                <div class="compare-table-wrapper" id="compareTableContainer">
-                    <table class="compare-table" aria-label="Seed Variety Comparison Table">
-                        <thead>
-                            <tr>
-                                <th id="compareColParamHeader" data-i18n="compareTableHeaderParam">Agronomic Parameter</th>
-                                <th id="compareColAHeader" data-i18n="compareTableHeaderA">Variety A</th>
-                                <th id="compareColBHeader" data-i18n="compareTableHeaderB">Variety B</th>
-                            </tr>
-                        </thead>
-                        <tbody id="compareTableBody"></tbody>
-                    </table>
+            <div class="compare-selectors" style="display: flex; gap: 16px; margin-bottom: 24px; align-items: flex-end;">
+                <div style="flex: 1;">
+                    <label for="compareCropA" style="font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; display: block;" data-i18n="compareLabelA">Select Variety A:</label>
+                    <select id="compareCropA" class="form-control"></select>
+                </div>
+                <div style="font-weight: 800; color: #047857; padding-bottom: 10px;">VS</div>
+                <div style="flex: 1;">
+                    <label for="compareCropB" style="font-weight: 700; font-size: 0.88rem; margin-bottom: 6px; display: block;" data-i18n="compareLabelB">Select Variety B:</label>
+                    <select id="compareCropB" class="form-control"></select>
                 </div>
             </div>
-            <div class="modal-footer compare-modal-footer">
+
+            <div class="compare-table-responsive" style="overflow-x: auto; margin-bottom: 24px;">
+                <table class="table compare-table" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: #f8fafc; border-bottom: 2px solid #e2e8f0;">
+                            <th style="padding: 12px; text-align: left;" data-i18n="compareTableHeaderParam">Parameter</th>
+                            <th style="padding: 12px; text-align: center; color: #047857;" id="compareHeadA">Variety A</th>
+                            <th style="padding: 12px; text-align: center; color: #d97706;" id="compareHeadB">Variety B</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comparisonTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer">
                 <a href="contact.html#inquiry" id="compareInquireBtn" class="btn btn--primary" data-i18n="compareInquireBtn">
                     <i class="fa-solid fa-paper-plane"></i> Inquire About Selected Varieties
                 </a>

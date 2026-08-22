@@ -656,8 +656,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------------------------------------------------------------------------
   // 3. RENDER PRODUCTS CATALOG WITH SEARCH & FILTER
   // -------------------------------------------------------------------------
-  const productsGrid = document.getElementById('productsGrid');
-  const filterPills = document.querySelectorAll('.filter-pill');
+  const productsGrid = document.getElementById('productsGrid') || document.getElementById('seedCatalogGrid') || document.getElementById('seedGrid');
+  const filterPills = document.querySelectorAll('.filter-pill, .filter-btn');
   const searchInput = document.getElementById('seedSearchInput');
   const clearSearchBtn = document.getElementById('clearSearchBtn');
   const countAll = document.getElementById('count-all');
@@ -670,15 +670,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function renderProducts() {
-    if (!productsGrid) return;
+    const gridEl = document.getElementById('productsGrid') || document.getElementById('seedCatalogGrid') || document.getElementById('seedGrid') || productsGrid;
+    if (!gridEl) return;
     const i18n = getI18n();
     const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+
+    const isBonusCategory = (currentCategory === 'bonus_sannalu' || currentCategory === 'tg-bonus' || currentCategory === 'bonus');
 
     const filtered = SEED_CATALOG.filter(item => {
       const matchesCategory = (
         currentCategory === 'all' || 
         item.category === currentCategory || 
-        (currentCategory === 'bonus_sannalu' && item.isGovtBonusEligible)
+        (isBonusCategory && item.isGovtBonusEligible)
       );
       const query = currentSearchQuery.toLowerCase().trim();
       const loc = getCropData(item, currentLang);
@@ -692,21 +695,41 @@ document.addEventListener('DOMContentLoaded', function () {
       return matchesCategory && matchesSearch;
     });
 
+    // Update status indicators and badges
+    const resultsCountBadge = document.getElementById('resultsCountBadge');
+    if (resultsCountBadge) {
+      resultsCountBadge.textContent = `${filtered.length} ${filtered.length === 1 ? 'Variety' : 'Varieties'}`;
+    }
+    const countAllEl = document.getElementById('count-all');
+    if (countAllEl) {
+      countAllEl.textContent = SEED_CATALOG.length;
+    }
+    const emptyStateEl = document.getElementById('catalogEmptyState');
+
     if (filtered.length === 0) {
-      productsGrid.innerHTML = `
-        <div class="no-results-box" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px;">
-          <i class="fa-solid fa-seedling" style="font-size: 3rem; color: #94a3b8; margin-bottom: 16px;"></i>
-          <h3>No Hybrid Seeds Found</h3>
-          <p>No seeds matched "${currentSearchQuery}". Try clearing filters or searching for "Paddy", "Maize", or "Bonus".</p>
-          <button type="button" class="btn btn--secondary" onclick="document.getElementById('clearSearchBtn').click()">
-            <i class="fa-solid fa-arrows-rotate"></i> Reset Filters
-          </button>
-        </div>
-      `;
+      gridEl.innerHTML = '';
+      if (emptyStateEl) {
+        emptyStateEl.style.display = 'block';
+      } else {
+        gridEl.innerHTML = `
+          <div class="no-results-box" style="grid-column: 1 / -1; text-align: center; padding: 48px 20px;">
+            <i class="fa-solid fa-seedling" style="font-size: 3rem; color: #94a3b8; margin-bottom: 16px;"></i>
+            <h3>No Hybrid Seeds Found</h3>
+            <p>No seeds matched "${currentSearchQuery}". Try clearing filters or searching for "Paddy", "Maize", or "Bonus".</p>
+            <button type="button" class="btn btn--secondary" onclick="document.getElementById('clearSearchBtn') ? document.getElementById('clearSearchBtn').click() : null">
+              <i class="fa-solid fa-arrows-rotate"></i> Reset Filters
+            </button>
+          </div>
+        `;
+      }
       return;
     }
 
-    productsGrid.innerHTML = filtered.map(baseItem => {
+    if (emptyStateEl) {
+      emptyStateEl.style.display = 'none';
+    }
+
+    gridEl.innerHTML = filtered.map(baseItem => {
       const item = getCropData(baseItem, currentLang);
       const isBonus = item.isGovtBonusEligible;
       const cardCategoryClass = `cat-${item.category}`;
@@ -765,7 +788,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
 
     // Attach View Specs button click listeners
-    const viewButtons = productsGrid.querySelectorAll('.view-specs-btn');
+    const viewButtons = gridEl.querySelectorAll('.view-specs-btn');
     viewButtons.forEach(btn => {
       btn.addEventListener('click', function (e) {
         e.preventDefault();
@@ -780,10 +803,27 @@ document.addEventListener('DOMContentLoaded', function () {
     pill.addEventListener('click', function () {
       filterPills.forEach(p => p.classList.remove('active'));
       this.classList.add('active');
-      currentCategory = this.getAttribute('data-category');
+      currentCategory = this.getAttribute('data-category') || this.getAttribute('data-filter') || 'all';
       renderProducts();
     });
   });
+
+  // Reset Filters Button Handler
+  const resetFiltersBtn = document.getElementById('resetCatalogFiltersBtn');
+  if (resetFiltersBtn) {
+    resetFiltersBtn.addEventListener('click', function () {
+      currentCategory = 'all';
+      currentSearchQuery = '';
+      if (searchInput) searchInput.value = '';
+      if (clearSearchBtn) clearSearchBtn.style.display = 'none';
+      filterPills.forEach(p => {
+        const cat = p.getAttribute('data-category') || p.getAttribute('data-filter');
+        if (cat === 'all') p.classList.add('active');
+        else p.classList.remove('active');
+      });
+      renderProducts();
+    });
+  }
 
   // Search Input Handler
   if (searchInput) {

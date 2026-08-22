@@ -221,7 +221,7 @@ describe('4. 5-Page Architecture & Interactive Component Tests', () => {
     assert.ok(catalogHtmlContent.includes('id="calculator"'), 'Missing #calculator in catalog.html');
     assert.ok(catalogHtmlContent.includes('id="calendar"'), 'Missing #calendar in catalog.html');
     assert.ok(catalogHtmlContent.includes('id="products"'), 'Missing #products in catalog.html');
-    assert.ok(catalogHtmlContent.includes('id="productSpecsModal"') || catalogHtmlContent.includes('id="productModal"'), 'Missing product spec dialog in catalog.html');
+    assert.ok(catalogHtmlContent.includes('id="productSpecsModal"') || catalogHtmlContent.includes('id="productSpecModal"') || catalogHtmlContent.includes('id="productModal"'), 'Missing product spec dialog in catalog.html');
     assert.ok(catalogHtmlContent.includes('id="varietyCompareModal"') || catalogHtmlContent.includes('id="compareModal"'), 'Missing #varietyCompareModal in catalog.html');
     assert.ok(appJsContent.includes('openProductModal'), 'Missing openProductModal function in app.js');
     assert.ok(appJsContent.includes('openCompareModal'), 'Missing openCompareModal function in app.js');
