@@ -351,8 +351,37 @@ describe('6. Production Readiness & SEO Quality Tests', () => {
     assert.ok(has512, 'manifest.json missing 512x512 icon');
   });
 
-  test('sw.js must cache 404.html', () => {
+  test('sw.js must cache 404.html and favicon assets', () => {
     assert.ok(swContent.includes('./404.html'), 'sw.js must cache ./404.html');
+    assert.ok(swContent.includes('./favicon.ico'), 'sw.js must cache ./favicon.ico');
+    assert.ok(swContent.includes('./favicon.svg'), 'sw.js must cache ./favicon.svg');
+    assert.ok(swContent.includes('./assets/images/favicon.svg'), 'sw.js must cache ./assets/images/favicon.svg');
+  });
+
+  test('favicon.ico and favicon.svg must exist at root and be referenced across all HTML pages', () => {
+    const rootFaviconIco = path.join(__dirname, '..', 'favicon.ico');
+    const rootFaviconSvg = path.join(__dirname, '..', 'favicon.svg');
+    const assetFaviconSvg = path.join(__dirname, '..', 'assets', 'images', 'favicon.svg');
+
+    assert.ok(fs.existsSync(rootFaviconIco), 'favicon.ico must exist at project root');
+    assert.ok(fs.existsSync(rootFaviconSvg), 'favicon.svg must exist at project root');
+    assert.ok(fs.existsSync(assetFaviconSvg), 'assets/images/favicon.svg must exist');
+
+    assert.ok(fs.statSync(rootFaviconIco).size > 100, 'favicon.ico must be non-empty');
+    assert.ok(fs.statSync(rootFaviconSvg).size > 100, 'favicon.svg must be non-empty');
+
+    const htmlPages = [
+      { name: 'index.html', content: indexHtmlContent },
+      { name: 'catalog.html', content: catalogHtmlContent },
+      { name: 'schemes.html', content: schemesHtmlContent },
+      { name: 'services.html', content: servicesHtmlContent },
+      { name: 'contact.html', content: contactHtmlContent }
+    ];
+
+    for (const page of htmlPages) {
+      assert.ok(page.content.includes('href="favicon.ico"'), `${page.name} must link to favicon.ico`);
+      assert.ok(page.content.includes('href="assets/images/favicon.svg"'), `${page.name} must link to favicon.svg`);
+    }
   });
 });
 
