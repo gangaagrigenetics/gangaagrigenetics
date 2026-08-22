@@ -1985,6 +1985,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }
     });
+  });
+
   // FAQ Accordion Handler
   document.querySelectorAll('.faq-question').forEach(btn => {
     btn.addEventListener('click', function () {
