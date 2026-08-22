@@ -2802,6 +2802,8 @@ p {
 .ch-item p {
   font-size: 0.88rem;
   color: var(--color-text-muted);
+}
+
 .booking-form-card,
 .form-container-card {
   background: var(--white);
