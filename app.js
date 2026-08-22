@@ -1117,7 +1117,38 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const cropKey = calcCropSelect.value;
-    const rawArea = parseFloat(calcLandArea.value) || 1;
+    const rawVal = calcLandArea ? calcLandArea.value.trim() : '';
+    const rawArea = parseFloat(rawVal);
+    const areaErrorEl = document.getElementById('calcAreaError');
+
+    if (!rawVal || isNaN(rawArea) || rawArea <= 0) {
+      if (calcLandArea) {
+        calcLandArea.classList.add('is-invalid');
+        calcLandArea.classList.remove('is-valid');
+      }
+      if (areaErrorEl) {
+        const span = areaErrorEl.querySelector('span');
+        const errText = (i18n && i18n.ui && i18n.ui[currentLang] && i18n.ui[currentLang].errValidLandArea) || 'Please enter a valid land area greater than 0';
+        if (span) span.textContent = errText;
+        areaErrorEl.classList.add('show');
+      }
+      if (resultSeedRate) resultSeedRate.textContent = '--';
+      if (resultSeedPkt) resultSeedPkt.textContent = '--';
+      if (resultYield) resultYield.textContent = '--';
+      if (resultYieldPerAcre) resultYieldPerAcre.textContent = '';
+      if (resultSpacing) resultSpacing.textContent = '--';
+      if (resultDuration) resultDuration.textContent = '--';
+      const calcBonusBanner = document.getElementById('calcBonusBanner');
+      if (calcBonusBanner) calcBonusBanner.style.display = 'none';
+      return;
+    }
+
+    if (calcLandArea) {
+      calcLandArea.classList.remove('is-invalid');
+      calcLandArea.classList.add('is-valid');
+    }
+    if (areaErrorEl) areaErrorEl.classList.remove('show');
+
     const unit = calcAreaUnit ? calcAreaUnit.value : 'acres';
     const baseCropData = CROP_CALC_DATA[cropKey] || CROP_CALC_DATA.paddy;
     const cropData = getCalcData(cropKey, baseCropData, currentLang);

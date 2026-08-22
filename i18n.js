@@ -251,6 +251,7 @@
         errRequiredCrop: 'Please select a crop variety from the list',
         errRequiredNews: 'Please enter a valid email address or 10-digit mobile number',
         errFormSummary: 'Please correct the highlighted fields before submitting.',
+        errValidLandArea: 'Please enter a valid land area greater than 0',
 
         // Footer Section
         footerBio: 'Ganga Agri Genetics is a premier agricultural seed breeding, production, and retail enterprise based in Shetpalle, Telangana. Committed to empowering farmers with high-yielding genetic hybrids.',
@@ -539,6 +540,7 @@
         errRequiredCrop: 'దయచేసి విత్తన రకాన్ని ఎంచుకోండి',
         errRequiredNews: 'దయచేసి సరైన ఈమెయిల్ లేదా 10 అంకెల మొబైల్ నంబర్‌ను నమోదు చేయండి',
         errFormSummary: 'దయచేసి ఎరుపు రంగులో సూచించిన వివరాలను సరిదిద్దండి.',
+        errValidLandArea: 'దయచేసి 0 కంటే ఎక్కువ సాగు విస్తీర్ణం నమోదు చేయండి',
 
         // Footer Section
         footerBio: 'గంగ అగ్రి జెనెటిక్స్ షెట్పల్లె (తెలంగాణ) కేంద్రంగా పనిచేస్తున్న ప్రముఖ వ్యవసాయ విత్తనోత్పత్తి మరియు పరిశోధనా సంస్థ. నాణ్యమైన హైబ్రిడ్ విత్తనాలతో రైతు సంక్షేమానికి కట్టుబడి ఉన్నాము.',

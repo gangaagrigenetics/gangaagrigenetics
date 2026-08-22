@@ -514,12 +514,20 @@ p {
   font-weight: 600;
   color: var(--slate-700);
   border-radius: var(--radius-sm);
+  line-height: 1;
+  vertical-align: middle;
   transition: all var(--transition-fast);
 }
 
 .nav-link i {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--primary-600);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: middle;
+  margin-top: -1px;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -577,6 +585,7 @@ p {
 
 .hero-slide {
   position: relative;
+  width: 100%;
   min-width: 100%;
   flex-shrink: 0;
   padding: 75px 0 95px;
@@ -622,6 +631,15 @@ p {
   align-items: center;
   position: relative;
   z-index: 2;
+  padding: 0 44px;
+}
+
+@media (max-width: 1200px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 0 24px;
+  }
 }
 
 /* Carousel Navigation Buttons */
@@ -629,22 +647,22 @@ p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   border-radius: var(--radius-full);
-  background: rgba(2, 44, 34, 0.7);
+  background: rgba(2, 44, 34, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
   color: var(--white);
   font-size: 1.1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 20;
   transition: all var(--transition-fast);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
 .carousel-nav-btn:hover {
@@ -655,11 +673,11 @@ p {
 }
 
 .carousel-nav-btn.prev-btn {
-  left: 20px;
+  left: 12px;
 }
 
 .carousel-nav-btn.next-btn {
-  right: 20px;
+  right: 12px;
 }
 
 /* Carousel Indicators */
@@ -2367,8 +2385,10 @@ p {
 .footer {
   background-color: var(--primary-950);
   color: var(--slate-300);
-  padding: 70px 0 24px;
+  padding: 70px 0 100px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  z-index: 1;
 }
 
 .footer-grid {
@@ -3007,9 +3027,25 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 
+  .footer {
+    padding-bottom: 120px;
+  }
+
   .footer-bottom-flex {
     flex-direction: column;
     text-align: center;
+  }
+
+  .floating-hub {
+    bottom: 16px;
+    right: 16px;
+    gap: 8px;
+  }
+
+  .floating-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 1.2rem;
   }
 }
 
