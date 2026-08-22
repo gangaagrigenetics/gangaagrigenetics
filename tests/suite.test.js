@@ -449,6 +449,20 @@ describe('7. Bilingual English & Telugu Localization Integrity Tests', () => {
       assert.ok(teluguRegex.test(item.description.te), `${item.id} description.te must contain Telugu`);
     }
   });
+
+  test('i18n.js must have 100% comprehensive translation keys covering all website sections', () => {
+    const i18n = extractI18n();
+    const requiredPrefixes = [
+      'nav', 'hero', 'tg', 'calc', 'catalog', 'about', 'services', 'calendar', 'reviews', 'gallery', 'location', 'news', 'contact', 'footer', 'compare', 'specModal', 'toast'
+    ];
+    const enKeys = Object.keys(i18n.ui.en);
+    assert.ok(enKeys.length >= 100, `Expected at least 100 UI translation keys, found ${enKeys.length}`);
+
+    for (const prefix of requiredPrefixes) {
+      const matchingKeys = enKeys.filter(k => k.toLowerCase().startsWith(prefix.toLowerCase()));
+      assert.ok(matchingKeys.length > 0, `Missing translation keys for section prefix '${prefix}'`);
+    }
+  });
 });
 
 describe('8. Referenced Images & Static Assets Integrity Tests', () => {

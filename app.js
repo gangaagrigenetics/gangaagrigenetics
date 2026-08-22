@@ -289,6 +289,30 @@ document.addEventListener('DOMContentLoaded', function () {
   // -------------------------------------------------------------------------
   let currentLang = localStorage.getItem('ganga_lang') || 'en';
 
+    function updateNavLabels(t) {
+    const navLinks = {
+      '#hero': `<i class="fa-solid fa-house"></i> ${t.navHome || 'Home'}`,
+      '#tg-bonus': `<i class="fa-solid fa-award"></i> ${t.navBonus || '₹500 Bonus Scheme'}`,
+      '#products': `<i class="fa-solid fa-seedling"></i> ${t.navProducts || 'Hybrid Seeds'}`,
+      '#calculator': `<i class="fa-solid fa-calculator"></i> ${t.navCalc || 'Yield Calculator'}`,
+      '#about': `<i class="fa-solid fa-dna"></i> ${t.navAbout || 'R&D & About'}`,
+      '#services': `<i class="fa-solid fa-gear"></i> ${t.navServices || 'Services'}`,
+      '#calendar': `<i class="fa-solid fa-calendar"></i> ${t.navCalendar || 'Crop Calendar'}`,
+      '#reviews': `<i class="fa-solid fa-star"></i> ${t.navReviews || 'Reviews (5.0★)'}`,
+      '#gallery': `<i class="fa-solid fa-camera"></i> ${t.navGallery || 'Photo Gallery'}`,
+      '#newsletter': `<i class="fa-solid fa-bell"></i> ${t.newsBadge || 'Agri Updates'}`,
+      '#location': `<i class="fa-solid fa-map-location-dot"></i> ${t.navLocation || 'Store Location'}`,
+      '#contact': `<i class="fa-solid fa-paper-plane"></i> ${t.navBookSeeds || 'Book Seeds'}`
+    };
+
+    document.querySelectorAll('#navMenu a.nav-link, #navMenu a.btn').forEach(link => {
+      const href = link.getAttribute('href');
+      if (navLinks[href]) {
+        link.innerHTML = navLinks[href];
+      }
+    });
+  }
+
   function updateLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('ganga_lang', lang);
@@ -298,7 +322,31 @@ document.addEventListener('DOMContentLoaded', function () {
     const langLabel = document.getElementById('langLabel');
     if (langLabel && t.langLabel) langLabel.textContent = t.langLabel;
 
-    // Translate specific elements by id
+    // 1. Process all elements with data-i18n attribute
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key]) {
+        el.innerHTML = t[key];
+      }
+    });
+
+    // 2. Process all inputs with data-i18n-placeholder attribute
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (t[key]) {
+        el.placeholder = t[key];
+      }
+    });
+
+    // 3. Process all elements with data-i18n-title attribute
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+      const key = el.getAttribute('data-i18n-title');
+      if (t[key]) {
+        el.title = t[key];
+      }
+    });
+
+    // 4. Update specific element IDs
     const elMap = {
       'heroBadgeText': t.heroBadge,
       'heroDescText': t.heroDesc,
@@ -317,19 +365,181 @@ document.addEventListener('DOMContentLoaded', function () {
       'compareLabelA': t.compareLabelA,
       'compareLabelB': t.compareLabelB,
       'galleryHeading': t.galleryHeading,
-      'gallerySubtitle': t.gallerySub
+      'gallerySubtitle': t.gallerySub,
+      // Telangana Bonus Section
+      'tgBonusHeading': t.tgBonusHeading,
+      'tgBonusSubtitle': t.tgBonusSubtitle,
+      'tgBonusHeroTitle': t.tgBonusHeroTitle,
+      'tgBonusHeroDesc': t.tgBonusHeroDesc,
+      'tgCriteriaTitle': t.tgCriteriaTitle,
+      'tgCrit1Title': t.tgCrit1Title,
+      'tgCrit1Desc': t.tgCrit1Desc,
+      'tgCrit2Title': t.tgCrit2Title,
+      'tgCrit2Desc': t.tgCrit2Desc,
+      'tgCrit3Title': t.tgCrit3Title,
+      'tgCrit3Desc': t.tgCrit3Desc,
+      'tgCrit4Title': t.tgCrit4Title,
+      'tgCrit4Desc': t.tgCrit4Desc,
+      'tgBonusBtnExplore': t.tgBonusBtnExplore,
+      'tgBonusBtnCalc': t.tgBonusBtnCalc,
+      // About Section
+      'aboutHeading': t.aboutHeading,
+      'aboutLead': t.aboutLead,
+      'aboutDesc': t.aboutDesc,
+      'aboutCard1Title': t.aboutCard1Title,
+      'aboutCard1Desc': t.aboutCard1Desc,
+      'aboutCard2Title': t.aboutCard2Title,
+      'aboutCard2Desc': t.aboutCard2Desc,
+      'aboutCard3Title': t.aboutCard3Title,
+      'aboutCard3Desc': t.aboutCard3Desc,
+      'aboutBtnCenter': t.aboutBtnCenter,
+      'aboutBtnCall': t.aboutBtnCall,
+      'aboutLabOverlay': t.aboutLabOverlay,
+      'aboutQualityTitle': t.aboutQualityTitle,
+      'aboutQualitySub': t.aboutQualitySub,
+      'aboutQ1Title': t.aboutQ1Title,
+      'aboutQ1Desc': t.aboutQ1Desc,
+      'aboutQ2Title': t.aboutQ2Title,
+      'aboutQ2Desc': t.aboutQ2Desc,
+      'aboutQ3Title': t.aboutQ3Title,
+      'aboutQ3Desc': t.aboutQ3Desc,
+      'aboutQ4Title': t.aboutQ4Title,
+      'aboutQ4Desc': t.aboutQ4Desc,
+      'statGerminationLabel': t.statGerminationLabel,
+      'statFarmersLabel': t.statFarmersLabel,
+      'statRatingLabel': t.statRatingLabel,
+      'statVarietiesLabel': t.statVarietiesLabel,
+      // Services Section
+      'servicesHeading': t.servicesHeading,
+      'servicesSubtitle': t.servicesSubtitle,
+      'service1Title': t.service1Title,
+      'service1Desc': t.service1Desc,
+      'service2Title': t.service2Title,
+      'service2Desc': t.service2Desc,
+      'service3Title': t.service3Title,
+      'service3Desc': t.service3Desc,
+      'service4Title': t.service4Title,
+      'service4Desc': t.service4Desc,
+      'servicesCtaTitle': t.servicesCtaTitle,
+      'servicesCtaDesc': t.servicesCtaDesc,
+      'servicesCtaBtn': t.servicesCtaBtn,
+      // Crop Calendar Section
+      'calendarHeading': t.calendarHeading,
+      'calendarSubtitle': t.calendarSubtitle,
+      'kharifTag': t.kharifTag,
+      'kharifTitle': t.kharifTitle,
+      'kharifMonths': t.kharifMonths,
+      'kharifDesc': t.kharifDesc,
+      'kharifPaddyLabel': t.kharifPaddyLabel,
+      'kharifMaizeLabel': t.kharifMaizeLabel,
+      'kharifSoybeanLabel': t.kharifSoybeanLabel,
+      'rabiTag': t.rabiTag,
+      'rabiTitle': t.rabiTitle,
+      'rabiMonths': t.rabiMonths,
+      'rabiDesc': t.rabiDesc,
+      'rabiPaddyLabel': t.rabiPaddyLabel,
+      'rabiMaizeLabel': t.rabiMaizeLabel,
+      'rabiMustardLabel': t.rabiMustardLabel,
+      'summerTag': t.summerTag,
+      'summerTitle': t.summerTitle,
+      'summerMonths': t.summerMonths,
+      'summerDesc': t.summerDesc,
+      'summerBajraLabel': t.summerBajraLabel,
+      'summerJowarLabel': t.summerJowarLabel,
+      // Reviews Section
+      'reviewsHeading': t.reviewsHeading,
+      'reviewsSubtitle': t.reviewsSubtitle,
+      'revRatingLabel': t.revRatingLabel,
+      'revVerifiedLabel': t.revVerifiedLabel,
+      'rev1Text': t.rev1Text,
+      'rev1Author': t.rev1Author,
+      'rev1Village': t.rev1Village,
+      'rev2Text': t.rev2Text,
+      'rev2Author': t.rev2Author,
+      'rev2Village': t.rev2Village,
+      'rev3Text': t.rev3Text,
+      'rev3Author': t.rev3Author,
+      'rev3Village': t.rev3Village,
+      'reviewsBtnGoogle': t.reviewsBtnGoogle,
+      'reviewsBtnWrite': t.reviewsBtnWrite,
+      // Store Location Section
+      'locationHeading': t.locationHeading,
+      'locationSubtitle': t.locationSubtitle,
+      'locCardTitle': t.locCardTitle,
+      'locAddressLabel': t.locAddressLabel,
+      'locAddressVal': t.locAddressVal,
+      'locPhoneLabel': t.locPhoneLabel,
+      'locEmailLabel': t.locEmailLabel,
+      'locHoursLabel': t.locHoursLabel,
+      'locHoursWeekdays': t.locHoursWeekdays,
+      'locHoursSunday': t.locHoursSunday,
+      'locBtnDirections': t.locBtnDirections,
+      'locBtnCall': t.locBtnCall,
+      'locMapBadge': t.locMapBadge,
+      // Newsletter Section
+      'newsHeading': t.newsHeading,
+      'newsSubtitle': t.newsSubtitle,
+      'newsPerk1': t.newsPerk1,
+      'newsPerk2': t.newsPerk2,
+      'newsPerk3': t.newsPerk3,
+      'newsBtnSubscribe': t.newsBtnSubscribe,
+      'newsSuccessTitle': t.newsSuccessTitle,
+      'newsSuccessDesc': t.newsSuccessDesc,
+      'newsBtnReset': t.newsBtnReset,
+      // Contact Section
+      'contactHeading': t.contactHeading,
+      'contactSubtitle': t.contactSubtitle,
+      'contactNameLabel': t.contactNameLabel,
+      'contactPhoneLabel': t.contactPhoneLabel,
+      'contactVillageLabel': t.contactVillageLabel,
+      'contactCropLabel': t.contactCropLabel,
+      'contactAcreageLabel': t.contactAcreageLabel,
+      'contactNotesLabel': t.contactNotesLabel,
+      'contactBtnSubmit': t.contactBtnSubmit,
+      'contactHelpText': t.contactHelpText,
+      // Footer Section
+      'footerBio': t.footerBio,
+      'footerVerified': t.footerVerified,
+      'footerConnect': t.footerConnect,
+      'footerQuickLinks': t.footerQuickLinks,
+      'footerSeedVarieties': t.footerSeedVarieties,
+      'footerStoreOutlet': t.footerStoreOutlet,
+      'footerCopyright': t.footerCopyright,
+      'footerPrivacy': t.footerPrivacy,
+      'footerTerms': t.footerTerms,
+      'footerSitemap': t.footerSitemap,
+      // Dialogs
+      'compareColParamHeader': t.compareTableHeaderParam,
+      'compareColAHeader': t.compareTableHeaderA,
+      'compareColBHeader': t.compareTableHeaderB,
+      'compareInquireBtn': t.compareInquireBtn,
+      'closeCompareFooterBtn': t.compareCloseBtn
     };
 
     for (const [id, text] of Object.entries(elMap)) {
       const el = document.getElementById(id);
-      if (el && text) el.textContent = text;
+      if (el && text) {
+        const icon = el.querySelector('i');
+        if (icon) {
+          el.innerHTML = '';
+          el.appendChild(icon);
+          el.appendChild(document.createTextNode(' ' + text.replace(/<[^>]*>?/gm, '')));
+        } else {
+          el.innerHTML = text;
+        }
+      }
     }
 
     const searchInput = document.getElementById('seedSearchInput');
     if (searchInput && t.catalogSearchPlaceholder) {
       searchInput.placeholder = t.catalogSearchPlaceholder;
     }
+    const newsContact = document.getElementById('newsContact') || document.getElementById('newsletterContact');
+    if (newsContact && t.newsInputPlaceholder) {
+      newsContact.placeholder = t.newsInputPlaceholder;
+    }
 
+    updateNavLabels(t);
     updateCalculatorDropdownLabels();
     renderProducts();
     renderGalleryCarousel();
