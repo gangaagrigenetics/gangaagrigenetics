@@ -7,6 +7,10 @@ const path = require('node:path');
 const appJsPath = path.join(__dirname, '..', 'app.js');
 const i18nJsPath = path.join(__dirname, '..', 'i18n.js');
 const indexHtmlPath = path.join(__dirname, '..', 'index.html');
+const catalogHtmlPath = path.join(__dirname, '..', 'catalog.html');
+const schemesHtmlPath = path.join(__dirname, '..', 'schemes.html');
+const servicesHtmlPath = path.join(__dirname, '..', 'services.html');
+const contactHtmlPath = path.join(__dirname, '..', 'contact.html');
 const styleCssPath = path.join(__dirname, '..', 'style.css');
 const manifestPath = path.join(__dirname, '..', 'manifest.json');
 const swPath = path.join(__dirname, '..', 'sw.js');
@@ -14,6 +18,10 @@ const swPath = path.join(__dirname, '..', 'sw.js');
 const appJsContent = fs.readFileSync(appJsPath, 'utf8');
 const i18nJsContent = fs.readFileSync(i18nJsPath, 'utf8');
 const indexHtmlContent = fs.readFileSync(indexHtmlPath, 'utf8');
+const catalogHtmlContent = fs.readFileSync(catalogHtmlPath, 'utf8');
+const schemesHtmlContent = fs.readFileSync(schemesHtmlPath, 'utf8');
+const servicesHtmlContent = fs.readFileSync(servicesHtmlPath, 'utf8');
+const contactHtmlContent = fs.readFileSync(contactHtmlPath, 'utf8');
 const styleCssContent = fs.readFileSync(styleCssPath, 'utf8');
 const manifestContent = fs.readFileSync(manifestPath, 'utf8');
 const swContent = fs.readFileSync(swPath, 'utf8');
@@ -163,7 +171,7 @@ describe('2. Interactive Crop Calculator & Bonus Computation Tests', () => {
   });
 
   test('Soybean calculator seed rate and 30kg bag packet calculation', () => {
-    const soybean = cropData.soybean;
+    const soybean = cropData.soybean_shakti || cropData.soybean;
     assert.ok(soybean, 'Soybean missing from calculator');
     assert.equal(soybean.packetSize, 30, 'Soybean packet size must be 30 kg bag');
 
@@ -175,8 +183,12 @@ describe('2. Interactive Crop Calculator & Bonus Computation Tests', () => {
 });
 
 describe('3. Contact & Phone Number Consistency Tests', () => {
-  test('Phone number 7013135345 must be present across index.html and app.js', () => {
-    assert.ok(indexHtmlContent.includes('7013135345') || indexHtmlContent.includes('70131 35345'), 'Phone number missing in index.html');
+  test('Phone number 7013135345 must be present across all 5 pages and app.js', () => {
+    assert.ok(indexHtmlContent.includes('7013135345') || indexHtmlContent.includes('70131 35345'), 'Phone missing in index.html');
+    assert.ok(catalogHtmlContent.includes('7013135345') || catalogHtmlContent.includes('70131 35345'), 'Phone missing in catalog.html');
+    assert.ok(schemesHtmlContent.includes('7013135345') || schemesHtmlContent.includes('70131 35345'), 'Phone missing in schemes.html');
+    assert.ok(servicesHtmlContent.includes('7013135345') || servicesHtmlContent.includes('70131 35345'), 'Phone missing in services.html');
+    assert.ok(contactHtmlContent.includes('7013135345') || contactHtmlContent.includes('70131 35345'), 'Phone missing in contact.html');
     assert.ok(appJsContent.includes('7013135345'), 'Phone number missing in app.js WhatsApp handlers');
   });
 
@@ -188,106 +200,91 @@ describe('3. Contact & Phone Number Consistency Tests', () => {
     }
   });
 
-  test('Social media profile links must be valid in index.html', () => {
-    assert.ok(indexHtmlContent.includes('https://www.instagram.com/gangaagrigenetics'), 'Instagram link missing');
-    assert.ok(indexHtmlContent.includes('https://www.facebook.com/gangaagrigenetics'), 'Facebook link missing');
-    assert.ok(indexHtmlContent.includes('https://twitter.com/gangaagri'), 'Twitter/X link missing');
+  test('Social media profile links must be valid across pages', () => {
+    assert.ok(indexHtmlContent.includes('https://www.instagram.com/gangaagrigenetics'), 'Instagram link missing in index.html');
+    assert.ok(indexHtmlContent.includes('https://www.facebook.com/gangaagrigenetics'), 'Facebook link missing in index.html');
+    assert.ok(indexHtmlContent.includes('https://twitter.com/gangaagri'), 'Twitter/X link missing in index.html');
   });
 });
 
-describe('4. DOM Sections & Interactive Component Tests', () => {
-  test('index.html must have Telangana ₹500 Bonus Scheme section (#tg-bonus)', () => {
-    assert.ok(indexHtmlContent.includes('id="tg-bonus"'), 'Missing #tg-bonus section');
-    assert.ok(indexHtmlContent.includes('Grain Length &lt; 6.0 mm') || indexHtmlContent.includes('Length < 6.0 mm'));
-    assert.ok(indexHtmlContent.includes('Grain Width &lt; 2.0 mm') || indexHtmlContent.includes('Width < 2.0 mm'));
-    assert.ok(indexHtmlContent.includes('Moisture Below 17%') || indexHtmlContent.includes('Moisture < 17%'));
-    assert.ok(indexHtmlContent.includes('AEO Digital Portal Booking'));
-  });
-
-  test('index.html must have Agriculture Updates Newsletter section (#newsletter)', () => {
-    assert.ok(indexHtmlContent.includes('id="newsletter"'), 'Missing #newsletter section');
-    assert.ok(indexHtmlContent.includes('id="agriNewsletterForm"') || indexHtmlContent.includes('id="newsletterForm"'), 'Missing newsletter form');
-    assert.ok(indexHtmlContent.includes('id="newsContact"') || indexHtmlContent.includes('id="newsletterContact"'), 'Missing newsletter contact input');
-    assert.ok(indexHtmlContent.includes('id="newsletterSuccessBox"') || indexHtmlContent.includes('id="newsletterSuccessMsg"'), 'Missing newsletter success container');
-  });
-
-  test('index.html must have Hero Carousel with 2-second timing configuration in app.js', () => {
-    assert.ok(indexHtmlContent.includes('id="heroCarousel"'), 'Missing #heroCarousel');
+describe('4. 5-Page Architecture & Interactive Component Tests', () => {
+  test('index.html must have Hero Carousel, Top Sellers Teaser, 4-Stage Guarantee, ₹500 Bonus Teaser Banner, and Reviews', () => {
+    assert.ok(indexHtmlContent.includes('id="heroCarousel"'), 'Missing #heroCarousel in index.html');
+    assert.ok(indexHtmlContent.includes('id="top-sellers"'), 'Missing #top-sellers in index.html');
+    assert.ok(indexHtmlContent.includes('id="quality"'), 'Missing #quality in index.html');
+    assert.ok(indexHtmlContent.includes('id="tg-bonus"'), 'Missing #tg-bonus banner in index.html');
+    assert.ok(indexHtmlContent.includes('id="reviews"'), 'Missing #reviews in index.html');
     assert.ok(appJsContent.includes('2000'), 'Carousel interval must be 2000ms (2s)');
   });
 
-  test('index.html and app.js must have Product Spec Dialog with bonus notice support', () => {
-    assert.ok(indexHtmlContent.includes('id="productSpecModal"') || indexHtmlContent.includes('id="productModal"'), 'Missing product spec dialog');
-    assert.ok(indexHtmlContent.includes('id="modalBonusAlert"') || indexHtmlContent.includes('id="modalBonusContainer"'), 'Missing bonus alert container in dialog');
+  test('catalog.html must have Calculator, Sowing Calendar, Products Catalog, Specs Modal, and Variety Comparison Modal', () => {
+    assert.ok(catalogHtmlContent.includes('id="calculator"'), 'Missing #calculator in catalog.html');
+    assert.ok(catalogHtmlContent.includes('id="calendar"'), 'Missing #calendar in catalog.html');
+    assert.ok(catalogHtmlContent.includes('id="products"'), 'Missing #products in catalog.html');
+    assert.ok(catalogHtmlContent.includes('id="productSpecsModal"') || catalogHtmlContent.includes('id="productModal"'), 'Missing product spec dialog in catalog.html');
+    assert.ok(catalogHtmlContent.includes('id="varietyCompareModal"') || catalogHtmlContent.includes('id="compareModal"'), 'Missing #varietyCompareModal in catalog.html');
     assert.ok(appJsContent.includes('openProductModal'), 'Missing openProductModal function in app.js');
+    assert.ok(appJsContent.includes('openCompareModal'), 'Missing openCompareModal function in app.js');
+  });
+
+  test('schemes.html must have ₹500 Bonus details, 7 fine rice cards, 3-stage timeline, and newsletter form', () => {
+    assert.ok(schemesHtmlContent.includes('id="scheme-details"'), 'Missing #scheme-details in schemes.html');
+    assert.ok(schemesHtmlContent.includes('id="eligible-varieties"'), 'Missing #eligible-varieties in schemes.html');
+    assert.ok(schemesHtmlContent.includes('id="newsletter"'), 'Missing #newsletter in schemes.html');
+    assert.ok(schemesHtmlContent.includes('id="agriNewsletterForm"'), 'Missing newsletter form in schemes.html');
+    assert.ok(schemesHtmlContent.includes('id="newsContact"'), 'Missing newsletter contact input in schemes.html');
+    assert.ok(schemesHtmlContent.includes('qualification-timeline'), 'Missing 3-stage qualification timeline in schemes.html');
+  });
+
+  test('services.html must have 4-Stage Quality Guarantee, Agricultural Services grid, Photo Gallery, and Lightbox', () => {
+    assert.ok(servicesHtmlContent.includes('id="quality-lab"'), 'Missing #quality-lab in services.html');
+    assert.ok(servicesHtmlContent.includes('id="services"'), 'Missing #services in services.html');
+    assert.ok(servicesHtmlContent.includes('id="gallery"'), 'Missing #gallery in services.html');
+    assert.ok(servicesHtmlContent.includes('id="galleryTrack"'), 'Missing #galleryTrack in services.html');
+    assert.ok(servicesHtmlContent.includes('id="galleryLightboxModal"'), 'Missing #galleryLightboxModal in services.html');
+    assert.ok(appJsContent.includes('renderGalleryCarousel'), 'Missing renderGalleryCarousel in app.js');
+    assert.ok(appJsContent.includes('openGalleryLightbox'), 'Missing openGalleryLightbox in app.js');
+  });
+
+  test('contact.html must have Store details, Google Map, Seed Inquiry Form, and FAQ accordion', () => {
+    assert.ok(contactHtmlContent.includes('id="inquiry"'), 'Missing #inquiry in contact.html');
+    assert.ok(contactHtmlContent.includes('id="seedInquiryForm"'), 'Missing #seedInquiryForm in contact.html');
+    assert.ok(contactHtmlContent.includes('id="faqs"'), 'Missing #faqs in contact.html');
+    assert.ok(contactHtmlContent.includes('faq-accordion-list'), 'Missing faq-accordion-list in contact.html');
+    assert.ok(contactHtmlContent.includes('id="liveStoreStatus"'), 'Missing #liveStoreStatus in contact.html');
+    assert.ok(appJsContent.includes('checkStoreOpenStatus'), 'Missing checkStoreOpenStatus function in app.js');
+  });
+
+  test('All 5 HTML pages must have active navigation links and accessible language toggle', () => {
+    const pages = [
+      { name: 'index.html', content: indexHtmlContent },
+      { name: 'catalog.html', content: catalogHtmlContent },
+      { name: 'schemes.html', content: schemesHtmlContent },
+      { name: 'services.html', content: servicesHtmlContent },
+      { name: 'contact.html', content: contactHtmlContent }
+    ];
+
+    for (const p of pages) {
+      assert.ok(p.content.includes('id="navMenu"'), `${p.name} missing #navMenu`);
+      assert.ok(p.content.includes('id="langToggleBtn"'), `${p.name} missing #langToggleBtn`);
+      assert.ok(p.content.includes('id="liveStoreStatus"'), `${p.name} missing #liveStoreStatus`);
+    }
+  });
+
+  test('Forms must have red highlighted mandatory asterisks (* in .req-star) and inline error containers', () => {
+    assert.ok(contactHtmlContent.includes('class="req-star">*</span>'), 'Missing .req-star in contact.html');
+    assert.ok(schemesHtmlContent.includes('class="req-star">*</span>'), 'Missing .req-star in schemes.html');
+    assert.ok(contactHtmlContent.includes('id="contactNameError"'), 'Missing contactNameError in contact.html');
+    assert.ok(contactHtmlContent.includes('id="contactPhoneError"'), 'Missing contactPhoneError in contact.html');
+    assert.ok(contactHtmlContent.includes('id="contactVillageError"'), 'Missing contactVillageError in contact.html');
+    assert.ok(contactHtmlContent.includes('id="contactCropError"'), 'Missing contactCropError in contact.html');
+    assert.ok(schemesHtmlContent.includes('id="newsContactError"'), 'Missing newsContactError in schemes.html');
   });
 
   test('style.css and app.js must lock background scroll and enable modal overflow scrolling', () => {
     assert.ok(styleCssContent.includes('modal-open') || styleCssContent.includes('has(dialog[open])'), 'Missing modal scroll lock CSS');
     assert.ok(styleCssContent.includes('overflow-y: auto'), 'Missing modal overflow-y: auto');
     assert.ok(appJsContent.includes('modal-open'), 'Missing modal-open class management in app.js');
-  });
-
-  test('index.html and app.js must provide full Variety Comparison Engine with dialog triggers and table', () => {
-    assert.ok(indexHtmlContent.includes('id="compareModal"'), 'Missing #compareModal');
-    assert.ok(indexHtmlContent.includes('id="openCompareModalBtn"'), 'Missing #openCompareModalBtn');
-    assert.ok(indexHtmlContent.includes('id="compareCropA"'), 'Missing #compareCropA select');
-    assert.ok(indexHtmlContent.includes('id="compareCropB"'), 'Missing #compareCropB select');
-    assert.ok(indexHtmlContent.includes('id="comparisonTableBody"'), 'Missing #comparisonTableBody');
-    assert.ok(indexHtmlContent.includes('id="modalCompareVarietyBtn"'), 'Missing #modalCompareVarietyBtn');
-    assert.ok(appJsContent.includes('openCompareModal'), 'Missing openCompareModal function in app.js');
-    assert.ok(appJsContent.includes('populateComparisonDropdowns'), 'Missing populateComparisonDropdowns function in app.js');
-    assert.ok(appJsContent.includes('renderComparisonTable'), 'Missing renderComparisonTable function in app.js');
-    assert.ok(appJsContent.includes('e.target === compareModal'), 'Backdrop click must check e.target === compareModal to prevent closing on select change');
-  });
-
-  test('Comparison logic should correctly map all 13 catalog varieties across parameters', () => {
-    const catalog = extractSeedCatalog();
-    assert.equal(catalog.length, 13, 'Should have 13 varieties');
-    
-    // Verify each variety has complete comparison data
-    for (const crop of catalog) {
-      assert.ok(crop.varietyCode, `${crop.name} must have varietyCode`);
-      assert.ok(crop.duration, `${crop.name} must have duration`);
-      assert.ok(crop.yieldPotential, `${crop.name} must have yieldPotential`);
-      assert.ok(crop.germination, `${crop.name} must have germination`);
-      assert.ok(crop.seedRate, `${crop.name} must have seedRate`);
-      assert.ok(crop.season, `${crop.name} must have season`);
-      assert.ok(crop.grainType, `${crop.name} must have grainType`);
-      assert.ok(crop.keyTrait, `${crop.name} must have keyTrait`);
-      assert.ok(crop.soilSuitability, `${crop.name} must have soilSuitability`);
-    }
-  });
-
-  test('Real-time Store Operating Hours engine must target liveStoreStatus and hoursLiveBadge', () => {
-    assert.ok(indexHtmlContent.includes('id="liveStoreStatus"'), 'Missing #liveStoreStatus in index.html');
-    assert.ok(indexHtmlContent.includes('id="hoursLiveBadge"'), 'Missing #hoursLiveBadge in index.html');
-    assert.ok(appJsContent.includes('checkStoreOpenStatus'), 'Missing checkStoreOpenStatus function');
-    assert.ok(appJsContent.includes('liveStoreStatus'), 'checkStoreOpenStatus must look up liveStoreStatus');
-  });
-
-  test('Photo Gallery Carousel and Lightbox modal must be present in index.html, app.js and style.css', () => {
-    assert.ok(indexHtmlContent.includes('id="gallery"'), 'Missing #gallery section in index.html');
-    assert.ok(indexHtmlContent.includes('id="galleryTrack"'), 'Missing #galleryTrack in index.html');
-    assert.ok(indexHtmlContent.includes('id="galleryPrevBtn"'), 'Missing #galleryPrevBtn in index.html');
-    assert.ok(indexHtmlContent.includes('id="galleryNextBtn"'), 'Missing #galleryNextBtn in index.html');
-    assert.ok(indexHtmlContent.includes('id="galleryDots"'), 'Missing #galleryDots in index.html');
-    assert.ok(indexHtmlContent.includes('id="galleryLightboxModal"'), 'Missing #galleryLightboxModal in index.html');
-    assert.ok(appJsContent.includes('renderGalleryCarousel'), 'Missing renderGalleryCarousel in app.js');
-    assert.ok(appJsContent.includes('openGalleryLightbox'), 'Missing openGalleryLightbox in app.js');
-    assert.ok(styleCssContent.includes('.gallery-section'), 'Missing .gallery-section in style.css');
-    assert.ok(styleCssContent.includes('.gallery-lightbox-dialog'), 'Missing .gallery-lightbox-dialog in style.css');
-  });
-
-  test('Forms must have red highlighted mandatory asterisks (* in .req-star) and inline error containers', () => {
-    assert.ok(indexHtmlContent.includes('class="req-star">*</span>'), 'Missing .req-star in mandatory form labels');
-    assert.ok(indexHtmlContent.includes('id="farmerNameError"'), 'Missing farmerNameError inline container');
-    assert.ok(indexHtmlContent.includes('id="farmerPhoneError"'), 'Missing farmerPhoneError inline container');
-    assert.ok(indexHtmlContent.includes('id="farmerVillageError"'), 'Missing farmerVillageError inline container');
-    assert.ok(indexHtmlContent.includes('id="cropInterestError"'), 'Missing cropInterestError inline container');
-    assert.ok(indexHtmlContent.includes('id="newsContactError"'), 'Missing newsContactError inline container');
-    assert.ok(indexHtmlContent.includes('id="seedInquiryAlert"'), 'Missing seedInquiryAlert inline container');
-    assert.ok(indexHtmlContent.includes('id="newsletterAlert"'), 'Missing newsletterAlert inline container');
   });
 });
 

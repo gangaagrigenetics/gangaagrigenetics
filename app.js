@@ -563,6 +563,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function updateNavLabels(t) {
+    if (!t) return;
+    const navMap = {
+      'navLinkHome': t.navHome,
+      'navLinkCatalog': t.navCatalog || t.navProducts,
+      'navLinkSchemes': t.navSchemes || t.navBonus,
+      'navLinkServices': t.navServices,
+      'navLinkContact': t.navContact || t.navLocation,
+      'navLinkBonus': t.navBonus,
+      'navLinkProducts': t.navProducts,
+      'navLinkCalc': t.navCalc,
+      'navLinkAbout': t.navAbout,
+      'navLinkGallery': t.navGallery,
+      'navLinkLocation': t.navLocation,
+      'navLinkBookSeeds': t.navBookSeeds
+    };
+    for (const [id, label] of Object.entries(navMap)) {
+      const el = document.getElementById(id);
+      if (el && label) {
+        const icon = el.querySelector('i');
+        if (icon) {
+          el.innerHTML = '';
+          el.appendChild(icon);
+          el.appendChild(document.createTextNode(' ' + label));
+        } else {
+          el.textContent = label;
+        }
+      }
+    }
+  }
+
   function updateCalculatorDropdownLabels() {
     const isTe = (currentLang === 'te');
     const i18n = getI18n();
@@ -1952,6 +1983,21 @@ document.addEventListener('DOMContentLoaded', function () {
           mobileToggle.classList.remove('active');
           mobileToggle.setAttribute('aria-expanded', 'false');
         }
+      }
+    });
+  // FAQ Accordion Handler
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', function () {
+      const item = this.closest('.faq-item');
+      if (!item) return;
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) other.classList.remove('active');
+      });
+      if (isActive) {
+        item.classList.remove('active');
+      } else {
+        item.classList.add('active');
       }
     });
   });

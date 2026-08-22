@@ -1,8 +1,12 @@
 // Ganga Agri Genetics Service Worker - Offline Caching
-const CACHE_NAME = 'ganga-agri-v9';
+const CACHE_NAME = 'ganga-agri-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './catalog.html',
+  './schemes.html',
+  './services.html',
+  './contact.html',
   './404.html',
   './style.css',
   './i18n.js',

@@ -25,13 +25,32 @@
         navBonus: '₹500 Bonus Scheme',
         navProducts: 'Hybrid Seeds',
         navCalc: 'Yield Calculator',
+        navCatalog: 'Seed Catalog & Calculator',
+        navSchemes: 'Govt Bonus Scheme',
         navAbout: 'R&D & About',
-        navServices: 'Services',
+        navServices: 'R&D & Services',
         navCalendar: 'Crop Calendar',
         navReviews: 'Reviews (5.0★)',
         navGallery: 'Photo Gallery',
         navLocation: 'Store Location',
+        navContact: 'Contact & Store',
         navBookSeeds: 'Book Seeds',
+
+        // Page Headers
+        catalogPageTitle: 'Premium Hybrid Seeds Catalog & Yield Calculator',
+        catalogPageSubtitle: 'Calculate exact seed requirements for your farm and browse 100% certified hybrids engineered for Telangana soils.',
+        schemesPageTitle: 'Maximize Your Profit with the Telangana ₹500/Qtl Sannalu Bonus',
+        schemesPageSubtitle: 'Ganga Agri Genetics supplies 100% certified breeder seeds for all 7 eligible fine-grain paddy varieties.',
+        servicesPageTitle: 'Advanced Seed Genetics & Agricultural Innovation',
+        servicesPageSubtitle: 'Rigorous R&D, 4-stage quality assurance laboratory, and specialized agricultural services in Shetpalle.',
+        contactPageTitle: 'Visit Us in Shetpalle or Book Online',
+        contactPageSubtitle: 'Direct farm supply, express WhatsApp dispatch, instant seed booking, and personalized agronomy support.',
+
+        // Top Sellers Teaser Section
+        topSellersBadge: '🌟 Farmer Favorites',
+        topSellersHeading: 'Flagship High-Yielding Hybrids',
+        topSellersSubtitle: 'Top-performing hybrid seeds trusted by thousands of Telangana farmers for record yields.',
+        topSellersBtn: 'View Full Catalog & Prices (13 Seeds) ➔',
 
         // Hero Section
         heroBadge: 'Certified Telangana Agricultural Seed Enterprise',
@@ -328,13 +347,32 @@
         navBonus: '₹500 బోనస్ పథకం',
         navProducts: 'హైబ్రిడ్ విత్తనాలు',
         navCalc: 'దిగుబడి కాలిక్యులేటర్',
+        navCatalog: 'విత్తన కేటలాగ్ & కాలిక్యులేటర్',
+        navSchemes: '₹500 బోనస్ పథకం',
         navAbout: 'పరిశోధన & వివరాలు',
-        navServices: 'సేవలు',
+        navServices: 'పరిశోధన & సేవలు',
         navCalendar: 'పంటల క్యాలెండర్',
         navReviews: 'రైతుల సమీక్షలు (5.0★)',
         navGallery: 'ఫోటో గ్యాలరీ',
         navLocation: 'దుకాణం చిరునామా',
+        navContact: 'సంప్రదించండి & కేంద్రం',
         navBookSeeds: 'విత్తనాలు బుక్ చేయండి',
+
+        // Page Headers
+        catalogPageTitle: 'ప్రీమియం హైబ్రిడ్ విత్తనాల కేటలాగ్ & దిగుబడి కాలిక్యులేటర్',
+        catalogPageSubtitle: 'మీ పొలానికి కావలసిన విత్తన మోతాదును లెక్కించండి మరియు తెలంగాణ నేలలకు అనువైన 100% ధ్రువీకృత విత్తనాలను పరిశీలించండి.',
+        schemesPageTitle: 'తెలంగాణ ప్రభుత్వ ₹500/క్వింటాల్ సన్నాల బోనస్‌తో గరిష్ట లాభం పొందండి',
+        schemesPageSubtitle: 'అనుమతించబడిన 7 సన్న రకాల వరి విత్తనాలకు గంగ అగ్రి జెనెటిక్స్ 100% ధ్రువీకృత బ్రీడర్ విత్తనాలను అందిస్తుంది.',
+        servicesPageTitle: 'అధునాతన విత్తన పరిశోధన & వ్యవసాయ సేవలు',
+        servicesPageSubtitle: 'షెట్పల్లెలో శాస్త్రీయ ల్యాబ్ పరీక్షలు, 4-దశల నాణ్యతా ప్రమాణాలు మరియు ప్రత్యేక వ్యవసాయ సేవలు.',
+        contactPageTitle: 'షెట్పల్లె విక్రయ కేంద్రాన్ని సందర్శించండి లేదా ఆన్‌లైన్‌లో బుక్ చేయండి',
+        contactPageSubtitle: 'రైతులకు నేరుగా విత్తనాల సరఫరా, తక్షణ వాట్సాప్ ఆర్డర్ మరియు వ్యక్తిగత వ్యవసాయ సలహాలు.',
+
+        // Top Sellers Teaser Section
+        topSellersBadge: '🌟 రైతులకు ఇష్టమైన రకాలు',
+        topSellersHeading: 'రైతులు ఎక్కువగా ఎంచుకునే ప్రముఖ హైబ్రిడ్ విత్తనాలు',
+        topSellersSubtitle: 'అత్యధిక దిగుబడి కోసం వేలాది మంది తెలంగాణ రైతులు విశ్వసించే అత్యుత్తమ హైబ్రిడ్ రకాలు.',
+        topSellersBtn: 'మొత్తం 13 రకాల కేటలాగ్ & ధరలు చూడండి ➔',
 
         // Hero Section
         heroBadge: 'తెలంగాణ ధ్రువీకృత వ్యవసాయ విత్తన సంస్థ',
