@@ -37,11 +37,16 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     {
       id: 'paddy-bpt5204',
-      name: 'Ganga BPT Super Fine Hybrid Rice',
-      teluguName: 'గంగ బి.పి.టి సూపర్ ఫైన్ రైస్',
+      name: 'Ganga BPT 5204 (Samba Masuri)',
+      teluguName: 'గంగ బి.పి.టి 5204 (సాంబ మసూరి)',
       category: 'cereals',
       categoryLabel: 'Cereal Crop',
       varietyCode: 'GAG-BPT-52',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.3mm), Width < 2.0mm (1.8mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.3 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
       duration: '135 - 140 Days',
       durationTe: '135 - 140 రోజులు',
       yieldPotential: '30 - 34 Qtl / Acre',
@@ -49,15 +54,189 @@ document.addEventListener('DOMContentLoaded', function () {
       germination: '96% Min',
       seedRate: '6 - 7 kg / Acre',
       seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
-      season: 'Kharif & Rabi',
+      season: 'Kharif & Rabi (వానాకాలం & యాసంగి)',
       grainType: 'Super Fine Sona Masoori Table Quality',
-      grainTypeTe: 'సూపర్ ఫైన్ సోనా మసూరి నాణ్యత',
-      keyTrait: 'High Shelling % & Zero Chalky Grain',
-      keyTraitTe: 'ఎక్కువ మిల్లింగ్ రికవరీ, నూకలు లేని గింజ',
-      soilSuitability: 'Alluvial and Red Sandy Loam Soils',
-      tagline: 'Premium Consumer Table Rice with Bumper Yield',
-      description: 'Specially bred to deliver authentic Sona Masoori cooking quality with modern hybrid disease resilience and 25% higher yield than traditional BPT varieties.',
-      sowingGuide: 'Maintain shallow water (2-3cm) during vegetative phase. Apply zinc sulphate (25 kg/ha) at basal stage to prevent khaira disease.'
+      grainTypeTe: 'సూపర్ ఫైన్ సోనా మసూరి నాణ్యత (సన్న వడ్లు)',
+      keyTrait: 'Telangana Govt ₹500/Qtl Bonus | High Shelling % & Zero Chalkiness',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | ఎక్కువ మిల్లింగ్ రికవరీ, నూకలు లేని గింజ',
+      soilSuitability: 'Alluvial, Heavy Clay & Black Cotton Soils',
+      tagline: 'Telangana ₹500/Qtl Bonus Eligible | Benchmark Premium Table Rice',
+      description: 'BPT 5204 (Samba Masuri) is the benchmark fine-grain variety officially approved by the Telangana Government for the ₹500 per quintal procurement bonus. Meets all criteria (length <6mm, width <2mm, moisture <17%).',
+      sowingGuide: 'Nursery sowing: 6 kg seeds/acre. Maintain shallow water (2-3cm) during tillering. Register with local AEO on the digital portal for bonus eligibility.'
+    },
+    {
+      id: 'paddy-rnr15048',
+      name: 'Ganga Telangana Sona (RNR 15048)',
+      teluguName: 'గంగ తెలంగాణ సోనా (RNR 15048)',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-RNR-15',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.2mm), Width < 2.0mm (1.7mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.2 మి.మీ, వెడల్పు: 1.7 మి.మీ, తక్కువ గ్లైసెమిక్ ఇండెక్స్ (GI 51.5)',
+      duration: '120 - 125 Days (Short Duration)',
+      durationTe: '120 - 125 రోజులు (స్వల్పకాలిక రకం)',
+      yieldPotential: '30 - 35 Qtl / Acre',
+      yieldPotentialTe: '30 - 35 క్వింటాళ్లు / ఎకరానికి',
+      germination: '97% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi',
+      grainType: 'Super Fine Slender Grain with Low Glycemic Index (GI 51.5)',
+      grainTypeTe: 'షుగర్ పేషెంట్లకు అనువైన తక్కువ GI (51.5) సన్న బియ్యం',
+      keyTrait: 'Telangana Govt ₹500 Bonus | Low GI Sugar-Free Rice & Blast Resistant',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | లో-గ్లైసెమిక్ ఇండెక్స్ & అగ్గి తెగులు నిరోధకత',
+      soilSuitability: 'Suitable for All Telangana Soil Types',
+      tagline: '₹500 Govt Bonus + Fast 120-Day Maturity + Low GI Rice',
+      description: 'RNR 15048 (Telangana Sona) is PJTSAU developed champion short-duration (120-125 days) fine paddy eligible for the ₹500/Qtl bonus. Low GI (51.5) diabetic-friendly rice with exceptional blast resistance.',
+      sowingGuide: '20-25 day seedling transplantation at 15cm x 15cm spacing. Early harvest saves water and qualifies for the state ₹500 bonus.'
+    },
+    {
+      id: 'paddy-hmtsona',
+      name: 'Ganga HMT Sona Super Fine Sannalu',
+      teluguName: 'గంగ హెచ్.ఎం.టి సోనా సూపర్ ఫైన్ సన్నాలు',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-HMT-08',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.4mm), Width < 2.0mm (1.85mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.4 మి.మీ (<6 మి.మీ), వెడల్పు: 1.85 మి.మీ (<2 మి.మీ), తేమ: <17%',
+      duration: '130 - 135 Days',
+      durationTe: '130 - 135 రోజులు',
+      yieldPotential: '28 - 32 Qtl / Acre',
+      yieldPotentialTe: '28 - 32 క్వింటాళ్లు / ఎకరానికి',
+      germination: '96% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi',
+      grainType: 'Aromatic Pearly White Fine Grain with >70% Head Rice Recovery',
+      grainTypeTe: 'సువాసన గల ముత్యపు తెలుపు సన్న గింజ, 70% కంటే ఎక్కువ రికవరీ',
+      keyTrait: 'Telangana Govt ₹500 Bonus | Scented Sannalu with High Milling Shelling',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | సువాసన గల గింజ & అధిక మిల్లింగ్ రికవరీ',
+      soilSuitability: 'Fertile Clay Loam & Red Sandy Soils',
+      tagline: 'Telangana ₹500/Qtl Bonus | Fragrant Fine Rice Favorite',
+      description: 'HMT Sona is officially recognized under the Telangana ₹500/Qtl bonus scheme. Celebrated for high head rice recovery, appealing scent, non-sticky cooking texture, and high market value.',
+      sowingGuide: 'Transplant at 20cm x 15cm spacing. Recommended balanced potash application at panicle initiation for heavy ear-head filling.'
+    },
+    {
+      id: 'paddy-jaisriram',
+      name: 'Ganga Jai Sriram Premium Sannalu',
+      teluguName: 'గంగ జై శ్రీరామ్ ప్రీమియం సన్నాలు',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-JSR-01',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.5mm), Width < 2.0mm (1.8mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.5 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
+      duration: '135 - 140 Days',
+      durationTe: '135 - 140 రోజులు',
+      yieldPotential: '26 - 30 Qtl / Acre',
+      yieldPotentialTe: '26 - 30 క్వింటాళ్లు / ఎకరానికి',
+      germination: '95% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi',
+      grainType: 'Elite Scented Slender Table Rice, Supreme Consumer Demand',
+      grainTypeTe: 'అత్యుత్తమ సువాసన గల సన్న గింజ, అత్యధిక వినియోగదారుల ఆదరణ',
+      keyTrait: 'Telangana Govt ₹500 Bonus | Top Market Rate & Non-Lodging Habit',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | అత్యధిక బహిరంగ మార్కెట్ ధర, పడిపోని పైరు',
+      soilSuitability: 'Medium to Heavy Black & Alluvial Soils',
+      tagline: 'Telangana ₹500/Qtl Bonus | Premium Open Market & Govt Incentive',
+      description: 'Jai Sriram is the golden standard for fine rice across Telangana. Approved for the ₹500/Qtl bonus, giving farmers both peak market prices from millers and government bonus rewards.',
+      sowingGuide: 'Maintain optimal plant density (33 hills/sq.m). Apply zinc sulphate at basal stage for robust tillering.'
+    },
+    {
+      id: 'paddy-knm1638',
+      name: 'Ganga Kunaram Sannalu (KNM 1638)',
+      teluguName: 'గంగ కూనారం సన్నాలు (KNM 1638)',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-KNM-16',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.4mm), Width < 2.0mm (1.8mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.4 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
+      duration: '125 - 130 Days',
+      durationTe: '125 - 130 రోజులు',
+      yieldPotential: '32 - 36 Qtl / Acre',
+      yieldPotentialTe: '32 - 36 క్వింటాళ్లు / ఎకరానికి',
+      germination: '97% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi',
+      grainType: 'Medium Slender Non-Chalky Sannalu',
+      grainTypeTe: 'మధ్యస్థ సన్నపు గింజ, నూకలు లేని తెల్లని బియ్యం',
+      keyTrait: 'Telangana Govt ₹500 Bonus | BLB & Brown Planthopper (BPH) Resistant',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | బాక్టీరియల్ ఆకు ఎండు (BLB) & సుడిదోమ (BPH) నిరోధకత',
+      soilSuitability: 'Deep Black & Clay Soils of Northern Telangana',
+      tagline: 'Telangana ₹500/Qtl Bonus | Bumper 36 Qtl Yield + Disease Resistance',
+      description: 'KNM 1638 (Kunaram Sannalu) from the Kunaram Agricultural Research Station is an elite high-yielding fine variety qualified for the ₹500 bonus. Exceptional tolerance to BLB and BPH pests.',
+      sowingGuide: 'Transplant 21-day seedlings. High response to integrated nutrient management with excellent straw strength.'
+    },
+    {
+      id: 'paddy-wgl44',
+      name: 'Ganga Siddhi (WGL 44 / Warangal-44)',
+      teluguName: 'గంగ సిద్ధి (WGL 44 / వరంగల్-44)',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-WGL-44',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.3mm), Width < 2.0mm (1.75mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.3 మి.మీ (<6 మి.మీ), వెడల్పు: 1.75 మి.మీ (<2 మి.మీ), తేమ: <17%',
+      duration: '130 - 135 Days',
+      durationTe: '130 - 135 రోజులు',
+      yieldPotential: '30 - 35 Qtl / Acre',
+      yieldPotentialTe: '30 - 35 క్వింటాళ్లు / ఎకరానికి',
+      germination: '96% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi',
+      grainType: 'Short Slender Fine Grain with Heavy Panicle Grain Weight',
+      grainTypeTe: 'పొట్టి సన్నపు గింజ, బరువైన కంకి మరియు ఎక్కువ రికవరీ',
+      keyTrait: 'Telangana Govt ₹500 Bonus | Gall Midge (Biotype-1) & Blast Resistant',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | ఉల్లికోడు (Gall Midge) మరియు అగ్గి తెగులు తట్టుకునే రకం',
+      soilSuitability: 'Red Sandy Loams & Black Cotton Soils',
+      tagline: 'Telangana ₹500/Qtl Bonus | Proven Gall Midge Resistant Sannalu',
+      description: 'WGL 44 (Siddhi) is a celebrated fine variety from Warangal RRS, approved for the ₹500 bonus. Features sturdy lodging-resistant culms, heavy grain bearing per panicle, and Gall Midge resistance.',
+      sowingGuide: '20cm x 15cm spacing. Recommended split nitrogen application (basal, tillering, panicle initiation) for maximum grain filling.'
+    },
+    {
+      id: 'paddy-knm7715',
+      name: 'Ganga Kunaram 7715 (KNM 7715)',
+      teluguName: 'గంగ కూనారం 7715 (KNM 7715)',
+      category: 'cereals',
+      categoryLabel: 'Cereal Crop',
+      varietyCode: 'GAG-KNM-77',
+      isGovtBonusEligible: true,
+      bonusAmount: '₹500 / Qtl Bonus Eligible',
+      bonusAmountTe: 'తెలంగాణ ₹500 బోనస్ రకం',
+      grainDimensions: 'Length < 6.0mm (5.2mm), Width < 2.0mm (1.8mm), Moisture < 17%',
+      grainDimensionsTe: 'పొడవు: 5.2 మి.మీ (<6 మి.మీ), వెడల్పు: 1.8 మి.మీ (<2 మి.మీ), తేమ: <17%',
+      duration: '120 - 125 Days (Fast Maturity)',
+      durationTe: '120 - 125 రోజులు (త్వరిత కోత)',
+      yieldPotential: '30 - 34 Qtl / Acre',
+      yieldPotentialTe: '30 - 34 క్వింటాళ్లు / ఎకరానికి',
+      germination: '96% Min',
+      seedRate: '6 - 7 kg / Acre',
+      seedRateTe: '6 - 7 కిలోలు / ఎకరానికి',
+      season: 'Kharif & Rabi (Both Seasons)',
+      grainType: 'Fine Slender Lustrous Grains with High Test Weight',
+      grainTypeTe: 'మెరుసే సన్నపు గింజ, అధిక బరువు మరియు నాణ్యత',
+      keyTrait: 'Telangana Govt ₹500 Bonus | Early Maturity & Cold Weather Resilience',
+      keyTraitTe: 'తెలంగాణ ప్రభుత్వ ₹500 బోనస్ | చలిని తట్టుకునే శక్తి, యాసంగి & వానాకాలం అనువైనది',
+      soilSuitability: 'Alluvial & Medium Loamy Soils',
+      tagline: 'Telangana ₹500/Qtl Bonus | Early 120-Day Sannalu for Both Seasons',
+      description: 'KNM 7715 is an approved fine-grain paddy variety qualifying for the ₹500/Qtl bonus. Offers rapid 120-day maturity and cold tolerance, making it ideal for both Kharif and Rabi sowings.',
+      sowingGuide: 'Direct seeding or nursery transplanting. Excellent choice for crop rotation before winter/spring vegetables.'
     },
     {
       id: 'maize-surya',
@@ -398,7 +577,11 @@ document.addEventListener('DOMContentLoaded', function () {
     const isTe = (currentLang === 'te');
 
     const filtered = SEED_CATALOG.filter(item => {
-      const matchesCategory = (currentCategory === 'all' || item.category === currentCategory);
+      const matchesCategory = (
+        currentCategory === 'all' || 
+        item.category === currentCategory || 
+        (currentCategory === 'bonus_sannalu' && item.isGovtBonusEligible)
+      );
       const query = currentSearchQuery.toLowerCase().trim();
       const matchesSearch = !query || 
         item.name.toLowerCase().includes(query) ||
@@ -434,9 +617,16 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     productsGrid.innerHTML = filtered.map(item => `
-      <article class="seed-card" data-id="${item.id}">
+      <article class="seed-card ${item.isGovtBonusEligible ? 'seed-card--bonus' : ''}" data-id="${item.id}">
         <div class="seed-card-header">
-          <span class="seed-type-badge">${item.categoryLabel}</span>
+          <div class="seed-badges-row">
+            <span class="seed-type-badge">${item.categoryLabel}</span>
+            ${item.isGovtBonusEligible ? `
+              <span class="seed-bonus-badge" title="Eligible for Telangana Govt ₹500/Qtl Sannalu Bonus">
+                <i class="fa-solid fa-award"></i> ${isTe ? '₹500 బోనస్ రకం' : '₹500/Qtl TG Bonus'}
+              </span>
+            ` : ''}
+          </div>
           <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
             <h3>${isTe ? item.teluguName : item.name}</h3>
           </div>
@@ -461,6 +651,12 @@ document.addEventListener('DOMContentLoaded', function () {
               <span><i class="fa-solid fa-calendar-day"></i> ${isTe ? 'అనువైన కాలం:' : 'Best Season:'}</span>
               <strong>${item.season.split('(')[0]}</strong>
             </div>
+            ${item.grainDimensions ? `
+              <div class="seed-feature-row grain-spec-row">
+                <span><i class="fa-solid fa-ruler"></i> ${isTe ? 'ధాన్యపు కొలత:' : 'Grain Size:'}</span>
+                <span class="grain-dim-val">${isTe && item.grainDimensionsTe ? item.grainDimensionsTe : item.grainDimensions}</span>
+              </div>
+            ` : ''}
           </div>
 
           <div class="seed-trait-tag" title="${item.keyTrait}">
@@ -543,6 +739,25 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('modalSeason').textContent = seed.season;
     document.getElementById('modalSeedRate').textContent = isTe && seed.seedRateTe ? seed.seedRateTe : seed.seedRate;
     document.getElementById('modalGrain').textContent = isTe && seed.grainTypeTe ? seed.grainTypeTe : seed.grainType;
+
+    const modalBonusAlert = document.getElementById('modalBonusAlert');
+    if (modalBonusAlert) {
+      if (seed.isGovtBonusEligible) {
+        modalBonusAlert.innerHTML = `
+          <div class="bonus-notice-card">
+            <div class="bonus-notice-icon"><i class="fa-solid fa-award"></i></div>
+            <div>
+              <strong>${isTe ? 'తెలంగాణ ప్రభుత్వ ₹500/క్వింటాల్ బోనస్ అర్హత' : 'Telangana Govt ₹500 / Quintal Bonus Eligible'}</strong>
+              <p>${isTe ? 'ఈ రకం ధాన్యపు కొలతలు (పొడవు <6mm, వెడల్పు <2mm, తేమ <17%) కలిగి ఉండి ₹500 బోనస్‌కు అర్హత పొందింది. స్థానిక AEO ద్వారా డిజిటల్ పోర్టల్‌లో నమోదు చేసుకోవాలి.' : 'Meets all fine grain standards (length <6mm, width <2mm, moisture <17%). Sowing details must be booked via digital portals through your local Agricultural Extension Officer (AEO).'}</p>
+            </div>
+          </div>
+        `;
+        modalBonusAlert.style.display = 'block';
+      } else {
+        modalBonusAlert.style.display = 'none';
+      }
+    }
+
     document.getElementById('modalDescription').textContent = seed.description + ' Key trait: ' + (isTe && seed.keyTraitTe ? seed.keyTraitTe : seed.keyTrait) + '. ' + seed.soilSuitability + '.';
     document.getElementById('modalSowingGuide').textContent = seed.sowingGuide;
 
@@ -599,16 +814,101 @@ document.addEventListener('DOMContentLoaded', function () {
   const calcExpertAdvice = document.getElementById('calcExpertAdvice');
 
   const CROP_CALC_DATA = {
-    paddy: {
-      name: 'Hybrid Paddy (వరి)',
-      seedRatePerAcre: 5.5, // kg
+    paddy_bpt5204: {
+      name: 'BPT 5204 Samba Masuri (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
       seedUnit: 'kg',
-      packetSize: 3, // kg per bag
-      yieldMinPerAcre: 28, // quintals
+      packetSize: 3,
+      yieldMinPerAcre: 30,
       yieldMaxPerAcre: 34,
       spacing: '20 cm × 15 cm',
-      duration: '125 - 135 Days',
-      advice: 'Treat seeds with Pseudomonas fluorescens (10g/kg). Maintain 2-3 cm shallow water during tillering stage. Exceptional resistance to Bacterial Leaf Blight (BLB).'
+      duration: '135 - 140 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Maintain moisture <17% before PPC delivery and register sowing with local AEO.'
+    },
+    paddy_rnr15048: {
+      name: 'RNR 15048 Telangana Sona (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 30,
+      yieldMaxPerAcre: 35,
+      spacing: '15 cm × 15 cm',
+      duration: '120 - 125 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Low GI diabetic-friendly rice, short duration saves 2-3 irrigations.'
+    },
+    paddy_hmtsona: {
+      name: 'HMT Sona Super Fine (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 28,
+      yieldMaxPerAcre: 32,
+      spacing: '20 cm × 15 cm',
+      duration: '130 - 135 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Fragrant table quality with high head rice recovery (>70%).'
+    },
+    paddy_jaisriram: {
+      name: 'Jai Sriram Sannalu (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 26,
+      yieldMaxPerAcre: 30,
+      spacing: '20 cm × 15 cm',
+      duration: '135 - 140 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Highest open-market premium rice + government bonus incentive.'
+    },
+    paddy_knm1638: {
+      name: 'KNM 1638 Kunaram Sannalu (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 32,
+      yieldMaxPerAcre: 36,
+      spacing: '20 cm × 15 cm',
+      duration: '125 - 130 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Superior resistance to Bacterial Leaf Blight (BLB) and BPH.'
+    },
+    paddy_wgl44: {
+      name: 'WGL 44 Siddhi Warangal (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 30,
+      yieldMaxPerAcre: 35,
+      spacing: '20 cm × 15 cm',
+      duration: '130 - 135 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Heavy panicle grain weight with Gall Midge Biotype-1 resistance.'
+    },
+    paddy_knm7715: {
+      name: 'KNM 7715 Kunaram (₹500 TG Bonus)',
+      isGovtBonusEligible: true,
+      seedRatePerAcre: 6.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 30,
+      yieldMaxPerAcre: 34,
+      spacing: '20 cm × 15 cm',
+      duration: '120 - 125 Days',
+      advice: 'Eligible for Telangana Govt ₹500/Qtl bonus! Early 120-day maturity with excellent cold tolerance for both Kharif and Rabi.'
+    },
+    paddy: {
+      name: 'Ganga Gold-99 Hybrid Paddy',
+      isGovtBonusEligible: false,
+      seedRatePerAcre: 5.5,
+      seedUnit: 'kg',
+      packetSize: 3,
+      yieldMinPerAcre: 32,
+      yieldMaxPerAcre: 36,
+      spacing: '20 cm × 15 cm',
+      duration: '125 - 130 Days',
+      advice: 'High-tillering champion hybrid paddy (30-35 tillers/hill) with exceptional BLB resistance.'
     },
     maize: {
       name: 'Hybrid Maize (మొక్కజొన్న)',
@@ -765,6 +1065,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (calcExpertAdvice) {
       calcExpertAdvice.textContent = cropData.advice;
+    }
+
+    // Update Telangana Govt ₹500 Bonus Highlight Banner
+    const calcBonusBanner = document.getElementById('calcBonusBanner');
+    if (calcBonusBanner) {
+      if (cropData.isGovtBonusEligible) {
+        const minBonus = totalYieldMin * 500;
+        const maxBonus = totalYieldMax * 500;
+        calcBonusBanner.innerHTML = `
+          <div class="calc-bonus-box">
+            <div class="bonus-box-header">
+              <i class="fa-solid fa-award"></i>
+              <strong>${isTe ? 'తెలంగాణ ప్రభుత్వ ₹500/క్వింటాల్ బోనస్ అంచనా' : 'Telangana Govt ₹500/Qtl Sannalu Bonus Extra Income'}</strong>
+            </div>
+            <div class="bonus-box-amount">
+              + ₹${minBonus.toLocaleString('en-IN')} - ₹${maxBonus.toLocaleString('en-IN')}
+              <span class="bonus-sub-badge">${isTe ? 'అదనపు నగదు ప్రోత్సాహకం' : 'Extra Cash Incentive'}</span>
+            </div>
+            <p class="bonus-box-note">
+              <i class="fa-solid fa-circle-check"></i> ${isTe ? 'ఈ రకానికి ప్రభుత్వం క్వింటాలుకు ₹500 అదనపు బోనస్ ఇస్తుంది (ధాన్యం తేమ <17%, పొడవు <6mm, వెడల్పు <2mm). స్థానిక AEO ద్వారా డిజిటల్ పోర్టల్‌లో నమోదు చేసుకోండి.' : 'This variety qualifies for ₹500/Qtl extra bonus over MSP. Ensure moisture is under 17% and register crop details with your local AEO.'}
+            </p>
+          </div>
+        `;
+        calcBonusBanner.style.display = 'block';
+      } else {
+        calcBonusBanner.style.display = 'none';
+      }
     }
 
     // Update WhatsApp Order Button
@@ -1294,7 +1621,63 @@ document.addEventListener('DOMContentLoaded', function () {
   initHeroCarousel();
 
   // -------------------------------------------------------------------------
-  // 12. PWA SERVICE WORKER REGISTRATION (OFFLINE SUPPORT)
+  // 12. AGRICULTURE UPDATES & SCHEMES NEWSLETTER
+  // -------------------------------------------------------------------------
+  const newsletterForm = document.getElementById('agriNewsletterForm');
+  const newsletterSuccessBox = document.getElementById('newsletterSuccessBox');
+  const newsResetBtn = document.getElementById('newsResetBtn');
+
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const contactInput = document.getElementById('newsContact');
+      const farmerNameInput = document.getElementById('newsFarmerName');
+      const isTe = (currentLang === 'te');
+
+      if (!contactInput || !contactInput.value.trim()) {
+        showToast(isTe ? 'దయచేసి మీ ఇమెయిల్ లేదా వాట్సాప్ నంబర్ నమోదు చేయండి' : 'Please enter your email address or WhatsApp number', 'error');
+        if (contactInput) contactInput.focus();
+        return;
+      }
+
+      const contactVal = contactInput.value.trim();
+      const nameVal = farmerNameInput ? farmerNameInput.value.trim() : 'Farmer';
+      const checkedTopics = Array.from(document.querySelectorAll('input[name="alertTopics"]:checked')).map(el => el.value);
+
+      // Save subscriber in localStorage
+      try {
+        const subscribers = JSON.parse(localStorage.getItem('ganga_subscribers') || '[]');
+        subscribers.push({
+          contact: contactVal,
+          name: nameVal,
+          topics: checkedTopics,
+          date: new Date().toISOString()
+        });
+        localStorage.setItem('ganga_subscribers', JSON.stringify(subscribers));
+      } catch (err) {
+        console.warn('LocalStorage subscriber save error:', err);
+      }
+
+      // Show success UI
+      if (newsletterSuccessBox) {
+        newsletterForm.style.display = 'none';
+        newsletterSuccessBox.style.display = 'block';
+      }
+
+      showToast(isTe ? 'గంగ అగ్రి జెనెటిక్స్ వ్యవసాయ అలర్ట్స్ సబ్‌స్క్రిప్షన్ విజయవంతమైంది!' : 'Successfully subscribed to Ganga Agri Genetics Updates!', 'success');
+    });
+  }
+
+  if (newsResetBtn && newsletterForm && newsletterSuccessBox) {
+    newsResetBtn.addEventListener('click', function () {
+      newsletterForm.reset();
+      newsletterSuccessBox.style.display = 'none';
+      newsletterForm.style.display = 'block';
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // 13. PWA SERVICE WORKER REGISTRATION (OFFLINE SUPPORT)
   // -------------------------------------------------------------------------
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {

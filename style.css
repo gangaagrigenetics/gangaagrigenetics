@@ -2921,3 +2921,556 @@ p {
   background: var(--whatsapp-green);
   border-color: var(--whatsapp-green);
 }
+
+/* --------------------------------------------------------------------------
+   21. TELANGANA GOVT ₹500/QTL BONUS SCHEME SECTION
+   -------------------------------------------------------------------------- */
+.tg-bonus-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #022013 0%, #064e3b 50%, #0f766e 100%);
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.tg-bonus-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.bonus-hero-banner {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-2xl);
+  padding: 48px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.bonus-badge-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.bonus-gov-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fef08a;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(254, 240, 138, 0.3);
+}
+
+.bonus-value-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: var(--slate-900);
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+.bonus-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  color: var(--white);
+}
+
+.highlight-gold {
+  color: #fbbf24;
+  text-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+}
+
+.bonus-subtitle {
+  font-size: 1.05rem;
+  color: #d1fae5;
+  line-height: 1.6;
+  max-width: 880px;
+  margin-bottom: 36px;
+}
+
+.bonus-criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.criterion-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--transition-normal);
+}
+
+.criterion-card:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.criterion-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(251, 191, 36, 0.2);
+  color: #fbbf24;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.criterion-card strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--white);
+  margin-bottom: 2px;
+}
+
+.criterion-card p {
+  font-size: 0.8rem;
+  color: #a7f3d0;
+  margin: 0;
+}
+
+.bonus-varieties-hub {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 36px;
+}
+
+.hub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.hub-header h3 {
+  font-size: 1.25rem;
+  color: #fef08a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hub-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: #059669;
+  color: var(--white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+.bonus-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.bonus-variety-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: all var(--transition-normal);
+}
+
+.bonus-variety-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #fbbf24;
+  transform: translateX(4px);
+}
+
+.v-num {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.v-details {
+  flex: 1;
+}
+
+.v-details h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.v-details p {
+  font-size: 0.78rem;
+  color: #d1fae5;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.v-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.v-variety-card:hover .v-action-btn,
+.bonus-variety-card:hover .v-action-btn {
+  background: #fbbf24;
+  color: var(--slate-900);
+}
+
+.bonus-cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* --------------------------------------------------------------------------
+   22. BONUS BADGES ON SEED CARDS & MODAL
+   -------------------------------------------------------------------------- */
+.seed-card--bonus {
+  border-top: 4px solid #f59e0b;
+}
+
+.seed-badges-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.seed-bonus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+  border: 1px solid #fcd34d;
+  border-radius: var(--radius-full);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+}
+
+.grain-spec-row {
+  background: #fefce8;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid #eab308;
+}
+
+.grain-dim-val {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #854d0e;
+}
+
+.bonus-notice-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  color: #92400e;
+}
+
+.bonus-notice-icon {
+  font-size: 1.4rem;
+  color: #d97706;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.bonus-notice-card strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #78350f;
+  margin-bottom: 4px;
+}
+
+.bonus-notice-card p {
+  font-size: 0.82rem;
+  color: #92400e;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   23. CALCULATOR BONUS DISPLAY BOX
+   -------------------------------------------------------------------------- */
+.calc-bonus-box {
+  background: linear-gradient(135deg, #064e3b 0%, #047857 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 18px 20px;
+  box-shadow: 0 6px 18px rgba(6, 78, 59, 0.25);
+  border: 1px solid #059669;
+}
+
+.bonus-box-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #fef08a;
+  margin-bottom: 6px;
+}
+
+.bonus-box-amount {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #fbbf24;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.bonus-sub-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(251, 191, 36, 0.2);
+  color: #fde68a;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+}
+
+.bonus-box-note {
+  font-size: 0.8rem;
+  color: #d1fae5;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   24. AGRICULTURAL UPDATES & SCHEMES NEWSLETTER SECTION
+   -------------------------------------------------------------------------- */
+.newsletter-section {
+  padding: 80px 0;
+  background-color: #f1f5f9;
+}
+
+.newsletter-card {
+  background: var(--white);
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xl);
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.newsletter-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 100%;
+  background: linear-gradient(to bottom, #059669, #10b981);
+}
+
+.newsletter-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.newsletter-info-col h2 {
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  color: var(--slate-900);
+  margin: 12px 0 16px;
+  line-height: 1.3;
+}
+
+.newsletter-info-col p {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.newsletter-perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.perk-item {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--slate-700);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perk-item i {
+  color: #059669;
+  font-size: 0.95rem;
+}
+
+.newsletter-form-col {
+  background: var(--slate-50);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+}
+
+.alert-pref-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--slate-700);
+  margin-bottom: 8px;
+}
+
+.checkbox-pills-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.check-pill {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--slate-700);
+  background: var(--white);
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.check-pill:hover {
+  border-color: #059669;
+  background: #f0fdf4;
+}
+
+.check-pill input {
+  accent-color: #059669;
+}
+
+.news-disclaimer {
+  font-size: 0.78rem;
+  color: var(--slate-500);
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.newsletter-success-box {
+  text-align: center;
+  padding: 24px;
+}
+
+.newsletter-success-box .success-icon {
+  font-size: 3rem;
+  color: #059669;
+  margin-bottom: 12px;
+}
+
+.newsletter-success-box h3 {
+  font-size: 1.35rem;
+  color: var(--slate-900);
+  margin-bottom: 8px;
+}
+
+.newsletter-success-box p {
+  font-size: 0.9rem;
+  color: var(--slate-600);
+  line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+  .newsletter-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .bonus-hero-banner {
+    padding: 32px 24px;
+  }
+  .newsletter-card {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bonus-criteria-grid {
+    grid-template-columns: 1fr;
+  }
+  .newsletter-perks {
+    grid-template-columns: 1fr;
+  }
+  .bonus-hero-banner {
+    padding: 24px 16px;
+  }
+  .newsletter-form-col {
+    padding: 20px 16px;
+  }
+}
+
