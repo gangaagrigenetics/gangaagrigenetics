@@ -369,24 +369,41 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: rgba(16, 185, 129, 0.15);
-  color: var(--primary-300);
   padding: 3px 10px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
   font-weight: 600;
-  border: 1px solid rgba(52, 211, 153, 0.3);
   transition: all var(--transition-fast);
 }
 
 .status-indicator-pill.open {
-  background-color: rgba(16, 185, 129, 0.18);
-  border-color: rgba(52, 211, 153, 0.4);
+  background-color: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.5);
+  color: #6ee7b7;
+}
+
+.status-indicator-pill.open .status-text {
+  color: #6ee7b7;
+  font-weight: 700;
 }
 
 .status-indicator-pill.closed {
-  background-color: rgba(239, 68, 68, 0.18);
-  border-color: rgba(248, 113, 113, 0.4);
+  background-color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: #b91c1c;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.status-indicator-pill.closed .status-text {
+  color: #b91c1c;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+}
+
+.status-indicator-pill.closed .status-dot {
+  background-color: #dc2626;
+  box-shadow: none;
+  animation: none;
 }
 
 .status-dot {
@@ -646,7 +663,7 @@ p {
 /* Carousel Navigation Buttons */
 .carousel-nav-btn {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
@@ -704,9 +721,9 @@ p {
   height: 12px;
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.4);
-  border: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  transition: all 0.35s ease;
+  transition: all var(--transition-fast);
   padding: 0;
 }
 
@@ -717,6 +734,7 @@ p {
 .indicator-dot.active {
   width: 32px;
   background: var(--accent-400);
+  border-color: var(--accent-300);
   border-radius: 6px;
   box-shadow: 0 0 10px rgba(251, 191, 36, 0.6);
 }
@@ -726,12 +744,14 @@ p {
   align-items: center;
   gap: 8px;
   padding: 6px 16px;
-  background: rgba(16, 185, 129, 0.2);
-  border: 1px solid rgba(52, 211, 153, 0.4);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--primary-300);
+  color: var(--white);
   margin-bottom: 20px;
 }
 
@@ -768,6 +788,55 @@ p {
   margin-bottom: 40px;
 }
 
+/* Hero CTA Hierarchy */
+.hero-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  color: var(--white) !important;
+  box-shadow: 0 4px 18px rgba(16, 185, 129, 0.45);
+  font-weight: 700;
+  border: 1.5px solid transparent;
+}
+
+.hero-btn-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #065f46 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(16, 185, 129, 0.6);
+  color: var(--white) !important;
+}
+
+.btn--glass, .hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.btn--glass:hover, .hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.24);
+  border-color: #ffffff;
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+.btn--whatsapp-ghost, .hero-btn-whatsapp {
+  background: rgba(37, 211, 102, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #4ade80 !important;
+  border: 1.5px solid rgba(74, 222, 128, 0.5);
+  font-weight: 600;
+}
+
+.btn--whatsapp-ghost:hover, .hero-btn-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.3);
+  border-color: #4ade80;
+  color: #86efac !important;
+  transform: translateY(-2px);
+}
+
 .hero-metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -797,10 +866,12 @@ p {
 }
 
 .metric-label {
-  font-size: 0.8rem;
-  color: var(--primary-300);
+  font-size: 0.85rem;
+  color: #f1f5f9;
   margin-top: 4px;
-  font-weight: 500;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.65);
+  letter-spacing: 0.01em;
 }
 
 /* Glass Card in Hero */
@@ -2751,12 +2822,12 @@ body.modal-open {
    -------------------------------------------------------------------------- */
 .floating-hub {
   position: fixed;
-  bottom: 28px;
-  right: 28px;
+  bottom: 32px;
+  right: 32px;
   z-index: 99;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 18px;
 }
 
 .floating-btn {
@@ -2913,7 +2984,7 @@ body.modal-open {
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 860px) {
   .nav-toggle {
     display: flex;
   }

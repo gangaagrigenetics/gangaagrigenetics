@@ -1613,8 +1613,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = (t.storeOpen || 'STORE OPEN NOW (Closes {time})').replace('{time}', closingTime);
         liveStoreStatus.className = 'status-indicator-pill open';
         liveStoreStatus.innerHTML = `
-          <span class="status-dot pulse" style="background-color: #34d399;"></span>
-          <strong class="status-text" style="color: #6ee7b7;">${text}</strong>
+          <span class="status-dot pulse"></span>
+          <strong class="status-text">${text}</strong>
         `;
         if (hoursLiveBadge) {
           hoursLiveBadge.className = 'live-tag-inline open';
@@ -1624,8 +1624,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const text = t.storeClosed || 'STORE CLOSED (Opens 8:00 AM)';
         liveStoreStatus.className = 'status-indicator-pill closed';
         liveStoreStatus.innerHTML = `
-          <span class="status-dot" style="background-color: #f87171; box-shadow: none; animation: none;"></span>
-          <strong class="status-text" style="color: #fca5a5;">${text}</strong>
+          <span class="status-dot"></span>
+          <strong class="status-text">${text}</strong>
         `;
         if (hoursLiveBadge) {
           hoursLiveBadge.className = 'live-tag-inline closed';
