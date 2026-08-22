@@ -482,6 +482,7 @@ document.addEventListener('DOMContentLoaded', function () {
       'newsPerk1': t.newsPerk1,
       'newsPerk2': t.newsPerk2,
       'newsPerk3': t.newsPerk3,
+      'newsContactLabel': t.newsContactLabel,
       'newsBtnSubscribe': t.newsBtnSubscribe,
       'newsSuccessTitle': t.newsSuccessTitle,
       'newsSuccessDesc': t.newsSuccessDesc,
@@ -521,9 +522,14 @@ document.addEventListener('DOMContentLoaded', function () {
       if (el && text) {
         const icon = el.querySelector('i');
         if (icon) {
-          el.innerHTML = '';
-          el.appendChild(icon);
-          el.appendChild(document.createTextNode(' ' + text.replace(/<[^>]*>?/gm, '')));
+          if (text.includes('<')) {
+            const iconHtml = icon.outerHTML;
+            el.innerHTML = iconHtml + ' ' + text;
+          } else {
+            el.innerHTML = '';
+            el.appendChild(icon);
+            el.appendChild(document.createTextNode(' ' + text));
+          }
         } else {
           el.innerHTML = text;
         }
@@ -1611,40 +1617,193 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // -------------------------------------------------------------------------
-  // 9. BOOKING FORM & DIRECT WHATSAPP / TELEPHONE ACTIONS
+  // 9. INLINE FORM VALIDATION & SEED INQUIRY / WHATSAPP ACTIONS
   // -------------------------------------------------------------------------
-  const seedBookingForm = document.getElementById('seedBookingForm');
-  const bookViaWhatsAppBtn = document.getElementById('bookViaWhatsAppBtn');
+  const seedInquiryForm = document.getElementById('seedInquiryForm') || document.getElementById('seedBookingForm');
+  const submitViaWhatsAppBtn = document.getElementById('submitViaWhatsAppBtn') || document.getElementById('bookViaWhatsAppBtn');
 
-  if (seedBookingForm) {
-    seedBookingForm.addEventListener('submit', function (e) {
+  function setFieldError(fieldId, errorId, errorMsg) {
+    const field = document.getElementById(fieldId);
+    const errEl = document.getElementById(errorId);
+    if (field) {
+      field.classList.add('is-invalid');
+      field.classList.remove('is-valid');
+    }
+    if (errEl) {
+      const span = errEl.querySelector('span');
+      if (span) span.textContent = errorMsg;
+      errEl.classList.add('show');
+    }
+  }
+
+  function clearFieldError(fieldId, errorId) {
+    const field = document.getElementById(fieldId);
+    const errEl = document.getElementById(errorId);
+    if (field) {
+      field.classList.remove('is-invalid');
+      if (field.value && field.value.trim().length > 0) {
+        field.classList.add('is-valid');
+      } else {
+        field.classList.remove('is-valid');
+      }
+    }
+    if (errEl) {
+      errEl.classList.remove('show');
+    }
+  }
+
+  function validateSeedForm(showInlineErrors = true) {
+    const i18n = getI18n();
+    const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+
+    const nameEl = document.getElementById('farmerName');
+    const phoneEl = document.getElementById('farmerPhone');
+    const villageEl = document.getElementById('farmerVillage');
+    const cropEl = document.getElementById('cropInterest');
+    const alertBox = document.getElementById('seedInquiryAlert');
+    const alertText = document.getElementById('seedInquiryAlertText');
+
+    let isValid = true;
+    let firstInvalidField = null;
+
+    // Validate Name
+    const nameVal = nameEl ? nameEl.value.trim() : '';
+    if (!nameVal || nameVal.length < 2) {
+      isValid = false;
+      if (showInlineErrors) {
+        setFieldError('farmerName', 'farmerNameError', t.errRequiredName || 'Please enter your full name');
+        if (!firstInvalidField) firstInvalidField = nameEl;
+      }
+    } else {
+      clearFieldError('farmerName', 'farmerNameError');
+    }
+
+    // Validate Phone (10 digits)
+    const phoneRaw = phoneEl ? phoneEl.value.replace(/\D/g, '') : '';
+    const phoneVal = phoneEl ? phoneEl.value.trim() : '';
+    if (!phoneVal || phoneRaw.length < 10) {
+      isValid = false;
+      if (showInlineErrors) {
+        setFieldError('farmerPhone', 'farmerPhoneError', t.errRequiredPhone || 'Please enter a valid 10-digit mobile number');
+        if (!firstInvalidField) firstInvalidField = phoneEl;
+      }
+    } else {
+      clearFieldError('farmerPhone', 'farmerPhoneError');
+    }
+
+    // Validate Village
+    const villageVal = villageEl ? villageEl.value.trim() : '';
+    if (!villageVal || villageVal.length < 2) {
+      isValid = false;
+      if (showInlineErrors) {
+        setFieldError('farmerVillage', 'farmerVillageError', t.errRequiredVillage || 'Please enter your village, mandal, or town');
+        if (!firstInvalidField) firstInvalidField = villageEl;
+      }
+    } else {
+      clearFieldError('farmerVillage', 'farmerVillageError');
+    }
+
+    // Validate Crop Interest
+    const cropVal = cropEl ? cropEl.value : '';
+    if (!cropVal) {
+      isValid = false;
+      if (showInlineErrors) {
+        setFieldError('cropInterest', 'cropInterestError', t.errRequiredCrop || 'Please select a crop variety from the list');
+        if (!firstInvalidField) firstInvalidField = cropEl;
+      }
+    } else {
+      clearFieldError('cropInterest', 'cropInterestError');
+    }
+
+    if (!isValid) {
+      if (showInlineErrors) {
+        if (alertBox) {
+          if (alertText) alertText.textContent = t.errFormSummary || 'Please correct the highlighted fields before submitting.';
+          alertBox.style.display = 'flex';
+        }
+        if (firstInvalidField) {
+          firstInvalidField.focus();
+        }
+      }
+    } else {
+      if (alertBox) alertBox.style.display = 'none';
+    }
+
+    return isValid;
+  }
+
+  // Real-time input listeners for instant error clearing
+  ['farmerName', 'farmerPhone', 'farmerVillage'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => {
+        if (el.value.trim().length >= (id === 'farmerPhone' ? 10 : 2)) {
+          clearFieldError(id, id + 'Error');
+          const alertBox = document.getElementById('seedInquiryAlert');
+          if (alertBox && !document.querySelector('#seedInquiryForm .is-invalid')) {
+            alertBox.style.display = 'none';
+          }
+        }
+      });
+      el.addEventListener('blur', () => {
+        if (!el.value.trim()) {
+          const i18n = getI18n();
+          const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+          const msgMap = {
+            'farmerName': t.errRequiredName || 'Please enter your full name',
+            'farmerPhone': t.errRequiredPhone || 'Please enter a valid 10-digit mobile number',
+            'farmerVillage': t.errRequiredVillage || 'Please enter your village, mandal, or town'
+          };
+          setFieldError(id, id + 'Error', msgMap[id]);
+        }
+      });
+    }
+  });
+
+  const cropSelectEl = document.getElementById('cropInterest');
+  if (cropSelectEl) {
+    cropSelectEl.addEventListener('change', () => {
+      if (cropSelectEl.value) {
+        clearFieldError('cropInterest', 'cropInterestError');
+        const alertBox = document.getElementById('seedInquiryAlert');
+        if (alertBox && !document.querySelector('#seedInquiryForm .is-invalid')) {
+          alertBox.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  if (seedInquiryForm) {
+    seedInquiryForm.addEventListener('submit', function (e) {
       e.preventDefault();
       const i18n = getI18n();
       const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
+      if (!validateSeedForm(true)) {
+        return;
+      }
+
       const name = document.getElementById('farmerName')?.value.trim() || '';
       const phone = document.getElementById('farmerPhone')?.value.trim() || '';
       const village = document.getElementById('farmerVillage')?.value.trim() || '';
       const crop = document.getElementById('cropInterest')?.value || '';
       const acreage = document.getElementById('farmerAcreage')?.value.trim() || '';
       const reason = document.getElementById('inquiryReason')?.value || '';
+      const notes = document.getElementById('farmerMessage')?.value.trim() || '';
 
-      if (!name || !phone || !village || !crop) {
-        showToast(t.toastFillRequired || 'Please fill all required fields (*)', 'error');
-        return;
-      }
-
-      const msg = `*Ganga Agri Genetics - Seed Booking Inquiry*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Village / Mandal:* ${village}\n*Crop Required:* ${crop}\n*Acreage / Quantity:* ${acreage || 'Not specified'}\n*Purpose:* ${reason}\n\n_Sent via Ganga Agri Genetics Web Application_`;
+      const msg = `*Ganga Agri Genetics - Seed Booking Inquiry*\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Village / Mandal:* ${village}\n*Crop Required:* ${crop}\n*Acreage / Quantity:* ${acreage || 'Not specified'}\n*Purpose:* ${reason}${notes ? '\n*Notes:* ' + notes : ''}\n\n_Sent via Ganga Agri Genetics Web Application_`;
       window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
       showToast(t.toastNewsletterSuccess || 'Inquiry submitted successfully!', 'success');
-      seedBookingForm.reset();
+      seedInquiryForm.reset();
+      document.querySelectorAll('#seedInquiryForm .is-valid').forEach(el => el.classList.remove('is-valid'));
     });
   }
 
-  if (bookViaWhatsAppBtn) {
-    bookViaWhatsAppBtn.addEventListener('click', function () {
-      const i18n = getI18n();
-      const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+  if (submitViaWhatsAppBtn) {
+    submitViaWhatsAppBtn.addEventListener('click', function () {
+      if (!validateSeedForm(true)) {
+        return;
+      }
 
       const name = document.getElementById('farmerName')?.value.trim() || '';
       const phone = document.getElementById('farmerPhone')?.value.trim() || '';
@@ -1652,13 +1811,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const crop = document.getElementById('cropInterest')?.value || '';
       const acreage = document.getElementById('farmerAcreage')?.value.trim() || '';
       const reason = document.getElementById('inquiryReason')?.value || '';
+      const notes = document.getElementById('farmerMessage')?.value.trim() || '';
 
-      if (!name || !phone || !village) {
-        showToast(t.toastFillBookingDetails || 'Please fill Name, Phone, Village and Crop Variety to send WhatsApp message', 'error');
-        return;
-      }
-
-      const msg = `*Ganga Agri Genetics - Quick WhatsApp Seed Booking*\n\n*Farmer Name:* ${name}\n*Phone:* ${phone}\n*Village / District:* ${village}\n*Crop Needed:* ${crop}\n*Acreage / Bags:* ${acreage || 'Immediate purchase'}\n*Inquiry Type:* ${reason}`;
+      const msg = `*Ganga Agri Genetics - Quick WhatsApp Seed Booking*\n\n*Farmer Name:* ${name}\n*Phone:* ${phone}\n*Village / District:* ${village}\n*Crop Needed:* ${crop}\n*Acreage / Bags:* ${acreage || 'Immediate purchase'}\n*Inquiry Type:* ${reason}${notes ? '\n*Notes:* ' + notes : ''}`;
       window.open(`https://wa.me/917013135345?text=${encodeURIComponent(msg)}`, '_blank');
     });
   }
@@ -1940,20 +2095,84 @@ document.addEventListener('DOMContentLoaded', function () {
   const newsletterForm = document.getElementById('agriNewsletterForm') || document.getElementById('newsletterForm');
   const newsletterSuccessMsg = document.getElementById('newsletterSuccessBox') || document.getElementById('newsletterSuccessMsg');
   const newsResetBtn = document.getElementById('newsResetBtn');
+  const newsInput = document.getElementById('newsContact') || document.getElementById('newsletterContact');
+  const newsAlertBox = document.getElementById('newsletterAlert');
+  const newsAlertText = document.getElementById('newsletterAlertText');
+  const newsErrorEl = document.getElementById('newsContactError');
+
+  function isValidEmailOrPhone(str) {
+    if (!str) return false;
+    const clean = str.trim();
+    // Email check
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (emailRegex.test(clean)) return true;
+    // Phone check (10 digits)
+    const digits = clean.replace(/\D/g, '');
+    if (digits.length === 10) return true;
+    return false;
+  }
+
+  function validateNewsletter(showInline = true) {
+    const val = newsInput ? newsInput.value.trim() : '';
+    const i18n = getI18n();
+    const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+
+    if (!isValidEmailOrPhone(val)) {
+      if (showInline) {
+        if (newsInput) {
+          newsInput.classList.add('is-invalid');
+          newsInput.classList.remove('is-valid');
+        }
+        if (newsErrorEl) {
+          const span = newsErrorEl.querySelector('span');
+          if (span) span.textContent = t.errRequiredNews || 'Please enter a valid email address or 10-digit mobile number';
+          newsErrorEl.classList.add('show');
+        }
+        if (newsAlertBox) {
+          if (newsAlertText) newsAlertText.textContent = t.errRequiredNews || 'Please enter a valid email or WhatsApp number.';
+          newsAlertBox.style.display = 'flex';
+        }
+        if (newsInput) newsInput.focus();
+      }
+      return false;
+    }
+
+    if (newsInput) {
+      newsInput.classList.remove('is-invalid');
+      newsInput.classList.add('is-valid');
+    }
+    if (newsErrorEl) newsErrorEl.classList.remove('show');
+    if (newsAlertBox) newsAlertBox.style.display = 'none';
+    return true;
+  }
+
+  if (newsInput) {
+    newsInput.addEventListener('input', () => {
+      if (isValidEmailOrPhone(newsInput.value)) {
+        newsInput.classList.remove('is-invalid');
+        newsInput.classList.add('is-valid');
+        if (newsErrorEl) newsErrorEl.classList.remove('show');
+        if (newsAlertBox) newsAlertBox.style.display = 'none';
+      }
+    });
+    newsInput.addEventListener('blur', () => {
+      if (newsInput.value.trim() && !isValidEmailOrPhone(newsInput.value)) {
+        validateNewsletter(true);
+      }
+    });
+  }
 
   if (newsletterForm) {
     newsletterForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      const input = document.getElementById('newsContact') || document.getElementById('newsletterContact');
-      const val = input ? input.value.trim() : '';
       const i18n = getI18n();
       const t = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
 
-      if (!val || val.length < 5) {
-        showToast(t.toastEnterEmailOrPhone || 'Please enter your email address or WhatsApp number', 'error');
-        if (input) input.focus();
+      if (!validateNewsletter(true)) {
         return;
       }
+
+      const val = newsInput ? newsInput.value.trim() : '';
 
       // Save to localStorage for demo persistence
       try {
@@ -1978,6 +2197,11 @@ document.addEventListener('DOMContentLoaded', function () {
     newsResetBtn.addEventListener('click', function () {
       newsletterSuccessMsg.style.display = 'none';
       newsletterForm.reset();
+      if (newsInput) {
+        newsInput.classList.remove('is-valid', 'is-invalid');
+      }
+      if (newsErrorEl) newsErrorEl.classList.remove('show');
+      if (newsAlertBox) newsAlertBox.style.display = 'none';
       newsletterForm.style.display = 'block';
     });
   }

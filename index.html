@@ -1385,24 +1385,32 @@
                             </div>
 
                             <form id="seedInquiryForm" novalidate>
+                                <div class="form-inline-alert error" id="seedInquiryAlert" style="display: none;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span id="seedInquiryAlertText">Please correct the highlighted fields before submitting.</span>
+                                </div>
+
                                 <div class="form-row">
                                     <div class="form-group col-half">
-                                        <label for="farmerName">Full Name / Farmer Name *</label>
+                                        <label for="farmerName" id="contactNameLabel" data-i18n="contactNameLabel">Full Name / Farmer Name <span class="req-star">*</span></label>
                                         <input type="text" id="farmerName" name="farmerName" class="form-control" placeholder="e.g. Ramesh Kumar" required autocomplete="name">
+                                        <div class="field-error-msg" id="farmerNameError" role="alert"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter your full name</span></div>
                                     </div>
                                     <div class="form-group col-half">
-                                        <label for="farmerPhone">Mobile Number (WhatsApp) *</label>
+                                        <label for="farmerPhone" id="contactPhoneLabel" data-i18n="contactPhoneLabel">Mobile Number (WhatsApp) <span class="req-star">*</span></label>
                                         <input type="tel" id="farmerPhone" name="farmerPhone" class="form-control" placeholder="e.g. 7013135345" required pattern="[0-9]{10}" inputmode="tel" autocomplete="tel">
+                                        <div class="field-error-msg" id="farmerPhoneError" role="alert"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid 10-digit mobile number</span></div>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-half">
-                                        <label for="farmerVillage">Village / Mandal / Town *</label>
+                                        <label for="farmerVillage" id="contactVillageLabel" data-i18n="contactVillageLabel">Village / Mandal / Town <span class="req-star">*</span></label>
                                         <input type="text" id="farmerVillage" name="farmerVillage" class="form-control" placeholder="e.g. Shetpalle / Armoor" required>
+                                        <div class="field-error-msg" id="farmerVillageError" role="alert"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter your village, mandal, or town</span></div>
                                     </div>
                                     <div class="form-group col-half">
-                                        <label for="cropInterest">Crop Variety of Interest *</label>
+                                        <label for="cropInterest" id="contactCropLabel" data-i18n="contactCropLabel">Crop Variety of Interest <span class="req-star">*</span></label>
                                         <select id="cropInterest" name="cropInterest" class="form-control" required>
                                             <option value="" disabled selected>Choose Crop</option>
                                             <optgroup label="🌾 Telangana ₹500 Bonus Sannalu Varieties">
@@ -1424,12 +1432,13 @@
                                                 <option value="Dealership / Bulk Stockist">Dealership / Bulk Stockist Inquiry</option>
                                             </optgroup>
                                         </select>
+                                        <div class="field-error-msg" id="cropInterestError" role="alert"><i class="fa-solid fa-circle-exclamation"></i> <span>Please select a crop variety from the list</span></div>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-half">
-                                        <label for="farmerAcreage">Acreage or Quantity Needed</label>
+                                        <label for="farmerAcreage" id="contactAcreageLabel" data-i18n="contactAcreageLabel">Acreage or Quantity Needed</label>
                                         <input type="text" id="farmerAcreage" name="farmerAcreage" class="form-control" placeholder="e.g. 5 Acres or 20 Bags">
                                     </div>
                                     <div class="form-group col-half">
@@ -1444,7 +1453,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="farmerMessage">Specific Questions or Soil / Field Notes</label>
+                                    <label for="farmerMessage" id="contactNotesLabel" data-i18n="contactNotesLabel">Specific Questions or Soil / Field Notes</label>
                                     <textarea id="farmerMessage" name="farmerMessage" class="form-control" rows="3" placeholder="Tell us about your soil type, previous crop, or specific requirement..."></textarea>
                                 </div>
 
@@ -1537,9 +1546,15 @@
 
                         <div class="newsletter-form-col">
                             <form id="agriNewsletterForm" class="newsletter-form" novalidate>
+                                <div class="form-inline-alert error" id="newsletterAlert" style="display: none;">
+                                    <i class="fa-solid fa-triangle-exclamation"></i>
+                                    <span id="newsletterAlertText">Please enter a valid email or WhatsApp number.</span>
+                                </div>
+
                                 <div class="form-group">
-                                    <label for="newsContact"><i class="fa-solid fa-envelope-open-text"></i> Email Address or WhatsApp Number *</label>
+                                    <label for="newsContact" id="newsContactLabel" data-i18n="newsContactLabel"><i class="fa-solid fa-envelope-open-text"></i> Email Address or WhatsApp Number <span class="req-star">*</span></label>
                                     <input type="text" id="newsContact" class="form-control" placeholder="e.g. 7013135345 or farmer@gmail.com" required autocomplete="email tel">
+                                    <div class="field-error-msg" id="newsContactError" role="alert"><i class="fa-solid fa-circle-exclamation"></i> <span>Please enter a valid email address or 10-digit mobile number</span></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="newsFarmerName"><i class="fa-solid fa-user"></i> Farmer / Customer Name (Optional)</label>

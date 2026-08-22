@@ -278,15 +278,30 @@ describe('4. DOM Sections & Interactive Component Tests', () => {
     assert.ok(styleCssContent.includes('.gallery-section'), 'Missing .gallery-section in style.css');
     assert.ok(styleCssContent.includes('.gallery-lightbox-dialog'), 'Missing .gallery-lightbox-dialog in style.css');
   });
+
+  test('Forms must have red highlighted mandatory asterisks (* in .req-star) and inline error containers', () => {
+    assert.ok(indexHtmlContent.includes('class="req-star">*</span>'), 'Missing .req-star in mandatory form labels');
+    assert.ok(indexHtmlContent.includes('id="farmerNameError"'), 'Missing farmerNameError inline container');
+    assert.ok(indexHtmlContent.includes('id="farmerPhoneError"'), 'Missing farmerPhoneError inline container');
+    assert.ok(indexHtmlContent.includes('id="farmerVillageError"'), 'Missing farmerVillageError inline container');
+    assert.ok(indexHtmlContent.includes('id="cropInterestError"'), 'Missing cropInterestError inline container');
+    assert.ok(indexHtmlContent.includes('id="newsContactError"'), 'Missing newsContactError inline container');
+    assert.ok(indexHtmlContent.includes('id="seedInquiryAlert"'), 'Missing seedInquiryAlert inline container');
+    assert.ok(indexHtmlContent.includes('id="newsletterAlert"'), 'Missing newsletterAlert inline container');
+  });
 });
 
 describe('5. CSS & PWA Standards Tests', () => {
-  test('style.css must have styles for tg-bonus and newsletter sections', () => {
+  test('style.css must have styles for tg-bonus, newsletter sections, and inline validation', () => {
     assert.ok(styleCssContent.includes('.tg-bonus-section'), 'Missing .tg-bonus-section in CSS');
     assert.ok(styleCssContent.includes('.bonus-variety-card'), 'Missing .bonus-variety-card in CSS');
     assert.ok(styleCssContent.includes('.newsletter-section'), 'Missing .newsletter-section in CSS');
     assert.ok(styleCssContent.includes('.seed-bonus-badge'), 'Missing .seed-bonus-badge in CSS');
     assert.ok(styleCssContent.includes('.calc-bonus-box'), 'Missing .calc-bonus-box in CSS');
+    assert.ok(styleCssContent.includes('.req-star'), 'Missing .req-star styling in CSS');
+    assert.ok(styleCssContent.includes('.form-control.is-invalid'), 'Missing .form-control.is-invalid in CSS');
+    assert.ok(styleCssContent.includes('.field-error-msg'), 'Missing .field-error-msg in CSS');
+    assert.ok(styleCssContent.includes('.form-inline-alert'), 'Missing .form-inline-alert in CSS');
   });
 
   test('manifest.json must be valid JSON with app branding', () => {
