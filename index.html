@@ -832,7 +832,7 @@
                     </div>
 
                     <div class="compare-trigger-wrapper">
-                        <button type="button" id="openCompareModalBtn" class="btn btn--secondary btn--sm" data-action="open-compare" onclick="window.openCompareModal &amp;&amp; window.openCompareModal();">
+                        <button type="button" id="openCompareModalBtn" class="btn btn--secondary btn--sm" data-action="open-compare">
                             <i class="fa-solid fa-code-compare"></i> <span id="compareBtnLabel">Compare Varieties</span>
                         </button>
                     </div>
@@ -1903,7 +1903,7 @@
             </div>
 
             <div class="modal-footer">
-                <a href="#contact" class="btn btn--primary btn--lg" onclick="document.getElementById('compareModal').close();">
+                <a href="#contact" class="btn btn--primary btn--lg" id="compareInquireBtn">
                     <i class="fa-solid fa-paper-plane"></i> Inquire for Seeds
                 </a>
                 <button type="button" class="btn btn--outline btn--lg" id="closeCompareFooterBtn">Close</button>

@@ -1279,6 +1279,11 @@ document.addEventListener('DOMContentLoaded', function () {
     closeCompareFooterBtn.addEventListener('click', closeCompareModal);
   }
 
+  const compareInquireBtn = document.getElementById('compareInquireBtn');
+  if (compareInquireBtn) {
+    compareInquireBtn.addEventListener('click', closeCompareModal);
+  }
+
   if (compareCropA) {
     compareCropA.addEventListener('change', renderComparisonTable);
     compareCropA.addEventListener('input', renderComparisonTable);
