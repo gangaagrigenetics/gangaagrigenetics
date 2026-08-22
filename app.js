@@ -698,8 +698,47 @@ document.addEventListener('DOMContentLoaded', function () {
     // Update status indicators and badges
     const resultsCountBadge = document.getElementById('resultsCountBadge');
     if (resultsCountBadge) {
-      resultsCountBadge.textContent = `${filtered.length} ${filtered.length === 1 ? 'Variety' : 'Varieties'}`;
+      if (filtered.length === 1) {
+        resultsCountBadge.textContent = t.varietyBadgeSingular || '1 Variety';
+      } else {
+        const badgePattern = t.varietyBadgePlural || '{count} Varieties';
+        resultsCountBadge.textContent = badgePattern.replace('{count}', filtered.length);
+      }
     }
+
+    const activeFilterLabel = document.getElementById('activeFilterLabel');
+    if (activeFilterLabel) {
+      const q = currentSearchQuery.trim();
+      if (q) {
+        if (filtered.length === 1) {
+          const tpl = t.activeFilterSearchSingular || 'Showing 1 variety matching "{query}"';
+          activeFilterLabel.textContent = tpl.replace('{query}', q);
+        } else {
+          const tpl = t.activeFilterSearch || 'Showing {count} varieties matching "{query}"';
+          activeFilterLabel.textContent = tpl.replace('{count}', filtered.length).replace('{query}', q);
+        }
+      } else if (currentCategory === 'all') {
+        const tpl = t.activeFilterAll || 'Showing all {count} certified seed varieties';
+        activeFilterLabel.textContent = tpl.replace('{count}', filtered.length);
+      } else if (isBonusCategory) {
+        const tpl = t.activeFilterBonus || 'Showing {count} Telangana ₹500 Bonus Sannalu varieties';
+        activeFilterLabel.textContent = tpl.replace('{count}', filtered.length);
+      } else if (currentCategory === 'cereals') {
+        const tpl = t.activeFilterCereals || 'Showing {count} Cereals & Millets varieties';
+        activeFilterLabel.textContent = tpl.replace('{count}', filtered.length);
+      } else if (currentCategory === 'oilseeds') {
+        const tpl = t.activeFilterOilseeds || 'Showing {count} Oilseeds & Pulses varieties';
+        activeFilterLabel.textContent = tpl.replace('{count}', filtered.length);
+      } else {
+        if (filtered.length === 1) {
+          activeFilterLabel.textContent = t.activeFilterGenericSingular || 'Showing 1 variety';
+        } else {
+          const tpl = t.activeFilterGeneric || 'Showing {count} varieties';
+          activeFilterLabel.textContent = tpl.replace('{count}', filtered.length);
+        }
+      }
+    }
+
     const countAllEl = document.getElementById('count-all');
     if (countAllEl) {
       countAllEl.textContent = SEED_CATALOG.length;
