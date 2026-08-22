@@ -1,0 +1,22 @@
+{
+  "name": "gangaagrigenetics",
+  "version": "2.0.0",
+  "description": "Ganga Agri Genetics - Official Web Application, Seed Catalog & Agronomy Platform",
+  "main": "app.js",
+  "scripts": {
+    "test": "node --test tests/suite.test.js"
+  },
+  "keywords": [
+    "agriculture",
+    "seeds",
+    "telangana",
+    "paddy",
+    "maize",
+    "soybean",
+    "hybrids",
+    "bpt5204",
+    "rnr15048"
+  ],
+  "author": "Ganga Agri Genetics",
+  "license": "ISC"
+}
