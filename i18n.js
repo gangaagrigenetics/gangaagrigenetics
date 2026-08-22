@@ -188,8 +188,22 @@
         rev3Text: 'Best seed store in Telangana. Genuine certified bags, accurate seed rates, and helpful staff. Ganga Shakti Soybean had very dense pod clusters with no shattering.',
         rev3Author: '— Srinivas Rao',
         rev3Village: 'Progressive Farmer, Jagtial',
+        rev4Text: 'Cultivated KNM 1638 Kunaram Sannalu on 6 acres. Excellent resistance to Bacterial Leaf Blight and BPH with 35 quintals per acre yield and ₹500 government bonus incentive!',
+        rev4Author: '— Venkatesh Goud',
+        rev4Village: 'Progressive Farmer, Armoor',
+        rev5Text: 'Purchased Ganga Hybrid Bajra and Maize seeds for summer cultivation. Fast germination within 3 days and drought-hardy growth with high fodder yield.',
+        rev5Author: '— Mallikarjun Rao',
+        rev5Village: 'Farmer, Balkonda Mandal',
         reviewsBtnGoogle: 'Read All Google Reviews',
         reviewsBtnWrite: 'Write a Review on Google',
+
+        // Calculator Soil & Season Dynamic Advisories
+        soilAdviceBlackCotton: '🌱 Soil Note: Black cotton soil has high moisture retention. Ensure proper furrow drainage to prevent root waterlogging.',
+        soilAdviceRedLoam: '🌱 Soil Note: Red sandy loam provides excellent aeration. Apply frequent light irrigations and organic compost for optimal root vigor.',
+        soilAdviceAlluvial: '🌱 Soil Note: Alluvial clay soil is rich in nutrients. Maintain puddled conditions for paddy or raised beds for maize & pulses.',
+        seasonAdviceKharif: '☀️ Season Note: Kharif sowing (June–July) is optimal for main crop season. Monitor early for stem borer and blast during monsoons.',
+        seasonAdviceRabi: '☀️ Season Note: Rabi / Yasangi sowing (Oct–Nov) benefits from high solar radiation. Ensure timely cold-water irrigation intervals.',
+        seasonAdviceSummer: '☀️ Season Note: Summer / Zaid sowing (Feb–Mar) requires strict irrigation intervals (every 4–6 days) and drought-hardy hybrids.',
 
         // Photo Gallery Section (#gallery)
         galleryBadge: '📸 Field & Research Gallery',
@@ -477,8 +491,22 @@
         rev3Text: 'తెలంగాణలో అత్యుత్తమ విత్తన సంస్థ. నాణ్యమైన సర్టిఫైడ్ బస్తాలు. గంగ శక్తి సోయాబీన్ పంటలో కాయలు గుత్తులుగా కాసి రాలకుండా మంచి దిగుబడి వచ్చింది.',
         rev3Author: '— శ్రీనివాస్ రావు',
         rev3Village: 'రైతు, జగిత్యాల',
+        rev4Text: '6 ఎకరాల్లో KNM 1638 కునారం సన్నాలు సాగు చేశాను. ఎండ్ర తెగులు రాలేదు, ఎకరానికి 35 క్వింటాళ్ల దిగుబడితో పాటు ప్రభుత్వ ₹500 బోనస్ పొందాము!',
+        rev4Author: '— వెంకటేష్ గౌడ్',
+        rev4Village: 'రైతు, ఆర్మూర్',
+        rev5Text: 'వేసవి సాగు కోసం గంగ హైబ్రిడ్ సజ్జ మరియు మొక్కజొన్న విత్తనాలు తీసుకున్నాను. 3 రోజుల్లోనే చక్కగా మొలకెత్తి, బెట్టను తట్టుకుని మంచి మేత మరియు గింజ దిగుబడినిచ్చింది.',
+        rev5Author: '— మల్లికార్జున రావు',
+        rev5Village: 'రైతు, బాల్కొండ మండలం',
         reviewsBtnGoogle: 'గూగుల్ సమీక్షలు అన్నీ చూడండి',
         reviewsBtnWrite: 'గూగుల్‌లో సమీక్ష రాయండి',
+
+        // Calculator Soil & Season Dynamic Advisories
+        soilAdviceBlackCotton: '🌱 నేల సూచన: నల్లరేగడి నేలల్లో తేమ నిల్వ సామర్థ్యం ఎక్కువ. వేరు కుళ్లు రాకుండా సాళ్ల ద్వారా నీటి పారుదల కల్పించండి.',
+        soilAdviceRedLoam: '🌱 నేల సూచన: ఎర్ర చెలక నేలల్లో వేరు ఎదుగుదల బాగుంటుంది. తేలికపాటి తడులు మరియు సేంద్రీయ ఎరువులు వేయడం మంచిది.',
+        soilAdviceAlluvial: '🌱 నేల సూచన: వరిమడి / ఒండ్రు నేలలు పోషకాలతో కూడి ఉంటాయి. వరి కోసం బురద మడి లేదా మొక్కజొన్న కోసం ఎత్తైన గట్లు అనుకూలం.',
+        seasonAdviceKharif: '☀️ సీజన్ సూచన: ఖరీఫ్ సాగు (జూన్-జూలై) ప్రధాన పంట కాలం. తొలకరి వర్షాల్లో కాండం తొలిచే పురుగుపై నిఘా ఉంచండి.',
+        seasonAdviceRabi: '☀️ సీజన్ సూచన: రబీ / యాసంగి (అక్టోబర్-నవంబర్) అధిక సూర్యరశ్మితో గింజ బరువు పెరుగుతుంది. చలి తీవ్రతను తట్టుకునేలా తడులు ఇవ్వండి.',
+        seasonAdviceSummer: '☀️ సీజన్ సూచన: వేసవి / జాయెద్ (ఫిబ్రవరి-మార్చి) 4-6 రోజుల వ్యవధిలో తప్పనిసరిగా తడులు ఇవ్వాలి. ఎండను తట్టుకునే రకాలు మేలు.',
 
         // Photo Gallery Section (#gallery)
         galleryBadge: '📸 ఫోటో గ్యాలరీ',

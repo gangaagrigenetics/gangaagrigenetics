@@ -809,7 +809,7 @@ p {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-xl);
-  padding: 30px;
+  padding: 24px 26px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -817,8 +817,8 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
@@ -844,15 +844,15 @@ p {
 }
 
 .hero-glass-card h3 {
-  font-size: 1.6rem;
+  font-size: 1.45rem;
   color: var(--white);
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .store-loc {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--accent-300, #fde68a);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -861,15 +861,15 @@ p {
 .card-feature-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .card-feature-item {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   color: var(--slate-100);
 }
 
@@ -2779,13 +2779,20 @@ body.modal-open {
   background: var(--slate-800);
   color: var(--white);
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  transform: translateY(8px) scale(0.85);
+  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+  display: none;
 }
 
 .top-btn.visible {
+  display: flex;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
 
 .floating-tooltip {

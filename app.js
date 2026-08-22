@@ -460,6 +460,12 @@ document.addEventListener('DOMContentLoaded', function () {
       'rev3Text': t.rev3Text,
       'rev3Author': t.rev3Author,
       'rev3Village': t.rev3Village,
+      'rev4Text': t.rev4Text,
+      'rev4Author': t.rev4Author,
+      'rev4Village': t.rev4Village,
+      'rev5Text': t.rev5Text,
+      'rev5Author': t.rev5Author,
+      'rev5Village': t.rev5Village,
       'reviewsBtnGoogle': t.reviewsBtnGoogle,
       'reviewsBtnWrite': t.reviewsBtnWrite,
       // Store Location Section
@@ -1199,8 +1205,30 @@ document.addEventListener('DOMContentLoaded', function () {
       resultDuration.textContent = cropData.duration;
     }
 
+    const selectedSoil = calcSoilType ? calcSoilType.value : 'black_cotton';
+    const selectedSeason = calcSeason ? calcSeason.value : 'kharif';
+    const tUI = (i18n && i18n.ui && i18n.ui[currentLang]) ? i18n.ui[currentLang] : {};
+
+    let soilNote = '';
+    if (selectedSoil === 'black_cotton') {
+      soilNote = tUI.soilAdviceBlackCotton || '🌱 Soil Note: Black cotton soil has high moisture retention. Ensure proper furrow drainage to prevent root waterlogging.';
+    } else if (selectedSoil === 'red_loam') {
+      soilNote = tUI.soilAdviceRedLoam || '🌱 Soil Note: Red sandy loam provides excellent aeration. Apply frequent light irrigations and organic compost for optimal root vigor.';
+    } else if (selectedSoil === 'alluvial') {
+      soilNote = tUI.soilAdviceAlluvial || '🌱 Soil Note: Alluvial clay soil is rich in nutrients. Maintain puddled conditions for paddy or raised beds for maize & pulses.';
+    }
+
+    let seasonNote = '';
+    if (selectedSeason === 'kharif') {
+      seasonNote = tUI.seasonAdviceKharif || '☀️ Season Note: Kharif sowing (June–July) is optimal for main crop season. Monitor early for stem borer and blast during monsoons.';
+    } else if (selectedSeason === 'rabi') {
+      seasonNote = tUI.seasonAdviceRabi || '☀️ Season Note: Rabi / Yasangi sowing (Oct–Nov) benefits from high solar radiation. Ensure timely cold-water irrigation intervals.';
+    } else if (selectedSeason === 'summer') {
+      seasonNote = tUI.seasonAdviceSummer || '☀️ Season Note: Summer / Zaid sowing (Feb–Mar) requires strict irrigation intervals (every 4–6 days) and drought-hardy hybrids.';
+    }
+
     if (calcExpertAdvice) {
-      calcExpertAdvice.textContent = cropData.advice;
+      calcExpertAdvice.innerHTML = `<strong>${cropData.advice}</strong><br><span style="display:inline-block; margin-top:6px; color:#047857; font-size:0.92em;">${soilNote}</span><br><span style="display:inline-block; margin-top:4px; color:#b45309; font-size:0.92em;">${seasonNote}</span>`;
     }
 
     // Update Telangana Govt ₹500 Bonus Highlight Banner
